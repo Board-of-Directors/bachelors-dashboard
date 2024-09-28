@@ -1,5 +1,6 @@
 package ru.nsu.fit.bachelors.dashboard.controller
 
+import jakarta.validation.Valid
 import lombok.RequiredArgsConstructor
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -15,7 +16,6 @@ import ru.nsu.fit.bachelors.dashboard.dto.group.request.GroupEditingRequest
 import ru.nsu.fit.bachelors.dashboard.dto.group.response.GroupDto
 import ru.nsu.fit.bachelors.dashboard.dto.group.response.GroupsResponse
 
-// TODO: valid annotation
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/group")
@@ -31,12 +31,12 @@ class GroupController {
 
     @PostMapping
     fun create(
-        @RequestBody groupCreationRequest: GroupCreationRequest,
+        @RequestBody @Valid groupCreationRequest: GroupCreationRequest,
     ): ResponseEntity<Void> = ResponseEntity.ok().build()
 
     @PutMapping
     fun change(
-        @RequestBody groupEditingRequest: GroupEditingRequest,
+        @RequestBody @Valid groupEditingRequest: GroupEditingRequest,
     ): ResponseEntity<Void> = ResponseEntity.ok().build()
 
     @DeleteMapping
