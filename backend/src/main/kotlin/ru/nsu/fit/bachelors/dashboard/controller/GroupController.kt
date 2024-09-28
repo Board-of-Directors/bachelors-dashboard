@@ -13,7 +13,7 @@ import ru.nsu.fit.bachelors.dashboard.dto.group.response.GroupsResponse
 @RequestMapping("/api/v1/group")
 class GroupController {
     @GetMapping("all")
-    public fun all(): ResponseEntity<GroupsResponse> =
+    fun all(): ResponseEntity<GroupsResponse> =
         ResponseEntity.ok(
             GroupsResponse(
                 count = 2,
