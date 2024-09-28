@@ -7,7 +7,7 @@
 Отдает группы отсортированные по возрастанию идентификатора.
 
 ```json
-{
+Response {
   "groups": [
     {
       // Идентификатор группы
@@ -68,7 +68,7 @@ Response{
 }
 ```
 
-4. PUT /api/v1/group/access
+5. PUT /api/v1/group/access
 
 Позволяет добавлять права доступа до группы таблиц.
 
@@ -85,7 +85,7 @@ Request {
 }
 ```
 
-5. DELETE /api/v1/group/access
+6. DELETE /api/v1/group/access
 
 Позволяет забирать права доступа до группы таблиц.
 
@@ -98,6 +98,6 @@ Request {
 }
 ```
 
-6. DELETE /api/v1/group?id=?
+7. DELETE /api/v1/group?id=?
 
 Позволяет удалить группу.
