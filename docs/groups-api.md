@@ -34,7 +34,7 @@ Request {
 }
 ```
 
-3. PUT /api/v1/group?id=?
+3. PUT /api/v1/group
 
 Позволяет изменять группу.
 
