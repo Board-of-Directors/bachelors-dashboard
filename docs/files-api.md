@@ -44,7 +44,7 @@ Request {
 
 Фильтры передаются в формате [{columnName,predicate,value},...]
 
-```json
+```
 Response{
   // Идентификатор файла
   "id": Number!,
