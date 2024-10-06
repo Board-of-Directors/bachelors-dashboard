@@ -15,6 +15,10 @@ java {
 	}
 }
 
+springBoot {
+    mainClass = "ru.nsu.fit.bachelors.dashboard.BachelorsDashboardApplication"
+}
+
 configurations {
 	compileOnly {
 		extendsFrom(configurations.annotationProcessor.get())
