@@ -1,7 +1,7 @@
 package ru.nsu.fit.bachelors.dashboard.dto.file.response
 
 data class ItemDto(
-    private val id: Long,
-    private val columnId: Long,
-    private val value: String,
+    val id: Long,
+    val columnId: Long,
+    val value: String,
 )
