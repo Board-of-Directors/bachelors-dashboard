@@ -1,0 +1,28 @@
+version: '3.1'
+services:
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 30
+  app:
+    container_name: bachelors-dashboard
+    image: fagorym/dashboard:backend-dev
+    ports:
+      - "8080:8080"
+    depends_on:
+      - dashboard_db
+    environment:
+      - SPRING_DATASOURCE_PASSWORD=dashboard_password
+      - SPRING_DATASOURCE_USERNAME=dashboard_user
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://172.17.0.1:5432/dashboard_db
+  dashboard_db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=dashboard_db
+      - POSTGRES_USER=dashboard_user
+      - POSTGRES_PASSWORD=dashboard_password
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
