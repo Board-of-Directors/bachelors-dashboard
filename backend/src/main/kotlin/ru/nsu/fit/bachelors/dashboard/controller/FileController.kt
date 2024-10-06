@@ -35,7 +35,7 @@ class FileController {
         @RequestBody @Valid fileOrderRequest: FileOrderRequest,
     ): ResponseEntity<Void> = ResponseEntity.ok().build()
 
-    @GetMapping
+    @GetMapping("/detail")
     fun detail(
         @RequestParam fileId: Long,
     ): ResponseEntity<FileDetailResponse> =
