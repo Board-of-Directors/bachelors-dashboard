@@ -16,7 +16,7 @@ java {
 }
 
 springBoot {
-    mainClass = "ru.nsu.fit.bachelors.dashboard.BachelorsDashboardApplication"
+    mainClass = "ru.nsu.fit.bachelors.dashboard.BachelorsDashboardApplicationKt"
 }
 
 configurations {
