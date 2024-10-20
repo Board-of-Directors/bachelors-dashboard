@@ -24,4 +24,6 @@ class GroupServiceImpl(
         groupRepository
             .findById(id)
             .orElseThrow { EntityNotFoundException(EntityType.GROUP, id) }
+
+    override fun getAll(): List<GroupEntity> = groupRepository.findAll()
 }

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import ru.nsu.fit.bachelors.dashboard.dto.group.request.GroupCreationRequest
 import ru.nsu.fit.bachelors.dashboard.dto.group.request.GroupEditingRequest
-import ru.nsu.fit.bachelors.dashboard.dto.group.response.GroupDto
 import ru.nsu.fit.bachelors.dashboard.dto.group.response.GroupsResponse
 import ru.nsu.fit.bachelors.dashboard.facade.GroupFacade
 
@@ -24,13 +23,7 @@ class GroupController(
     private val groupFacade: GroupFacade,
 ) {
     @GetMapping("all")
-    fun all(): ResponseEntity<GroupsResponse> =
-        ResponseEntity.ok(
-            GroupsResponse(
-                count = 2,
-                listOf(GroupDto(1L, "Первая группа", true), GroupDto(2L, "Вторая группа", false)),
-            ),
-        )
+    fun all(): ResponseEntity<GroupsResponse> = ResponseEntity.ok(groupFacade.getAll())
 
     @PostMapping
     fun create(

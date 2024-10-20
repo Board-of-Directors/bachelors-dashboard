@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component
 import ru.nsu.fit.bachelors.dashboard.converter.GroupConverter
 import ru.nsu.fit.bachelors.dashboard.dto.group.request.GroupCreationRequest
 import ru.nsu.fit.bachelors.dashboard.dto.group.request.GroupEditingRequest
+import ru.nsu.fit.bachelors.dashboard.dto.group.response.GroupsResponse
 import ru.nsu.fit.bachelors.dashboard.service.GroupService
 
 @Component
@@ -16,6 +17,10 @@ class GroupFacadeImpl(
     override fun deleteGroup(id: Long) {
         val existingGroup = groupService.get(id)
         groupService.delete(existingGroup)
+    }
+
+    override fun getAll(): GroupsResponse {
+        return groupConverter.toResponse(groupService.getAll())
     }
 
     override fun createGroup(request: GroupCreationRequest) {

@@ -23,4 +23,11 @@ interface GroupService {
      * @param id идентификатор группы
      */
     fun get(id: Long): GroupEntity
+
+    /**
+     * Получить все доступные группы.
+     *
+     * @return список доступных групп
+     */
+    fun getAll(): List<GroupEntity>
 }
