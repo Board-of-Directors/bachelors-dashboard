@@ -9,4 +9,5 @@ enum class EntityType(
     val readableName: String,
 ) {
     GROUP("Группа"),
+    FILE("Файл"),
 }
