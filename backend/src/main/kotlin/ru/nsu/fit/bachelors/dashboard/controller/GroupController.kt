@@ -15,11 +15,14 @@ import ru.nsu.fit.bachelors.dashboard.dto.group.request.GroupCreationRequest
 import ru.nsu.fit.bachelors.dashboard.dto.group.request.GroupEditingRequest
 import ru.nsu.fit.bachelors.dashboard.dto.group.response.GroupDto
 import ru.nsu.fit.bachelors.dashboard.dto.group.response.GroupsResponse
+import ru.nsu.fit.bachelors.dashboard.facade.GroupFacade
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/group")
-class GroupController {
+class GroupController(
+    private val groupFacade: GroupFacade,
+) {
     @GetMapping("all")
     fun all(): ResponseEntity<GroupsResponse> =
         ResponseEntity.ok(
@@ -32,15 +35,24 @@ class GroupController {
     @PostMapping
     fun create(
         @RequestBody @Valid groupCreationRequest: GroupCreationRequest,
-    ): ResponseEntity<Void> = ResponseEntity.ok().build()
+    ): ResponseEntity<Void> {
+        groupFacade.createGroup(groupCreationRequest)
+        return ResponseEntity.ok().build()
+    }
 
     @PutMapping
     fun change(
         @RequestBody @Valid groupEditingRequest: GroupEditingRequest,
-    ): ResponseEntity<Void> = ResponseEntity.ok().build()
+    ): ResponseEntity<Void> {
+        groupFacade.editGroup(groupEditingRequest)
+        return ResponseEntity.ok().build()
+    }
 
     @DeleteMapping
     fun delete(
         @RequestParam id: Long,
-    ): ResponseEntity<Void> = ResponseEntity.ok().build()
+    ): ResponseEntity<Void> {
+        groupFacade.deleteGroup(id)
+        return ResponseEntity.ok().build()
+    }
 }
