@@ -1,6 +1,7 @@
 export { Autocomplete } from "./Autocomplete/Autocomplete";
 export { ControlledAutocomplete } from "./Autocomplete/ControlledAutocomplete";
 export { Button } from "./Button/Button";
+export { Drawer } from "./Drawer/Drawer";
 export { ControlledFileInput } from "./FileInput/ControlledFileInput";
 export { FolderList } from "./FolderList/FolderList";
 export { Header } from "./Header/Header";
@@ -12,6 +13,7 @@ export { Text } from "./Text/Text";
 export { UserList } from "./UserList/UserList";
 
 export type { AutocompleteItemType } from "./Autocomplete/Autocomplete.types";
+export type { DrawerProps } from "./Drawer/Drawer.types";
 export type { ModalProps } from "./Modal/Modal.types";
 export type { SelectItem } from "./Select/Select.types";
 
