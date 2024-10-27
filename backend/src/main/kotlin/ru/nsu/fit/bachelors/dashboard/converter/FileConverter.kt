@@ -1,10 +1,12 @@
 package ru.nsu.fit.bachelors.dashboard.converter
 
+import org.springframework.stereotype.Component
 import ru.nsu.fit.bachelors.dashboard.dto.file.response.FileDetailResponse
 import ru.nsu.fit.bachelors.dashboard.dto.file.response.FileDto
 import ru.nsu.fit.bachelors.dashboard.dto.file.response.FilesResponse
 import ru.nsu.fit.bachelors.dashboard.entity.FileEntity
 
+@Component
 class FileConverter {
     fun toResponse(all: List<FileEntity>): FilesResponse =
         FilesResponse(

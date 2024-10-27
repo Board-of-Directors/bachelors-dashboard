@@ -5,6 +5,7 @@ import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 
 @Entity
@@ -15,4 +16,6 @@ class GroupEntity(
     var id: Long? = null,
     @Column
     var name: String,
+    @OneToMany(mappedBy = "group")
+    val files: List<FileEntity> = listOf(),
 )

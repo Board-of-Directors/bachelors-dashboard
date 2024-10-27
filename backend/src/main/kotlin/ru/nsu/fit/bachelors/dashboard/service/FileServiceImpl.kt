@@ -1,11 +1,13 @@
 package ru.nsu.fit.bachelors.dashboard.service
 
+import org.springframework.stereotype.Service
 import ru.nsu.fit.bachelors.dashboard.entity.FileEntity
 import ru.nsu.fit.bachelors.dashboard.entity.GroupEntity
 import ru.nsu.fit.bachelors.dashboard.exception.EntityNotFoundException
 import ru.nsu.fit.bachelors.dashboard.exception.EntityType
 import ru.nsu.fit.bachelors.dashboard.repository.FileRepository
 
+@Service
 class FileServiceImpl(
     private val fileRepository: FileRepository,
 ) : FileService {
