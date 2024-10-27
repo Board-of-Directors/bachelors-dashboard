@@ -18,8 +18,6 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://172.17.0.1:5432/dashboard_db
   dashboard_db:
     image: postgres:latest
-    ports:
-      - "6543:5432"
     environment:
       - POSTGRES_DB=dashboard_db
       - POSTGRES_USER=dashboard_user
