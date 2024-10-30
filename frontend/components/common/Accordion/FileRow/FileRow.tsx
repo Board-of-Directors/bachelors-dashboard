@@ -4,16 +4,14 @@ import { Text } from "@/components/common/Text/Text";
 import { DOCXFileIcon } from "@/components/icons/DOCXFileIcon";
 import { XSLXFileIcon } from "@/components/icons/XSLXFileIcon";
 import { useDisclosure } from "@nextui-org/react";
-import { Edit3Icon, Trash2Icon, UsersIcon } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useHover } from "usehooks-ts";
-import { IconButton } from "../../../IconButton/IconButton";
-import { EditTableModal } from "./EditTableModal/EditTableModal";
-import { FileLink, FileRow, Row } from "./FolderItem.styles";
-import { DOCXFile, FileItem, FolderItemProps, XSLXFile } from "./FolderItem.types";
-import Link from "next/link";
+import { EditTableModal } from "../../Modals";
+import { SettingsTooltip } from "../SettingTooltip/SettingsTooltip";
+import { FileRow as Container, FileLink, Row } from "./FileRow.styles";
+import { DOCXFile, FileItem, FileRowProps, XSLXFile } from "./FileRow.types";
 
-export const FolderItem = ({ file, onHover }: FolderItemProps) => {
+export const FileRow = ({ file }: FileRowProps) => {
   const [tableToEdit, setTableToEdit] = useState<FileItem | null>(null);
   const hoverRef = useRef<HTMLLIElement>(null);
   const isHover = useHover(hoverRef);
@@ -32,40 +30,30 @@ export const FolderItem = ({ file, onHover }: FolderItemProps) => {
     onEditGroupOpen();
   };
 
-  useEffect(() => {
-    onHover(isHover);
-  }, [isHover, onHover]);
-
   return (
     <>
       {tableToEdit ? (
         <EditTableModal
-          table={tableToEdit}
           onOpenChange={onEditGroupOpenChange}
           isOpen={isEditGroupOpen}
+          name={tableToEdit.name}
         />
       ) : null}
-      <FileRow ref={hoverRef}>
+      <Container ref={hoverRef}>
         <FileLink href={href}>
           <Row>
             {(file as DOCXFile)?.href ? <DOCXFileIcon /> : <XSLXFileIcon />}
             <Text className={"text-md font-semibold text-text-back"}>{file.name}</Text>
           </Row>
           {isHover ? (
-            <Row>
-              <IconButton onClick={handleOpenEditModal}>
-                <Edit3Icon size={"20px"} className={"text-icon-gray"} />
-              </IconButton>
-              <IconButton>
-                <UsersIcon size={"20px"} className={"text-icon-gray"} />
-              </IconButton>
-              <IconButton hoverBackground={"#EB6B2E20"}>
-                <Trash2Icon size={"20px"} className={"text-indicator-warning"} />
-              </IconButton>
-            </Row>
+            <SettingsTooltip
+              onEdit={handleOpenEditModal}
+              onManageAccess={() => {}}
+              onDelete={() => {}}
+            />
           ) : null}
         </FileLink>
-      </FileRow>
+      </Container>
     </>
   );
 };
