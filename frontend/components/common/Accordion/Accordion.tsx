@@ -1,3 +1,5 @@
+"use client"
+
 import { Accordion as ChakraAccordion } from "@chakra-ui/react";
 import { EditGroupNameModal, ManageAccessModal } from "../Modals";
 import { useFolderList } from "./Accordion.hooks";

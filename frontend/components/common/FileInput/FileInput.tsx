@@ -1,3 +1,5 @@
+"use client"
+
 import { UploadIcon, XIcon } from "lucide-react";
 import { useRef } from "react";
 import { Input } from "../Input/Input";
