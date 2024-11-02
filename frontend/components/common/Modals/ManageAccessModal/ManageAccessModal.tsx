@@ -1,3 +1,5 @@
+"use client"
+
 import { api, BASE_URL } from "@/api";
 import { Button, ControlledSelect, Modal, SelectItem, Text, UserList } from "@/components/common";
 import { Employee } from "@/types/employee";
