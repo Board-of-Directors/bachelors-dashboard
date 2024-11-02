@@ -2,7 +2,7 @@ export { Autocomplete } from "./Autocomplete/Autocomplete";
 export { ControlledAutocomplete } from "./Autocomplete/ControlledAutocomplete";
 export { Button } from "./Button/Button";
 export { ControlledFileInput } from "./FileInput/ControlledFileInput";
-export { FolderList } from "./FolderList/FolderList";
+export { Accordion } from "./Accordion/Accordion";
 export { Header } from "./Header/Header";
 export { ControlledInput } from "./Input/ControlledInput";
 export { Modal } from "./Modal/Modal";
@@ -15,3 +15,4 @@ export type { AutocompleteItemType } from "./Autocomplete/Autocomplete.types";
 export type { ModalProps } from "./Modal/Modal.types";
 export type { SelectItem } from "./Select/Select.types";
 
+export * from "./Modals";
