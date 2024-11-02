@@ -3,7 +3,7 @@ import { FormProvider } from "react-hook-form";
 import { useNewTableGroupModal } from "./NewTableGroupModal.hooks";
 
 export const NewTableGroupModal = (props: ModalProps) => {
-  const { form, onSubmit } = useNewTableGroupModal();
+  const { form, onSubmit } = useNewTableGroupModal(props);
 
   return (
     <FormProvider {...form}>
