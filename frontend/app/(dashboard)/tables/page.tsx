@@ -1,10 +1,9 @@
 "use client";
 
-import { Button, Header, Text } from "@/components/common";
+import { Header } from "@/components/common";
 import { Accordion } from "@/components/common/Accordion/Accordion";
 import { mockFolders } from "@/components/common/Accordion/Accordion.mocks";
 import { useDisclosure } from "@nextui-org/react";
-import { GroupIcon, PlusIcon } from "lucide-react";
 import { NewFileModal } from "./components/NewFileModal/NewFileModal";
 import { NewTableGroupModal } from "./components/NewTableGroupModal/NewTableGroupModal";
 
@@ -14,7 +13,17 @@ const TablesPage = () => {
     isOpen: isAddGroupOpen,
     onOpenChange: onAddGroupOpenChange,
   } = useDisclosure();
+  const {
+    onOpen: onAddGroupOpen,
+    isOpen: isAddGroupOpen,
+    onOpenChange: onAddGroupOpenChange,
+  } = useDisclosure();
 
+  const {
+    onOpen: onNewFileModalOpen,
+    isOpen: isNewFileModalOpen,
+    onOpenChange: onNewFileModalOpenChange,
+  } = useDisclosure();
   const {
     onOpen: onNewFileModalOpen,
     isOpen: isNewFileModalOpen,
