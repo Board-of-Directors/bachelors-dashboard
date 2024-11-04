@@ -27,7 +27,7 @@ class FileEntity(
     var sequenceId: Int,
     @ManyToOne
     @JoinColumn(name = "group_id")
-    val group: GroupEntity,
+    var group: GroupEntity,
     @OneToMany(mappedBy = "table")
     val rows: List<TableRowEntity> = listOf(),
     @OneToMany(mappedBy = "table")

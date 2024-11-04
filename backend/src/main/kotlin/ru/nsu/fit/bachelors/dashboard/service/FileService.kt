@@ -19,4 +19,12 @@ interface FileService {
      * @return детальная информация о файле
      */
     fun getById(fileId: Long): FileEntity
+
+    /**
+     * Получить все файлы по идентификаторам.
+     *
+     * @param fileIds идентификаторы файлов
+     * @return список файлов
+     */
+    fun allByIds(fileIds: List<Long>): List<FileEntity>
 }

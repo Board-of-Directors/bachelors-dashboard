@@ -25,10 +25,17 @@ class FileFacadeImpl(
 
     @Transactional
     override fun changeOrder(fileOrderRequest: FileOrderRequest) {
+        val group = groupService.get(fileOrderRequest.groupId)
         val filesById =
             fileService
-                .allByGroup(groupService.get(fileOrderRequest.groupId))
+                .allByIds(fileOrderRequest.ids.map { it.id })
                 .associateBy { it.id }
-        fileOrderRequest.ids.mapIndexed { index, idDto -> filesById[idDto.id]?.let { it.sequenceId = index } }
+
+        fileOrderRequest.ids.mapIndexed { index, idDto ->
+            filesById[idDto.id]?.let {
+                it.sequenceId = index
+                it.group = group
+            }
+        }
     }
 }
