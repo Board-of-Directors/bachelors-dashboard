@@ -1,5 +1,6 @@
 package ru.nsu.fit.bachelors.dashboard.entity
 
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
@@ -26,6 +27,6 @@ class TableRowEntity(
     @ManyToOne
     @JoinColumn(name = "table_id")
     val table: FileEntity,
-    @OneToMany(mappedBy = "row")
+    @OneToMany(mappedBy = "row", cascade = [CascadeType.ALL])
     val items: List<TableItemEntity> = listOf(),
 )

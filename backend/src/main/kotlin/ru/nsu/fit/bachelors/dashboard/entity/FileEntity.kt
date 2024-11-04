@@ -1,5 +1,6 @@
 package ru.nsu.fit.bachelors.dashboard.entity
 
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
@@ -28,8 +29,8 @@ class FileEntity(
     @ManyToOne
     @JoinColumn(name = "group_id")
     var group: GroupEntity,
-    @OneToMany(mappedBy = "table")
+    @OneToMany(mappedBy = "table", cascade = [CascadeType.ALL])
     val rows: List<TableRowEntity> = listOf(),
-    @OneToMany(mappedBy = "table")
+    @OneToMany(mappedBy = "table", cascade = [CascadeType.ALL])
     val columns: List<TableColumnEntity> = listOf(),
 )

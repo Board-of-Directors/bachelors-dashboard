@@ -1,5 +1,6 @@
 package ru.nsu.fit.bachelors.dashboard.entity
 
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -16,6 +17,6 @@ class GroupEntity(
     var id: Long? = null,
     @Column
     var name: String,
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", cascade = [CascadeType.ALL])
     val files: List<FileEntity> = listOf(),
 )
