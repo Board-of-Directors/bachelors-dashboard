@@ -1,5 +1,6 @@
 package ru.nsu.fit.bachelors.dashboard.service
 
+import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
 import ru.nsu.fit.bachelors.dashboard.entity.FileEntity
 import ru.nsu.fit.bachelors.dashboard.entity.GroupEntity
@@ -11,7 +12,7 @@ import ru.nsu.fit.bachelors.dashboard.repository.FileRepository
 class FileServiceImpl(
     private val fileRepository: FileRepository,
 ) : FileService {
-    override fun allByGroup(group: GroupEntity): List<FileEntity> = fileRepository.findAllByGroup(group)
+    override fun allByGroup(group: GroupEntity): List<FileEntity> = fileRepository.findAllByGroup(group, Sort.by("sequenceId"))
 
     override fun getById(fileId: Long): FileEntity =
         fileRepository
