@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
+import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 
 @Entity
@@ -25,4 +26,6 @@ class TableRowEntity(
     @ManyToOne
     @JoinColumn(name = "table_id")
     val table: FileEntity,
+    @OneToMany(mappedBy = "row")
+    val items: List<TableItemEntity> = listOf(),
 )

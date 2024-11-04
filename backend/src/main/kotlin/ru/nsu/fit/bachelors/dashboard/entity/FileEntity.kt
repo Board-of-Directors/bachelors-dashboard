@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
+import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 
 @Entity
@@ -27,4 +28,8 @@ class FileEntity(
     @ManyToOne
     @JoinColumn(name = "group_id")
     val group: GroupEntity,
+    @OneToMany(mappedBy = "table")
+    val rows: List<TableRowEntity> = listOf(),
+    @OneToMany(mappedBy = "table")
+    val columns: List<TableColumnEntity> = listOf(),
 )

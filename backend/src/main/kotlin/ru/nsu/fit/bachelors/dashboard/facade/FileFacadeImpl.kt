@@ -20,6 +20,7 @@ class FileFacadeImpl(
             fileService.allByGroup(groupService.get(groupId)),
         )
 
+    @Transactional
     override fun getDetail(fileId: Long): FileDetailResponse = fileConverter.toDetail(fileService.getById(fileId))
 
     @Transactional
