@@ -18,4 +18,6 @@ class FileServiceImpl(
         fileRepository
             .findById(fileId)
             .orElseThrow { EntityNotFoundException(EntityType.FILE, fileId) }
+
+    override fun allByIds(fileIds: List<Long>): List<FileEntity> = fileRepository.findAllById(fileIds)
 }
