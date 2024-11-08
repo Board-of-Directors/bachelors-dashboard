@@ -1,3 +1,5 @@
+"use client"
+
 import styled from "styled-components";
 
 const Header = styled.span`
@@ -16,4 +18,4 @@ const Container = styled.div`
     border-bottom-color: #F3F3F3;
 `
 
-export { Header, Container };
+export { Container, Header };

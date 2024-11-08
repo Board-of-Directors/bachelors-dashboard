@@ -1,3 +1,5 @@
+"use client"
+
 import { FormProvider } from "react-hook-form";
 import { Column } from "./EditGroupNameModal.styles";
 import { EditTableModalProps } from "./EditGroupNameModal.types";
