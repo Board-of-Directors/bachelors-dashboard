@@ -1,26 +1,29 @@
-"use client"
+"use client";
 
+import { getAllGroups } from "@/api/request/group";
+import { GetAllGroupsResponse } from "@/api/request/group/types";
+import { GET_ALL_GROUPS_KEY } from "@/constants/queryKeys";
 import { Accordion as ChakraAccordion } from "@chakra-ui/react";
-import { EditGroupNameModal, ManageAccessModal } from "../Modals";
-import { useFolderList } from "./Accordion.hooks";
+import { useQuery } from "@tanstack/react-query";
 import { FolderListProps } from "./Accordion.types";
 import { AccordionItem } from "./AccordionItem/AccordionItem";
+import { FolderProps } from "./AccordionItem/AccordionItem.types";
 
-export const Accordion = ({ folders, ...props }: FolderListProps) => {
-  const { states, actions, editGroupModalProps, manageAccessModalProps } = useFolderList();
-  const { folderName, changingFolder } = states;
+export const Accordion = (props: FolderListProps) => {
+  const { data, isLoading } = useQuery<GetAllGroupsResponse, Error>({
+    queryKey: GET_ALL_GROUPS_KEY,
+    queryFn: getAllGroups,
+  });
+
+  if (isLoading || !data) {
+    return <>Loading..</>;
+  }
 
   return (
     <>
-      {folderName !== undefined ? (
-        <ManageAccessModal {...manageAccessModalProps} folderName={folderName} />
-      ) : null}
-      {changingFolder !== undefined ? (
-        <EditGroupNameModal {...editGroupModalProps} folderName={changingFolder} />
-      ) : null}
       <ChakraAccordion allowMultiple allowToggle {...props}>
-        {folders.map((folder, index) => (
-          <AccordionItem folder={folder} {...actions} key={index} />
+        {data.groups.map((folder, index) => (
+          <AccordionItem folder={folder as FolderProps} key={index} />
         ))}
       </ChakraAccordion>
     </>

@@ -1,3 +1,5 @@
+"use client"
+
 import { XIcon } from "lucide-react";
 import styled from "styled-components";
 
@@ -34,4 +36,5 @@ const DeleteIcon = styled(XIcon)`
   cursor: pointer;
 `;
 
-export { Cotainter, LeftRow, Avatar, DeleteIcon };
+export { Avatar, Cotainter, DeleteIcon, LeftRow };
+

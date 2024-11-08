@@ -1,6 +1,8 @@
+"use client"
+
 import { Text } from "@/components/common/Text/Text";
-import { HeaderProps } from "./Header.types";
 import { ContentRow, HelperRow, Row } from "./Header.styles";
+import { HeaderProps } from "./Header.types";
 
 export const Header = ({
   header,

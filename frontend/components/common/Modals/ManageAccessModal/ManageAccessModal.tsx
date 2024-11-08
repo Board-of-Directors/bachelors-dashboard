@@ -1,10 +1,8 @@
-"use client"
+"use client";
 
-import { api, BASE_URL } from "@/api";
 import { Button, ControlledSelect, Modal, SelectItem, Text, UserList } from "@/components/common";
 import { Employee } from "@/types/employee";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createServer } from "miragejs";
 import { useEffect, useState } from "react";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import { ManageAccessModalSchema, ManageAccessModalType } from "./ManageAccessModal.schema";
@@ -12,17 +10,13 @@ import { Header } from "./ManageAccessModal.styles";
 import { ManangeAccessModalProps } from "./ManageAccessModal.types";
 import { toAutocompleteItems } from "./ManageAccessModal.utils";
 
-createServer({
-  routes() {
-    this.get(`${BASE_URL}/employees`, () => [
-      { email: "hello-world@gmail.com", photo: null },
-      { email: "test-emaul@gmail.com", photo: null },
-      { email: "o.veber@g.nsu.ru", photo: null },
-    ]);
-  },
-});
+const defaultEmp = [
+  { email: "hello-world@gmail.com", photo: null },
+  { email: "test-emaul@gmail.com", photo: null },
+  { email: "o.veber@g.nsu.ru", photo: null },
+];
 
-export const ManageAccessModal = ({ folderName, ...props }: ManangeAccessModalProps) => {
+export const ManageAccessModal = ({ folder : {name}, ...props }: ManangeAccessModalProps) => {
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [selectedEmployees, onSelectEmployees] = useState<SelectItem[]>([]);
 
@@ -40,10 +34,7 @@ export const ManageAccessModal = ({ folderName, ...props }: ManangeAccessModalPr
   };
 
   useEffect(() => {
-    api
-      .get(`${BASE_URL}/employees`)
-      .then((response) => response.data)
-      .then((data) => onSelectEmployees(toAutocompleteItems(data)));
+    onSelectEmployees(toAutocompleteItems(defaultEmp));
   }, []);
 
   return (
@@ -53,7 +44,7 @@ export const ManageAccessModal = ({ folderName, ...props }: ManangeAccessModalPr
         header={
           <Header>
             <Text className="font-semibold text-2xl">Настроить доступ</Text>
-            <Text className="text-text-gray text-base">{folderName}</Text>
+            <Text className="text-text-gray text-base">{name}</Text>
           </Header>
         }
         body={

@@ -1,3 +1,5 @@
+"use client"
+
 import { cn } from "@/utils/cn";
 import { Button as NextButton, extendVariants } from "@nextui-org/react";
 

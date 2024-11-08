@@ -1,5 +1,6 @@
+import { Group } from "@/api/request/group/types";
 import { ModalProps } from "@/components/common";
 
 export interface ManangeAccessModalProps extends ModalProps {
-    folderName : string;
+    folder : Group;
 }

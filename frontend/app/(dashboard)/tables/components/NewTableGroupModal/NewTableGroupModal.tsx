@@ -1,16 +1,9 @@
 import { Button, ControlledInput, Modal, ModalProps, Text } from "@/components/common";
-import { TabelGroupModalType, TableGroupModalSchema } from "@/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { FieldValues, FormProvider, useForm } from "react-hook-form";
+import { FormProvider } from "react-hook-form";
+import { useNewTableGroupModal } from "./NewTableGroupModal.hooks";
 
 export const NewTableGroupModal = (props: ModalProps) => {
-  const form = useForm<TabelGroupModalType>({
-    resolver: zodResolver(TableGroupModalSchema),
-  });
-
-  const handleSubmit = (fieldValues: FieldValues) => {
-    alert(fieldValues);
-  };
+  const { form, onSubmit } = useNewTableGroupModal(props);
 
   return (
     <FormProvider {...form}>
@@ -18,10 +11,10 @@ export const NewTableGroupModal = (props: ModalProps) => {
         {...props}
         header={<Text className="font-semibold text-2xl">Новая группа таблиц</Text>}
         body={
-          <ControlledInput name={"groupName"} label="Название" placeholder="Введите название" />
+          <ControlledInput name={"name"} label="Название" placeholder="Введите название" />
         }
         footer={
-          <Button size="xl" onClick={handleSubmit}>
+          <Button size="xl" onClick={form.handleSubmit(onSubmit)}>
             Добавить
           </Button>
         }

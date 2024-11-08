@@ -5,13 +5,11 @@ import { AccordionButton } from "../AccordionButton/AccordionButton";
 import { FileRow } from "../FileRow/FileRow";
 import { AccordionItemProps } from "./AccordionItem.types";
 
-export const AccordionItem = ({ folder: { name, files }, ...props }: AccordionItemProps) => (
+export const AccordionItem = ({ folder }: AccordionItemProps) => (
   <ChakraAccordionItem>
-    <AccordionButton name={name} {...props} />
+    <AccordionButton folder={folder} />
     <AccordionPanel>
-      {files.map((file, index) => (
-        <FileRow file={file} key={index} />
-      ))}
+      {folder?.files?.map((file, index) => <FileRow file={file} key={index} />)}
     </AccordionPanel>
   </ChakraAccordionItem>
 );
