@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.multipart.MultipartFile
 import ru.nsu.fit.bachelors.dashboard.dto.file.request.FileOrderRequest
 import ru.nsu.fit.bachelors.dashboard.dto.file.response.*
 import ru.nsu.fit.bachelors.dashboard.facade.FileFacade
@@ -36,4 +37,7 @@ class FileController(
     fun detail(
         @RequestParam fileId: Long,
     ): ResponseEntity<FileDetailResponse> = ResponseEntity.ok(fileFacade.getDetail(fileId))
+
+    @PutMapping("/upload")
+    fun upload(@RequestParam file: MultipartFile) = fileFacade.uploadFile(file)
 }

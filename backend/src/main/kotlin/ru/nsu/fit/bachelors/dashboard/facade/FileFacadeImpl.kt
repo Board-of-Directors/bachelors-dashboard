@@ -2,23 +2,31 @@ package ru.nsu.fit.bachelors.dashboard.facade
 
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
+import org.springframework.web.multipart.MultipartFile
 import ru.nsu.fit.bachelors.dashboard.converter.FileConverter
 import ru.nsu.fit.bachelors.dashboard.dto.file.request.FileOrderRequest
 import ru.nsu.fit.bachelors.dashboard.dto.file.response.FileDetailResponse
 import ru.nsu.fit.bachelors.dashboard.dto.file.response.FilesResponse
 import ru.nsu.fit.bachelors.dashboard.service.FileService
 import ru.nsu.fit.bachelors.dashboard.service.GroupService
+import ru.nsu.fit.bachelors.dashboard.service.UploadService
 
 @Component
 class FileFacadeImpl(
     private val fileService: FileService,
     private val fileConverter: FileConverter,
     private val groupService: GroupService,
+    private val uploadService: UploadService,
 ) : FileFacade {
     override fun getByGroup(groupId: Long): FilesResponse =
         fileConverter.toResponse(
             fileService.allByGroup(groupService.get(groupId)),
         )
+
+    override fun uploadFile(file: MultipartFile) {
+        val identifier = uploadService.upload(file)
+        return
+    }
 
     @Transactional
     override fun getDetail(fileId: Long): FileDetailResponse = fileConverter.toDetail(fileService.getById(fileId))

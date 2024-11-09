@@ -37,6 +37,8 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.liquibase:liquibase-core")
+    implementation(platform("com.amazonaws:aws-java-sdk-bom:1.12.529"))
+    implementation("com.amazonaws:aws-java-sdk-s3")
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("org.postgresql:postgresql")
 	annotationProcessor("org.projectlombok:lombok")
