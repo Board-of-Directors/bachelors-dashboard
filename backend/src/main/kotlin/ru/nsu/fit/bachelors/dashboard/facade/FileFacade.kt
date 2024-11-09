@@ -4,6 +4,7 @@ import org.springframework.web.multipart.MultipartFile
 import ru.nsu.fit.bachelors.dashboard.dto.file.request.FileOrderRequest
 import ru.nsu.fit.bachelors.dashboard.dto.file.response.FileDetailResponse
 import ru.nsu.fit.bachelors.dashboard.dto.file.response.FilesResponse
+import java.util.UUID
 
 interface FileFacade {
     /**
@@ -33,6 +34,7 @@ interface FileFacade {
      * Загрузить файл.
      *
      * @param file файл для загрузки
+     * @return идентификатор загруженного файла
      */
-    fun uploadFile(file: MultipartFile): Any
+    fun uploadFile(file: MultipartFile): UUID
 }
