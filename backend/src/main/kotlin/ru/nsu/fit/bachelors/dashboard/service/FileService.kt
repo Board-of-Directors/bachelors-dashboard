@@ -1,6 +1,7 @@
 package ru.nsu.fit.bachelors.dashboard.service
 
 import ru.nsu.fit.bachelors.dashboard.entity.FileEntity
+import ru.nsu.fit.bachelors.dashboard.entity.FileType
 import ru.nsu.fit.bachelors.dashboard.entity.GroupEntity
 
 interface FileService {
@@ -27,4 +28,12 @@ interface FileService {
      * @return список файлов
      */
     fun allByIds(fileIds: List<Long>): List<FileEntity>
+
+    /**
+     * Получить все файлы по типу.
+     *
+     * @param fileType тип файла
+     * @return список файлов с заданным типом
+     */
+    fun allByType(fileType: FileType): List<FileEntity>
 }

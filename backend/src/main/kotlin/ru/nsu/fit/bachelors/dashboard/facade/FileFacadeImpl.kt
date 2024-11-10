@@ -10,6 +10,7 @@ import ru.nsu.fit.bachelors.dashboard.dto.file.response.FilesResponse
 import ru.nsu.fit.bachelors.dashboard.service.FileService
 import ru.nsu.fit.bachelors.dashboard.service.GroupService
 import ru.nsu.fit.bachelors.dashboard.service.UploadService
+import ru.nsu.fit.bachelors.dashboard.utils.enumValueOrThrow
 import java.util.UUID
 
 @Component
@@ -24,7 +25,12 @@ class FileFacadeImpl(
             fileService.allByGroup(groupService.get(groupId)),
         )
 
-    override fun uploadFile(file: MultipartFile) : UUID = uploadService.upload(file)
+    override fun getByType(fileType: String): FilesResponse =
+        fileConverter.toResponse(
+            fileService.allByType(enumValueOrThrow(fileType)),
+        )
+
+    override fun uploadFile(file: MultipartFile): UUID = uploadService.upload(file)
 
     @Transactional
     override fun getDetail(fileId: Long): FileDetailResponse = fileConverter.toDetail(fileService.getById(fileId))

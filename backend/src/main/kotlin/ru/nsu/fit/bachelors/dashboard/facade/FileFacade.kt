@@ -37,4 +37,12 @@ interface FileFacade {
      * @return идентификатор загруженного файла
      */
     fun uploadFile(file: MultipartFile): UUID
+
+    /**
+     * Получить все файлы по типу.
+     *
+     * @param fileType тип файла (документ/таблица)
+     * @return ответ, содержащий все файлы с заданным типом
+     */
+    fun getByType(fileType: String): FilesResponse
 }

@@ -25,6 +25,11 @@ class FileController(
         @RequestParam groupId: Long,
     ): ResponseEntity<FilesResponse> = ResponseEntity.ok(fileFacade.getByGroup(groupId))
 
+    @GetMapping("/type")
+    fun byType(
+        @RequestParam fileType: String,
+    ): ResponseEntity<FilesResponse> = ResponseEntity.ok(fileFacade.getByType(fileType))
+
     @PutMapping
     fun order(
         @RequestBody @Valid fileOrderRequest: FileOrderRequest,

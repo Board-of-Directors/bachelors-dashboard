@@ -3,6 +3,7 @@ package ru.nsu.fit.bachelors.dashboard.service
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
 import ru.nsu.fit.bachelors.dashboard.entity.FileEntity
+import ru.nsu.fit.bachelors.dashboard.entity.FileType
 import ru.nsu.fit.bachelors.dashboard.entity.GroupEntity
 import ru.nsu.fit.bachelors.dashboard.exception.EntityNotFoundException
 import ru.nsu.fit.bachelors.dashboard.exception.EntityType
@@ -20,4 +21,5 @@ class FileServiceImpl(
             .orElseThrow { EntityNotFoundException(EntityType.FILE, fileId) }
 
     override fun allByIds(fileIds: List<Long>): List<FileEntity> = fileRepository.findAllById(fileIds)
+    override fun allByType(fileType: FileType): List<FileEntity> = fileRepository.findAllByType(fileType)
 }
