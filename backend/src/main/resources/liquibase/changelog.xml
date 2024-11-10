@@ -7,4 +7,5 @@
     <include file="migrations/2024-10-27-create-file-table.sql" relativeToChangelogFile="true"/>
     <include file="migrations/2024-11-04-create-table-items.sql" relativeToChangelogFile="true"/>
     <include file="migrations/2024-11-10-create-table-student.sql" relativeToChangelogFile="true"/>
+    <include file="migrations/2024-11-11-add-row-student-id.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>
