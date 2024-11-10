@@ -10,5 +10,6 @@ class StudentFacadeImpl(
     val studentConverter: StudentConverter,
     val studentService: StudentService,
 ) : StudentFacade {
-    override fun getByFilter(filter: StudentFilter) = studentService.findByFilter(studentConverter.toInternal(filter))
+    override fun getByFilter(filter: StudentFilter) =
+        studentConverter.toResponse(studentService.findByFilter(studentConverter.toInternal(filter)))
 }
