@@ -24,7 +24,7 @@ export const Accordion = (props: FolderListProps) => {
   }
 
   return (
-    <ChakraAccordion allowMultiple allowToggle {...props}>
+    <ChakraAccordion allowToggle {...props}>
       {data.groups.map((folder, index) => (
         <AccordionItem folder={folder as FolderProps} key={index} />
       ))}

@@ -11,7 +11,7 @@ export const AccordionItem = ({ folder }: AccordionItemProps) => (
     {({ isExpanded }) => (
       <>
         <AccordionButton folder={folder} />
-        {isExpanded ? <AccordionPanel folderId={folder.id} /> : null}
+        {isExpanded ? <AccordionPanel folder={folder} /> : null}
       </>
     )}
   </ChakraAccordionItem>

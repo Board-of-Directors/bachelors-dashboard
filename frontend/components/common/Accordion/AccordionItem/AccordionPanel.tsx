@@ -8,20 +8,25 @@ import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable"
 import { useQuery } from "@tanstack/react-query";
 import { FileRow } from "../FileRow/FileRow";
 import { Loading } from "../FileRow/FileRow.loading";
+import { FolderProps } from "./AccordionItem.types";
 
 interface AccordionPanelProps {
-  folderId: number;
+  folder: FolderProps;
 }
 
-export const AccordionPanel = ({ folderId }: AccordionPanelProps) => {
-  const { data: files, isLoading } = useQuery<ResponseFile[], Error>({
-    queryFn: () => getGroupFiles(folderId),
+export const AccordionPanel = ({ folder }: AccordionPanelProps) => {
+  const {
+    data: files,
+    isLoading,
+    isFetchedAfterMount,
+  } = useQuery<ResponseFile[], Error>({
+    queryFn: () => getGroupFiles(folder.id),
     queryKey: GET_GROUP_FILES,
   });
 
   const handleDragEnd = () => {};
 
-  if (isLoading) {
+  if (isLoading || !isFetchedAfterMount) {
     return <Loading />;
   }
 
