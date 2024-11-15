@@ -7,6 +7,7 @@ const FileRow = chakra(Box, {
         padding: "20px 20px 20px 64px",
         borderTopColor: 'button.secondary',
         borderTopWidth: "1px",
+        position: "relative",
 
         transition: "background 200ms",
 
@@ -21,7 +22,7 @@ const FileLink = chakra(Link, {
         width: '100%',
         display: "inline-flex",
         alignItems: "center",
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     }
 })
 

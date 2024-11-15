@@ -1,6 +1,6 @@
 interface OrderFilesRequest {
     groupId: number;
-    ids: number[]
+    ids: {id : number}[]
 }
 
 interface ResponseFile {

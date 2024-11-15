@@ -4,7 +4,6 @@ import { getAllGroups } from "@/api/request/group";
 import { GetAllGroupsResponse } from "@/api/request/group/types";
 import { GET_ALL_GROUPS_KEY } from "@/constants/queryKeys";
 import { Accordion as ChakraAccordion } from "@chakra-ui/react";
-import { DragEndEvent } from "@dnd-kit/core";
 import { useQuery } from "@tanstack/react-query";
 import { AccordionLoading } from "./Accordion.loading";
 import { FolderListProps } from "./Accordion.types";
@@ -16,8 +15,6 @@ export const Accordion = (props: FolderListProps) => {
     queryKey: GET_ALL_GROUPS_KEY,
     queryFn: getAllGroups,
   });
-
-  const handleDragEnd = (event: DragEndEvent) => console.log("event", event);
 
   if (isLoading || !data) {
     return <AccordionLoading />;

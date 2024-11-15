@@ -2,7 +2,7 @@ import { api } from "@/api";
 import { OrderFilesRequest, ResponseFile } from "./types";
 
 const orderFiles = async (request: OrderFilesRequest): Promise<void> => {
-    return api.put('/file/order', request)
+    return api.put('/file', request)
 }
 
 const uploadFile = async (file: File): Promise<string> => {

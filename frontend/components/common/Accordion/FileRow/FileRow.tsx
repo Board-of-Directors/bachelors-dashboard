@@ -3,47 +3,24 @@
 import { Text } from "@/components/common/Text/Text";
 import { DOCXFileIcon } from "@/components/icons/DOCXFileIcon";
 import { XSLXFileIcon } from "@/components/icons/XSLXFileIcon";
-import { useSortable } from "@dnd-kit/sortable";
-import { useDisclosure } from "@nextui-org/react";
-import { useRef, useState } from "react";
-import { useHover } from "usehooks-ts";
 import { EditTableModal } from "../../Modals";
 import { SettingsTooltip } from "../SettingTooltip/SettingsTooltip";
 import { FileRow as Container, FileLink, Row } from "./FileRow.styles";
-import { DOCXFile, FileItem, FileRowProps, XSLXFile } from "./FileRow.types";
+import { DOCXFile, FileRowProps } from "./FileRow.types";
 
-import { useMergeRefs } from "@chakra-ui/react";
-import { CSS } from "@dnd-kit/utilities";
+import { MenuIcon } from "lucide-react";
+import { useFileRow } from "./FileRow.hooks";
 
 export const FileRow = ({ file }: FileRowProps) => {
-  const { attributes, listeners, setNodeRef, transition, transform } = useSortable({
-    id: file.name,
-  });
-
-  const [tableToEdit, setTableToEdit] = useState<FileItem | null>(null);
-  const hoverRef = useRef<HTMLLIElement>(null);
-  const isHover = useHover(hoverRef);
-
   const {
-    onOpen: onEditGroupOpen,
-    isOpen: isEditGroupOpen,
-    onOpenChange: onEditGroupOpenChange,
-  } = useDisclosure();
-
-  const style = {
-    transition,
-    transform: CSS.Translate.toString(transform),
-  };
-
-  const tableHref = `tables/${(file as XSLXFile)?.tableId}`;
-  const href = (file as DOCXFile)?.href || tableHref;
-
-  const refs = useMergeRefs(hoverRef, setNodeRef);
-
-  const handleOpenEditModal = () => {
-    setTableToEdit(file);
-    onEditGroupOpen();
-  };
+    disclosure: { isEditGroupOpen, onEditGroupOpenChange },
+    draggable: { attributes, listeners, style },
+    handleOpenEditModal,
+    tableToEdit,
+    isHover,
+    refs,
+    href,
+  } = useFileRow(file);
 
   return (
     <>
@@ -54,7 +31,13 @@ export const FileRow = ({ file }: FileRowProps) => {
           name={tableToEdit.name}
         />
       ) : null}
-      <Container ref={refs} style={style} {...attributes} {...listeners}>
+      <Container ref={refs} style={style} {...attributes}>
+        {isHover ? (
+          <MenuIcon
+            className="absolute left-7 top-[32px] size-[18px] text-text-gray cursor-grabbing"
+            {...listeners}
+          />
+        ) : null}
         <FileLink href={href}>
           <Row>
             {(file as DOCXFile)?.href ? <DOCXFileIcon /> : <XSLXFileIcon />}

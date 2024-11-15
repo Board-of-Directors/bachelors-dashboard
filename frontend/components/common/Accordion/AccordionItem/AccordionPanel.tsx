@@ -1,13 +1,13 @@
 import { getGroupFiles } from "@/api/request/file";
 import { ResponseFile } from "@/api/request/file/types";
-import { GET_GROUP_FILES } from "@/constants/queryKeys";
+import { GET_GROUP_FILES_KEY } from "@/constants";
 import { AccordionPanel as ChakraAccordionPanel } from "@chakra-ui/react";
 import { closestCenter, DndContext } from "@dnd-kit/core";
 import { restrictToParentElement } from "@dnd-kit/modifiers";
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { useQuery } from "@tanstack/react-query";
 import { FileRow } from "../FileRow/FileRow";
-import { Loading } from "../FileRow/FileRow.loading";
+import { useAccordionItem } from "./AccordionItem.hooks";
 import { FolderProps } from "./AccordionItem.types";
 
 interface AccordionPanelProps {
@@ -15,26 +15,18 @@ interface AccordionPanelProps {
 }
 
 export const AccordionPanel = ({ folder }: AccordionPanelProps) => {
-  const {
-    data: files,
-    isLoading,
-    isFetchedAfterMount,
-  } = useQuery<ResponseFile[], Error>({
+  const { data, isFetchedAfterMount } = useQuery<ResponseFile[], Error>({
     queryFn: () => getGroupFiles(folder.id),
-    queryKey: GET_GROUP_FILES,
+    queryKey: GET_GROUP_FILES_KEY,
   });
 
-  const handleDragEnd = () => {};
+  const [files, onDragEnd] = useAccordionItem(folder.id, data);
 
-  if (isLoading || !isFetchedAfterMount) {
-    return <Loading />;
-  }
-
-  return (
+  return isFetchedAfterMount && files ? (
     <DndContext
       modifiers={[restrictToParentElement]}
       collisionDetection={closestCenter}
-      onDragEnd={handleDragEnd}
+      onDragEnd={onDragEnd}
     >
       <SortableContext items={files.map(({ id }) => id)} strategy={verticalListSortingStrategy}>
         <ChakraAccordionPanel>
@@ -42,5 +34,5 @@ export const AccordionPanel = ({ folder }: AccordionPanelProps) => {
         </ChakraAccordionPanel>
       </SortableContext>
     </DndContext>
-  );
+  ) : null;
 };
