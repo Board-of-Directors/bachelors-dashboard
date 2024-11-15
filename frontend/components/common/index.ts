@@ -1,13 +1,14 @@
+export { Accordion } from "./Accordion/Accordion";
 export { Autocomplete } from "./Autocomplete/Autocomplete";
 export { ControlledAutocomplete } from "./Autocomplete/ControlledAutocomplete";
 export { Button } from "./Button/Button";
 export { ControlledFileInput } from "./FileInput/ControlledFileInput";
-export { Accordion } from "./Accordion/Accordion";
 export { Header } from "./Header/Header";
 export { ControlledInput } from "./Input/ControlledInput";
 export { Modal } from "./Modal/Modal";
 export { Navbar } from "./Navbar/Navbar";
 export { ControlledSelect } from "./Select/ControlledSelect";
+export { Skeleton } from "./Skeleton/Skeleton";
 export { Text } from "./Text/Text";
 export { UserList } from "./UserList/UserList";
 
