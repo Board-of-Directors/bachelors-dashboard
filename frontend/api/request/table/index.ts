@@ -1,7 +1,4 @@
 import { api } from "@/api"
+import { ResponseTableDetail } from "./types"
 
-type ResponseTable = any
-
-export const getTableById = (fileId : number) : Promise<ResponseTable> => {
-    return api.get<ResponseTable, Error>('/file/detail', {params : {fileId}})
-}
+export const getTableById = (fileId: number): Promise<ResponseTableDetail> => api.get('/file/detail', { params: { fileId } })
