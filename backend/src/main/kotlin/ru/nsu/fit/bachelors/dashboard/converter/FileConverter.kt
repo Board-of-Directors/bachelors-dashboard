@@ -24,6 +24,7 @@ class FileConverter {
     fun toDetail(fileEntity: FileEntity) =
         FileDetailResponse(
             id = fileEntity.id!!,
+            name = fileEntity.name,
             columns = fileEntity.columns.map { toDto(it) },
             rows = fileEntity.rows.map { toDto(it) },
         )

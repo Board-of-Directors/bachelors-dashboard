@@ -1,9 +1,11 @@
 package ru.nsu.fit.bachelors.dashboard.exception
 
+import org.springframework.http.HttpStatus
+
 data class EntityNotFoundException(
     val entityType: EntityType,
     val entityId: Long,
-) : RuntimeException("Не найдена сущность ${entityType.readableName} с идентификатором $entityId")
+) : BaseException(HttpStatus.NOT_FOUND, "Не найдена сущность ${entityType.readableName} с идентификатором $entityId")
 
 enum class EntityType(
     val readableName: String,
