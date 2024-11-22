@@ -3,8 +3,11 @@ import { Grid } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { XIcon } from "lucide-react";
 import { FormProvider, useForm } from "react-hook-form";
+import { DescriptionBlock } from "./DescriptionBlock/DescriptionBlock";
+import { HeaderEditor } from "./HeaderEditor/HeaderEditor";
 import { Block } from "./NewTaskDrawer.styles";
 import { NewTaskDrawerProps } from "./NewTaskDrawer.types";
+import { RightBlock } from "./RightBlock/RightBlock";
 import { TaskSchema, TaskSchemaType } from "./TaskSchema";
 
 export const NewTaskDrawer = (props: NewTaskDrawerProps) => {
@@ -18,6 +21,7 @@ export const NewTaskDrawer = (props: NewTaskDrawerProps) => {
     <FormProvider {...form}>
       <Drawer {...props}>
         <Block flexDirection="row" justifyContent="space-between">
+          <HeaderEditor />
           <Button
             isIconOnly
             color={"secondary"}
@@ -29,6 +33,8 @@ export const NewTaskDrawer = (props: NewTaskDrawerProps) => {
           </Button>
         </Block>
         <Grid templateColumns="repeat(8, 1fr)">
+          <DescriptionBlock />
+          <RightBlock />
         </Grid>
       </Drawer>
     </FormProvider>

@@ -1,3 +1,5 @@
+"use client"
+
 import { Button, Header } from "@/components/common";
 import { useDisclosure } from "@nextui-org/react";
 import { PlusIcon } from "lucide-react";
