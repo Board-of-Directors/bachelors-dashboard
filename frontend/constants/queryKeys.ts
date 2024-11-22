@@ -9,3 +9,5 @@ export const DELETE_GROUP_KEY = ['delete', 'group'];
 export const GET_GROUP_FILES_KEY = ['get', 'group-files'];
 
 export const ORDER_FILES_KEY = ['order', 'files'];
+
+export const GET_ALL_TASKS_QUERY = ['get', 'all-tasks'];

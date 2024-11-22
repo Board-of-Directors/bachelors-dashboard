@@ -2,7 +2,8 @@
 
 import { Task } from "@/types/task";
 import { UniqueIdentifier } from "@dnd-kit/core";
-import { useMemo, useState } from "react";
+import { useState } from "react";
+import { useKanbanBoard } from "./KanbanBoard.hooks";
 import { Container } from "./KanbanBoard.styles";
 import { KanbanColumn } from "./KanbanBoard.types";
 import { KanbanBody } from "./KanbanBody/KanbanBody";
@@ -19,8 +20,13 @@ const createItems = (columns: KanbanColumn[]): Items => {
 };
 
 export const KanbanBoard = () => {
-  const defaultColumns = useMemo(() => [], []);
-  const [columns, setColumns] = useState<Items>({});
+  const [columns, setColumns] = useState<any>([]);
+
+  const { tasks, isLoading } = useKanbanBoard();
+
+  if (isLoading) {
+    return <>Loading..</>;
+  }
 
   return (
     <Container>
