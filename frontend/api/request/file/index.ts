@@ -6,7 +6,7 @@ const orderFiles = async (request: OrderFilesRequest): Promise<void> => {
 }
 
 const uploadFile = async (file: File): Promise<string> => {
-    return api.putForm('/upload', { file: new Blob([file]) })
+    return api.putForm('/file/upload', { file: file })
 }
 
 const getGroupFiles = async (groupId: number): Promise<ResponseFile[]> => {
