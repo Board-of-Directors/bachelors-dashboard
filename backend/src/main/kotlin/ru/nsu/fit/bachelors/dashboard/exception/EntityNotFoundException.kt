@@ -5,7 +5,10 @@ import org.springframework.http.HttpStatus
 data class EntityNotFoundException(
     val entityType: EntityType,
     val entityId: Long,
-) : BaseException(HttpStatus.NOT_FOUND, "Не найдена сущность ${entityType.readableName} с идентификатором $entityId")
+) : BaseException(
+        HttpStatus.NOT_FOUND,
+        "Не найдена сущность ${entityType.readableName.lowercase()} с идентификатором $entityId",
+    )
 
 enum class EntityType(
     val readableName: String,
@@ -13,4 +16,5 @@ enum class EntityType(
     GROUP("Группа"),
     FILE("Файл"),
     COLUMN("Колонка"),
+    ROW("Строка"),
 }
