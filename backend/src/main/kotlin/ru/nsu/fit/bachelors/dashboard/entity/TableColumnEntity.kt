@@ -22,6 +22,8 @@ class TableColumnEntity(
     @Column
     var hidden: Boolean = false,
     @Column
+    var width: Long?,
+    @Column
     var sequenceId: Long,
     @Column
     @Enumerated(value = EnumType.STRING)

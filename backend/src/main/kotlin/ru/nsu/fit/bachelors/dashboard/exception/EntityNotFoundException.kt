@@ -12,4 +12,5 @@ enum class EntityType(
 ) {
     GROUP("Группа"),
     FILE("Файл"),
+    COLUMN("Колонка"),
 }
