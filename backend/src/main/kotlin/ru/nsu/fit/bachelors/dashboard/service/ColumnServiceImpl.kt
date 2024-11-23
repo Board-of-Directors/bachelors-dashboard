@@ -12,6 +12,10 @@ import ru.nsu.fit.bachelors.dashboard.repository.ColumnRepository
 class ColumnServiceImpl(
     private val columnRepository: ColumnRepository,
 ) : ColumnService {
-    override fun getById(columnId: Long): TableColumnEntity = columnRepository.findById(columnId)
-        .orElseThrow{ EntityNotFoundException(EntityType.COLUMN, columnId)}
+    override fun getById(columnId: Long): TableColumnEntity =
+        columnRepository
+            .findById(columnId)
+            .orElseThrow { EntityNotFoundException(EntityType.COLUMN, columnId) }
+
+    override fun allByIds(ids: List<Long>): List<TableColumnEntity> = columnRepository.findAllById(ids)
 }

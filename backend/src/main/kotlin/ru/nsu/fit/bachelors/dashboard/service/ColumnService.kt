@@ -10,4 +10,12 @@ interface ColumnService {
      * @return данная колонка
      */
     fun getById(columnId: Long): TableColumnEntity
+
+    /**
+     * Получить все колонки по идентификаторам.
+     *
+     * @param ids идентификаторы колонок
+     * @return найденные колонки
+     */
+    fun allByIds(ids: List<Long>): List<TableColumnEntity>
 }
