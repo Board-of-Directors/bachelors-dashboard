@@ -13,4 +13,6 @@ class TaskServiceImpl(
     override fun save(task: TaskEntity) {
         taskRepository.save(task)
     }
+
+    override fun getAll(): List<TaskEntity> = taskRepository.findAll()
 }
