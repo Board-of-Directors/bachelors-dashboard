@@ -18,9 +18,7 @@ class TaskController(
     private val taskFacade: TaskFacade,
 ) {
     @GetMapping("all")
-    fun allTasks(
-        @RequestParam status: String,
-    ): List<TasksResponse> = taskFacade.all()
+    fun allTasks(): List<TasksResponse> = taskFacade.all()
 
     @PostMapping
     fun create(
