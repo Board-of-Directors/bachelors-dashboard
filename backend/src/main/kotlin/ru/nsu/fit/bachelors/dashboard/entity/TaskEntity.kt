@@ -27,5 +27,5 @@ class TaskEntity(
     @Column
     val deadline: Instant,
     @CreationTimestamp
-    val created: Instant,
+    val created: Instant? = null,
 )

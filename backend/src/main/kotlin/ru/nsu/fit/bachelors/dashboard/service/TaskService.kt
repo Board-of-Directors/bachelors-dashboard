@@ -9,4 +9,11 @@ interface TaskService {
      * @param task задача
      */
     fun save(task: TaskEntity)
+
+    /**
+     * Получить все задачи.
+     *
+     * @return список задач
+     */
+    fun getAll(): List<TaskEntity>
 }
