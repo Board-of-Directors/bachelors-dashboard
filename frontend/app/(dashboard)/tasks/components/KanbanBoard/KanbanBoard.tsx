@@ -8,6 +8,7 @@ import { Container } from "./KanbanBoard.styles";
 import { KanbanColumn } from "./KanbanBoard.types";
 import { KanbanBody } from "./KanbanBody/KanbanBody";
 import { KanbanHeader } from "./KanbanHeader/KanbanHeader";
+import { KanbanLoading } from "./KanbanLoading";
 
 export type Items = Record<UniqueIdentifier, Task[]>;
 
@@ -25,7 +26,9 @@ export const KanbanBoard = () => {
   const { tasks, isLoading } = useKanbanBoard();
 
   if (isLoading) {
-    return <>Loading..</>;
+    return (
+      <KanbanLoading />
+    );
   }
 
   return (

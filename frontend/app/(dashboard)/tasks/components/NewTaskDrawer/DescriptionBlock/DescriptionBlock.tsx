@@ -1,7 +1,7 @@
-import { Text, TextButton } from "@/components/common";
+import { Button, Text, TextButton } from "@/components/common";
 import { TextEditor } from "@/components/common/TextEditor/TextEditor";
 import { useEditor } from "@tiptap/react";
-import { useFormContext } from "react-hook-form";
+import { FieldValues, useFormContext } from "react-hook-form";
 import { useToggle } from "usehooks-ts";
 import { Block } from "../NewTaskDrawer.styles";
 import { TaskSchemaType } from "../TaskSchema";
@@ -12,22 +12,40 @@ import { DescriptionContent } from "./DescriptionContent/DescriptionContent";
 
 export const DescriptionBlock = () => {
   const [isEditMode, toggleEditMode] = useToggle(false);
-  const { getValues } = useFormContext<TaskSchemaType>();
+  const {
+    getValues,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useFormContext<TaskSchemaType>();
+
   const editor = useEditor(createConfig(getValues("description")));
 
+  const onSubmit = (fieldValues: FieldValues) => {
+    console.log("success", fieldValues);
+  };
+
   return (
-    <DescriptionBlockProvider editor={editor}>
-      <Block gridColumn="span 5 / span 5" gap="28px">
-        <Header>
-          <Text className="text-[20px] font-medium text-text-back">Описание задачи</Text>
-          {isEditMode ? null : (
-            <TextButton fontSize="14px" onClick={toggleEditMode}>
-              Редактировать
-            </TextButton>
-          )}
-        </Header>
-        {isEditMode ? <TextEditor toggleEditMode={toggleEditMode} /> : <DescriptionContent />}
-      </Block>
-    </DescriptionBlockProvider>
+    <>
+      <DescriptionBlockProvider editor={editor}>
+        <Block gridColumn="span 5 / span 5" gap="28px">
+          <Header>
+            <Text className="text-[20px] font-medium text-text-back">Описание задачи</Text>
+            {isEditMode ? null : (
+              <TextButton fontSize="14px" onClick={toggleEditMode}>
+                Редактировать
+              </TextButton>
+            )}
+          </Header>
+          {isEditMode ? <TextEditor toggleEditMode={toggleEditMode} /> : <DescriptionContent />}
+          <Button
+            onClick={handleSubmit(onSubmit, console.log)}
+            isSubmitting={isSubmitting}
+            className="w-[200px]"
+          >
+            Отправить
+          </Button>
+        </Block>
+      </DescriptionBlockProvider>
+    </>
   );
 };

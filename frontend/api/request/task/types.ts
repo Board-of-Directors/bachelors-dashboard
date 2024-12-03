@@ -8,9 +8,16 @@ interface TaskResponse {
 }
 
 interface TaskListResponse {
-    count: number;
-    status: string;
     tasks: TaskResponse[];
+    status: string;
+    count: number;
 }
 
-export type { TaskListResponse };
+interface CreateTaskRequest {
+    description: string;
+    deadline: string;
+    name: string;
+}
+
+export type { CreateTaskRequest, TaskListResponse };
+

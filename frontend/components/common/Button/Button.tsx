@@ -1,9 +1,13 @@
-"use client"
+"use client";
 
 import { cn } from "@/utils/cn";
-import { Button as NextButton, extendVariants } from "@nextui-org/react";
+import { Spinner } from "@chakra-ui/react";
+import { extendVariants, Button as NextButton } from "@nextui-org/react";
+import { Text } from "../Text/Text";
+import { useLoading } from "./Button.hooks";
+import { ButtonProps } from "./Button.types";
 
-export const Button = extendVariants(NextButton, {
+const StyledButton = extendVariants(NextButton, {
   variants: {
     color: {
       warning: "text-indicator-warning bg-background-warning font-medium",
@@ -33,3 +37,14 @@ export const Button = extendVariants(NextButton, {
     },
   ],
 });
+
+export const Button = ({ children, isSubmitting, ...props }: ButtonProps) => {
+  const dots = useLoading(isSubmitting);
+
+  return (
+    <StyledButton {...props}>
+      {isSubmitting ? <Spinner size="sm" /> : null}
+      {isSubmitting ? <Text>Отправка{dots}</Text> : children}
+    </StyledButton>
+  );
+};

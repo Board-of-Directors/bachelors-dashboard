@@ -23,11 +23,11 @@ export const NewTaskDrawer = (props: NewTaskDrawerProps) => {
         <Block flexDirection="row" justifyContent="space-between">
           <HeaderEditor />
           <Button
-            isIconOnly
-            color={"secondary"}
             className={"!rounded-full !size-10 shrink-0"}
-            size={"sm"}
+            color={"secondary"}
             onClick={onClose}
+            size={"sm"}
+            isIconOnly
           >
             <XIcon className="size-4 shrink-0" />
           </Button>

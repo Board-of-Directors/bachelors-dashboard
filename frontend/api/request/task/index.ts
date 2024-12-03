@@ -1,6 +1,9 @@
 import { api } from "@/api";
-import { TaskListResponse } from "./types";
+import { CreateTaskRequest, TaskListResponse } from "./types";
 
-const getAllTasks = (): Promise<TaskListResponse> => api.get('/task/all');
+const getAllTasks = async (): Promise<TaskListResponse> => api.get('/task/all');
 
-export { getAllTasks };
+const createTask = async (request : CreateTaskRequest) : Promise<void> => api.post('/task', request);
+
+export { createTask, getAllTasks };
+
