@@ -1,5 +1,6 @@
 package ru.nsu.fit.bachelors.dashboard.controller
 
+import io.swagger.v3.oas.annotations.Operation
 import lombok.RequiredArgsConstructor
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -16,6 +17,8 @@ import ru.nsu.fit.bachelors.dashboard.dto.access.response.GroupAccessResponse
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/group/access")
 class GroupAccessController {
+
+    @Operation(description = "Получить доступы к группам файлов")
     @GetMapping
     fun list(
         @RequestParam groupId: Long,
@@ -27,11 +30,13 @@ class GroupAccessController {
             ),
         )
 
+    @Operation(description = "Поменять доступы к группам файлов")
     @PutMapping
     fun change(
         @RequestBody accessRequest: GroupAccessRequest,
     ): ResponseEntity<Void> = ResponseEntity.ok().build()
 
+    @Operation(description = "Удалить доступ до групп файлов")
     @DeleteMapping
     fun delete(
         @RequestBody accessRequest: GroupAccessRequest,

@@ -1,5 +1,6 @@
 package ru.nsu.fit.bachelors.dashboard.controller
 
+import io.swagger.v3.oas.annotations.Operation
 import jakarta.validation.Valid
 import lombok.RequiredArgsConstructor
 import org.springframework.http.ResponseEntity
@@ -22,9 +23,11 @@ import ru.nsu.fit.bachelors.dashboard.facade.GroupFacade
 class GroupController(
     private val groupFacade: GroupFacade,
 ) {
+    @Operation(description = "Получить все группы")
     @GetMapping("all")
     fun all(): ResponseEntity<GroupsResponse> = ResponseEntity.ok(groupFacade.getAll())
 
+    @Operation(description = "Создать новую группу файлов")
     @PostMapping
     fun create(
         @RequestBody @Valid groupCreationRequest: GroupCreationRequest,
@@ -33,6 +36,7 @@ class GroupController(
         return ResponseEntity.ok().build()
     }
 
+    @Operation(description = "Изменить существующую группу файлов")
     @PutMapping
     fun change(
         @RequestBody @Valid groupEditingRequest: GroupEditingRequest,
@@ -41,6 +45,7 @@ class GroupController(
         return ResponseEntity.ok().build()
     }
 
+    @Operation(description = "Удалить существующую группу файлов")
     @DeleteMapping
     fun delete(
         @RequestParam id: Long,

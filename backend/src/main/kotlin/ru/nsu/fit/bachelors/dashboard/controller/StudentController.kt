@@ -1,5 +1,6 @@
 package ru.nsu.fit.bachelors.dashboard.controller
 
+import io.swagger.v3.oas.annotations.Operation
 import lombok.RequiredArgsConstructor
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -13,6 +14,7 @@ import ru.nsu.fit.bachelors.dashboard.facade.StudentFacade
 class StudentController(
     private val studentFacade: StudentFacade,
 ) {
+    @Operation(description = "Получить студентов по фильтру")
     @GetMapping
     fun getByFilter(filter: StudentFilter) = studentFacade.getByFilter(filter)
 }

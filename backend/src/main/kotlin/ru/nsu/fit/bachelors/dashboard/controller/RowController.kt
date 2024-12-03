@@ -1,5 +1,6 @@
 package ru.nsu.fit.bachelors.dashboard.controller
 
+import io.swagger.v3.oas.annotations.Operation
 import lombok.RequiredArgsConstructor
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -14,6 +15,7 @@ import ru.nsu.fit.bachelors.dashboard.facade.RowFacade
 class RowController(
     private val rowFacade: RowFacade,
 ) {
+    @Operation(description = "Изменить свойства ряда в таблице")
     @PutMapping("/change")
     fun changeRow(
         @RequestBody changeRowRequest: ChangeRowRequest,

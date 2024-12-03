@@ -1,5 +1,6 @@
 package ru.nsu.fit.bachelors.dashboard.controller
 
+import io.swagger.v3.oas.annotations.Operation
 import jakarta.validation.Valid
 import lombok.RequiredArgsConstructor
 import org.springframework.http.ResponseEntity
@@ -20,16 +21,19 @@ import ru.nsu.fit.bachelors.dashboard.facade.FileFacade
 class FileController(
     private val fileFacade: FileFacade,
 ) {
+    @Operation(description = "Получить файлы по идентификатору группы")
     @GetMapping
     fun byGroup(
         @RequestParam groupId: Long,
     ): ResponseEntity<FilesResponse> = ResponseEntity.ok(fileFacade.getByGroup(groupId))
 
+    @Operation(description = "Получить файлы по типу")
     @GetMapping("/type")
     fun byType(
         @RequestParam fileType: String,
     ): ResponseEntity<FilesResponse> = ResponseEntity.ok(fileFacade.getByType(fileType))
 
+    @Operation(description = "Поменять порядок файлов")
     @PutMapping
     fun order(
         @RequestBody @Valid fileOrderRequest: FileOrderRequest,
@@ -38,11 +42,13 @@ class FileController(
         return ResponseEntity.ok().build()
     }
 
+    @Operation(description = "Получить детальную информацию о файле")
     @GetMapping("/detail")
     fun detail(
         @RequestParam fileId: Long,
     ): ResponseEntity<FileDetailResponse> = ResponseEntity.ok(fileFacade.getDetail(fileId))
 
+    @Operation(description = "Загрузить новый файл")
     @PutMapping("/upload")
     fun upload(@RequestParam file: MultipartFile) = fileFacade.uploadFile(file)
 }
