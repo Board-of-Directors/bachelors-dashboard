@@ -1,4 +1,4 @@
-import { Button, Text, TextButton } from "@/components/common";
+import { Button, Text, TextButton, useSnackbar } from "@/components/common";
 import { TextEditor } from "@/components/common/TextEditor/TextEditor";
 import { useEditor } from "@tiptap/react";
 import { FieldValues, useFormContext } from "react-hook-form";
@@ -20,6 +20,12 @@ export const DescriptionBlock = () => {
 
   const editor = useEditor(createConfig(getValues("description")));
 
+  const showErrorSnackbar = useSnackbar({
+    description: "У задачи должны быть заполнены заголовок и описание",
+    header: "Произошла ошибка",
+    variant: "danger",
+  });
+
   const onSubmit = (fieldValues: FieldValues) => {
     console.log("success", fieldValues);
   };
@@ -38,7 +44,7 @@ export const DescriptionBlock = () => {
           </Header>
           {isEditMode ? <TextEditor toggleEditMode={toggleEditMode} /> : <DescriptionContent />}
           <Button
-            onClick={handleSubmit(onSubmit, console.log)}
+            onClick={handleSubmit(onSubmit, showErrorSnackbar)}
             isSubmitting={isSubmitting}
             className="w-[200px]"
           >
