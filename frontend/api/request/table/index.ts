@@ -9,7 +9,7 @@ export const changeRowColor = async (request : ChangeRowColorRequest) => {
     return api.put('/row/change', request);
 }
 
-export const changeColumnorder = async (ids : Ids) => {
+export const changeColumnOrder = async (ids : Ids) => {
     return api.put('/column/order', ids);
 }
 

@@ -1,8 +1,8 @@
 import { UniqueIdentifier } from "@dnd-kit/core";
 
-type TableColumnType = "STRING" | "NUMBER"
+type TableColumnType = "STRING" | "NUMBER";
 
-type TableRowColor = "RED" | "BLUE" | "WHITE"
+type TableRowColor = "RED" | "BLUE" | "WHITE";
 
 interface ResponseTableColumn {
   id: number;
@@ -30,8 +30,8 @@ interface ResponseTableDetail {
 }
 
 interface ChangeRowColorRequest {
-  rowId : number;
-  color : string;
+  rowId: number;
+  color: string;
 }
 
 interface ChangeColumnPropertyRequest {
@@ -40,7 +40,15 @@ interface ChangeColumnPropertyRequest {
   columnId: number;
 }
 
-type Ids = {id : UniqueIdentifier}[];
+interface Ids {
+  ids: { id: UniqueIdentifier }[];
+}
 
-export type { ChangeColumnPropertyRequest, ChangeRowColorRequest, Ids, ResponseTableDetail, ResponseTableRow, TableRowColor };
-
+export type {
+  ChangeColumnPropertyRequest,
+  ChangeRowColorRequest,
+  Ids,
+  ResponseTableDetail,
+  ResponseTableRow,
+  TableRowColor,
+};

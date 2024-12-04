@@ -9,6 +9,7 @@ import { TableProvider } from "./TableProvider/TableProvider";
 
 export const Table = ({ table }: TableProps) => {
   const { context, ...methods } = useTableMethods({ table });
+  
   const style = {
     width: methods.table.getTotalSize(),
     ...methods.columnSizeVars,

@@ -1,4 +1,4 @@
-import { ResponseTableDetail } from "@/api/request/table/types";
+import { Ids, ResponseTableDetail } from "@/api/request/table/types";
 import {
   ColumnType,
   ResponseTable,
@@ -9,7 +9,6 @@ import {
 import { DragEndEvent } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
 import { ColumnDef, createColumnHelper, Row, Table } from "@tanstack/react-table";
-import { Dispatch, SetStateAction } from "react";
 
 type CellValue = number | string | boolean;
 type CompareFunction<T extends CellValue> = (fst: T, snd: T) => boolean;
@@ -136,21 +135,37 @@ const toColumns = ({ schema }: ResponseTable): ColumnDef<TableRow, any>[] => {
 };
 
 /**
+ * Function **createIdsFromColumns** gets array of columns' names and returns array of columns' indexes.
+ *
+ * @returns array of columns' indexes
+ */
+const createIdsFromColumns = (columns: string[]): Ids => {
+  const ids = columns.map((column) => {
+    const underscroreIndex = column.indexOf("_");
+    const columnIndex = column.slice(underscroreIndex + 1);
+
+    return { id: Number(columnIndex) };
+  });
+
+  return { ids };
+};
+
+/**
  * Function **handleDragEnd** handles DragEndEvent and swaps items between using dispatch function.
  *
  * @returns swapped array
  */
-const handleDragEnd = (event: DragEndEvent, dispatch: Dispatch<SetStateAction<string[]>>) => {
+const handleDragEnd = (event: DragEndEvent, columnOrder: string[]): string[] => {
   const { active, over } = event;
 
   if (active && over && active.id !== over.id) {
-    dispatch((columnOrder) => {
-      const oldIndex = columnOrder.indexOf(active.id as string);
-      const newIndex = columnOrder.indexOf(over.id as string);
+    const oldIndex = columnOrder.indexOf(active.id as string);
+    const newIndex = columnOrder.indexOf(over.id as string);
 
-      return arrayMove(columnOrder, oldIndex, newIndex);
-    });
+    return arrayMove(columnOrder, oldIndex, newIndex);
   }
+
+  return columnOrder;
 };
 
 const createColumnSizing = (table: Table<any>) => {
@@ -200,4 +215,4 @@ const transformTable = (responseTable: ResponseTableDetail): ResponseTable => {
   return { schema: schemaWithId, table };
 };
 
-export { createColumnSizing, handleDragEnd, toColumns, transformTable };
+export { createColumnSizing, createIdsFromColumns, handleDragEnd, toColumns, transformTable };

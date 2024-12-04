@@ -1,3 +1,6 @@
+import { changeColumnOrder } from "@/api/request/table";
+import { Ids } from "@/api/request/table/types";
+import { CHANGE_COLUMN_ORDER_KEY } from "@/constants";
 import {
   DragEndEvent,
   KeyboardSensor,
@@ -6,6 +9,7 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
+import { useMutation } from "@tanstack/react-query";
 import {
   getCoreRowModel,
   getExpandedRowModel,
@@ -17,7 +21,13 @@ import {
 import { useMemo, useRef, useState } from "react";
 import { TableContextType } from "./Table.context";
 import { TableProps } from "./Table.types";
-import { createColumnSizing, handleDragEnd, toColumns, transformTable } from "./Table.utils";
+import {
+  createColumnSizing,
+  createIdsFromColumns,
+  handleDragEnd,
+  toColumns,
+  transformTable,
+} from "./Table.utils";
 
 export const useTableMethods = ({ table: defaultTable }: TableProps) => {
   const [transformedTable, columns] = useMemo(() => {
@@ -68,7 +78,7 @@ export const useTableMethods = ({ table: defaultTable }: TableProps) => {
     columnOrder: columnOrder,
     hiddenColumns: columnVisibility,
     firstCellRef: firstCellRef,
-    columns: columns
+    columns: columns,
   };
 
   const columnSizeVars = useMemo(
@@ -76,8 +86,18 @@ export const useTableMethods = ({ table: defaultTable }: TableProps) => {
     [table.getState().columnSizingInfo, table.getState().columnSizing],
   );
 
+  const changeColumnOrderMutation = useMutation({
+    mutationKey: CHANGE_COLUMN_ORDER_KEY,
+    mutationFn: (ids: Ids) => changeColumnOrder(ids),
+  });
+
   const onDragEnd = (event: DragEndEvent) => {
-    handleDragEnd(event, setColumnOrder);
+    const newOrder = handleDragEnd(event, columnOrder);
+    const [_, ...restColumns] = newOrder;
+    const ids = createIdsFromColumns(restColumns);
+
+    changeColumnOrderMutation.mutate(ids);
+    setColumnOrder(newOrder);
   };
 
   return {
