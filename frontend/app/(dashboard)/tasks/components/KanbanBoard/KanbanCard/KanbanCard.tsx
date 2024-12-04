@@ -1,25 +1,31 @@
+"use client";
+
 import { Text } from "@/components/common";
 import { UserItem } from "@/components/common/UserList/UserItem/UserItem";
-import { Task } from "@/types/task";
-import { BoxProps } from "@chakra-ui/react";
-import { DeadlineRow } from "./DeadlineRow/DeadlineRow";
+import dayjs from "dayjs";
+import { useMemo } from "react";
+import { DeadlineRow } from "./DeadlineRow";
 import { Container } from "./KanbanCard.styles";
-import { TagList } from "./TagList/TagList";
+import { KanbanCardProps } from "./KanbanCard.types";
+import { TagList } from "./TagList";
 
-interface KanbanCardProps extends BoxProps {
-  card: Task;
-}
+const DATE_FORMAT = "DD-MM-YYYY";
 
-// TODO: convertStatusToHeaderFunction
 export const KanbanCard = ({ card, ...props }: KanbanCardProps) => {
-  const { status, startDate, endDate, assignees, header, tags, id } = card;
+  const { name, tags: tagNames, created, employee, deadline } = card;
+
+  const tags = useMemo(() => tagNames.map((tag) => ({ label: tag, color: "#33FF57" })), [tagNames]);
+
+  const assignees = [{ email: employee }];
+  const startDate = dayjs(created).format(DATE_FORMAT);
+  const endDate = dayjs(deadline).format(DATE_FORMAT);
 
   return (
     <Container {...props}>
       <Text className="text-text-gray">{status}</Text>
       {tags ? <TagList tags={tags} /> : null}
       {assignees ? <UserItem {...assignees[0]} /> : null}
-      <Text className="text-medium text-text-back">{header}</Text>
+      <Text className="text-medium text-text-back">{name}</Text>
       <DeadlineRow startDate={startDate} endDate={endDate} />
     </Container>
   );
