@@ -20,12 +20,12 @@ class TaskEntity(
     @Column
     var name: String,
     @Column
-    val description: String,
+    var description: String,
     @Column
     @Enumerated(EnumType.STRING)
-    val status: TaskStatus,
+    var status: TaskStatus,
     @Column
-    val deadline: Instant?,
+    var deadline: Instant?,
     @CreationTimestamp
     val created: Instant? = null,
 )

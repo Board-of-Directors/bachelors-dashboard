@@ -3,6 +3,8 @@ package ru.nsu.fit.bachelors.dashboard.service
 import lombok.RequiredArgsConstructor
 import org.springframework.stereotype.Service
 import ru.nsu.fit.bachelors.dashboard.entity.TaskEntity
+import ru.nsu.fit.bachelors.dashboard.exception.EntityNotFoundException
+import ru.nsu.fit.bachelors.dashboard.exception.EntityType
 import ru.nsu.fit.bachelors.dashboard.repository.TaskRepository
 
 @Service
@@ -15,4 +17,9 @@ class TaskServiceImpl(
     }
 
     override fun getAll(): List<TaskEntity> = taskRepository.findAll()
+
+    override fun getById(id: Long): TaskEntity =
+        taskRepository
+            .findById(id)
+            .orElseThrow { EntityNotFoundException(EntityType.TASK, id) }
 }

@@ -1,6 +1,7 @@
 package ru.nsu.fit.bachelors.dashboard.facade
 
 import ru.nsu.fit.bachelors.dashboard.dto.task.TasksResponse
+import ru.nsu.fit.bachelors.dashboard.dto.task.request.TaskChangeRequest
 import ru.nsu.fit.bachelors.dashboard.dto.task.request.TaskCreationRequest
 
 interface TaskFacade {
@@ -17,4 +18,11 @@ interface TaskFacade {
      * @return задачи с разбивкой по статусу
      */
     fun all(): List<TasksResponse>
+
+    /**
+     * Изменить существующую задачу.
+     *
+     * @param request запрос изменения задачи
+     */
+    fun changeTask(request: TaskChangeRequest)
 }

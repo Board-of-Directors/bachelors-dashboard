@@ -17,4 +17,5 @@ enum class EntityType(
     FILE("Файл"),
     COLUMN("Колонка"),
     ROW("Строка"),
+    TASK("Задача"),
 }

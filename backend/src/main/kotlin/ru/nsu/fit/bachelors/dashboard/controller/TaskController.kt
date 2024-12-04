@@ -4,10 +4,12 @@ import io.swagger.v3.oas.annotations.Operation
 import lombok.RequiredArgsConstructor
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import ru.nsu.fit.bachelors.dashboard.dto.task.TasksResponse
+import ru.nsu.fit.bachelors.dashboard.dto.task.request.TaskChangeRequest
 import ru.nsu.fit.bachelors.dashboard.dto.task.request.TaskCreationRequest
 import ru.nsu.fit.bachelors.dashboard.facade.TaskFacade
 
@@ -27,5 +29,13 @@ class TaskController(
         @RequestBody request: TaskCreationRequest,
     ) {
         taskFacade.createTask(request)
+    }
+
+    @Operation(description = "Изменить существующую задачу")
+    @PutMapping
+    fun change(
+        @RequestBody request: TaskChangeRequest,
+    ) {
+        taskFacade.changeTask(request)
     }
 }
