@@ -1,6 +1,6 @@
 import { Button, Text, TextButton } from "@/components/common";
 import { TextEditor } from "@/components/common/TextEditor/TextEditor";
-import { Block } from "../NewTaskDrawer.styles";
+import { Block } from "../TaskDrawer.styles";
 import { DescriptionBlockProvider } from "./DecsriptionBlock.context";
 import { useDescriptionBlock } from "./DescriptionBlock.hooks";
 import { Header } from "./DescriptionBlock.styles";
