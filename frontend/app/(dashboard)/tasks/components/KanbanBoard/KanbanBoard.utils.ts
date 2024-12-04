@@ -14,7 +14,7 @@ export const createKanbanBoard = (data: TaskListResponse[] | undefined): Items =
   }
 
   return data.reduce((acc, item) => {
-    acc[item.status] = item.tasks;
+    acc[item.status] = item.tasks.map((task) => ({ ...task, id: `item-${task.id}` }));
 
     return acc;
   }, emptyKanbanBoard);
