@@ -25,7 +25,7 @@ class TaskEntity(
     @Enumerated(EnumType.STRING)
     val status: TaskStatus,
     @Column
-    val deadline: Instant,
+    val deadline: Instant?,
     @CreationTimestamp
     val created: Instant? = null,
 )
