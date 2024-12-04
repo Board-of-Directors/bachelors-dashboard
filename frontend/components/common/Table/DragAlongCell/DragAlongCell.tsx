@@ -1,9 +1,14 @@
+import { changeRowColor } from "@/api/request/table";
+import { CHANGE_ROW_COLOR_KEY } from "@/constants";
+import { Maybe } from "@/types/utils";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { useMutation } from "@tanstack/react-query";
 import { flexRender } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 import { CSSProperties, forwardRef } from "react";
 import { ChevronButton } from "../../ChevronButton/ChevronButton";
+import { SelectItem } from "../../Select/Select.types";
 import { RowTooltip } from "../RowTooltp/RowTooltip";
 import { useTableRowContext } from "../TableRow/TableRow.context";
 import {
@@ -22,6 +27,20 @@ export const DragAlongCell = forwardRef<HTMLDivElement, DragAlongCellProps>(
       id: cell.column.id,
     });
 
+    const changeColorMutation = useMutation({
+      mutationKey: CHANGE_ROW_COLOR_KEY,
+      mutationFn: (color: string) =>
+        changeRowColor({
+          rowId: Number(cell.row.original.applicant.id),
+          color: color,
+        }),
+    });
+
+    const handleChangeColor = (color: Maybe<SelectItem>) => {
+      changeColorMutation.mutate(color.label);
+      setColor(color);
+    };
+
     const style: CSSProperties = {
       opacity: isDragging ? 0.8 : 1,
       position: "relative",
@@ -35,7 +54,7 @@ export const DragAlongCell = forwardRef<HTMLDivElement, DragAlongCellProps>(
       return (
         <TableCell ref={setNodeRef} style={style} isDragging={isDragging}>
           <FlexContainer>
-            <RowTooltip activeColor={activeColor} onChangeColor={setColor}>
+            <RowTooltip activeColor={activeColor} onChangeColor={handleChangeColor}>
               <MoreHorizontal className="size-[18px] text-icon-gray" />
             </RowTooltip>
             {isInteractive ? (

@@ -23,8 +23,6 @@ export const useTableMethods = ({ table: defaultTable }: TableProps) => {
   const [transformedTable, columns] = useMemo(() => {
     const table = transformTable(defaultTable);
 
-    console.log('table', table);
-
     const columns = toColumns(table);
 
     return [table, columns] as const;

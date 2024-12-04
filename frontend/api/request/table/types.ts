@@ -1,3 +1,5 @@
+import { UniqueIdentifier } from "@dnd-kit/core";
+
 type TableColumnType = "STRING" | "NUMBER"
 
 type TableRowColor = "RED" | "BLUE" | "WHITE"
@@ -27,4 +29,18 @@ interface ResponseTableDetail {
   rows: ResponseTableRow[];
 }
 
-export type { ResponseTableDetail, ResponseTableRow, TableRowColor };
+interface ChangeRowColorRequest {
+  rowId : number;
+  color : string;
+}
+
+interface ChangeColumnPropertyRequest {
+  columnHidden: boolean;
+  columnWidth: number;
+  columnId: number;
+}
+
+type Ids = {id : UniqueIdentifier}[];
+
+export type { ChangeColumnPropertyRequest, ChangeRowColorRequest, Ids, ResponseTableDetail, ResponseTableRow, TableRowColor };
+
