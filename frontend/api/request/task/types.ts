@@ -17,6 +17,7 @@ interface CreateTaskRequest {
     description: string;
     deadline: string;
     name: string;
+    tags : any;
 }
 
 export type { CreateTaskRequest, TaskListResponse };

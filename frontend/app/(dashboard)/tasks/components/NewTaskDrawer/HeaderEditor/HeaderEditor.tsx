@@ -14,7 +14,7 @@ export const HeaderEditor = () => {
 
   useEffect(() => {
     if (editor) {
-      setValue("header", editor.getHTML());
+      setValue("name", editor.getHTML());
     }
   }, [editor?.getHTML()]);
 

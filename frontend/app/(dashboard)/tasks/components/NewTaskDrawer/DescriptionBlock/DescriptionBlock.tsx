@@ -1,34 +1,19 @@
-import { Button, Text, TextButton, useSnackbar } from "@/components/common";
+import { Button, Text, TextButton } from "@/components/common";
 import { TextEditor } from "@/components/common/TextEditor/TextEditor";
-import { useEditor } from "@tiptap/react";
-import { FieldValues, useFormContext } from "react-hook-form";
-import { useToggle } from "usehooks-ts";
 import { Block } from "../NewTaskDrawer.styles";
-import { TaskSchemaType } from "../TaskSchema";
 import { DescriptionBlockProvider } from "./DecsriptionBlock.context";
-import { createConfig } from "./DescriptionBlock.config";
+import { useDescriptionBlock } from "./DescriptionBlock.hooks";
 import { Header } from "./DescriptionBlock.styles";
 import { DescriptionContent } from "./DescriptionContent/DescriptionContent";
 
-export const DescriptionBlock = () => {
-  const [isEditMode, toggleEditMode] = useToggle(false);
-  const {
-    getValues,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = useFormContext<TaskSchemaType>();
+interface DescriptionBlockProps {
+  onClose : () => void
+}
 
-  const editor = useEditor(createConfig(getValues("description")));
-
-  const showErrorSnackbar = useSnackbar({
-    description: "У задачи должны быть заполнены заголовок и описание",
-    header: "Произошла ошибка",
-    variant: "danger",
-  });
-
-  const onSubmit = (fieldValues: FieldValues) => {
-    console.log("success", fieldValues);
-  };
+export const DescriptionBlock = ({onClose} : DescriptionBlockProps) => {
+  const { states, actions } = useDescriptionBlock(onClose);
+  const { editor, isEditMode, isSubmitting } = states;
+  const { toggleEditMode, handleSubmit } = actions;
 
   return (
     <>
@@ -43,11 +28,7 @@ export const DescriptionBlock = () => {
             )}
           </Header>
           {isEditMode ? <TextEditor toggleEditMode={toggleEditMode} /> : <DescriptionContent />}
-          <Button
-            onClick={handleSubmit(onSubmit, showErrorSnackbar)}
-            isSubmitting={isSubmitting}
-            className="w-[200px]"
-          >
+          <Button onClick={handleSubmit} isSubmitting={isSubmitting} className="w-[200px]">
             Отправить
           </Button>
         </Block>

@@ -33,7 +33,7 @@ export const NewTaskDrawer = (props: NewTaskDrawerProps) => {
           </Button>
         </Block>
         <Grid templateColumns="repeat(8, 1fr)">
-          <DescriptionBlock />
+          <DescriptionBlock onClose={onClose}/>
           <RightBlock />
         </Grid>
       </Drawer>

@@ -2,7 +2,7 @@ import { OptionalFieldSchema, RequiredFieldSchema, SelectSchema } from "@/utils/
 import { z } from "zod";
 
 const TaskSchema = z.object({
-  header: RequiredFieldSchema,
+  name: RequiredFieldSchema,
   description: RequiredFieldSchema,
   startDate: OptionalFieldSchema,
   endDate: OptionalFieldSchema,
