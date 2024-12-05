@@ -29,7 +29,15 @@ class FileConverter {
             rows = fileEntity.rows.map { toDto(it) },
         )
 
-    fun toDto(column: TableColumnEntity) = ColumnDto(id = column.id!!, name = column.name, hidden = column.hidden, type = column.type.name)
+    fun toDto(column: TableColumnEntity) =
+        ColumnDto(
+            id = column.id!!,
+            name = column.name,
+            hidden = column.hidden,
+            type = column.type.name,
+            width = column.width,
+            sequenceId = column.sequenceId,
+        )
 
     fun toDto(row: TableRowEntity) = RowDto(id = row.id!!, color = row.color.name, items = row.items.map { toDto(it) })
 

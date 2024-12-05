@@ -5,4 +5,6 @@ data class ColumnDto(
     val name: String,
     val hidden: Boolean,
     val type: String,
+    val width: Long?,
+    val sequenceId: Long,
 )
