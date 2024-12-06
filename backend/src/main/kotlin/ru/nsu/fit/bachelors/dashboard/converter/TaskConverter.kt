@@ -17,6 +17,7 @@ class TaskConverter {
             description = request.description,
             deadline = request.deadline?.let { LocalDate.parse(it) }?.atStartOfDay()?.toInstant(ZoneOffset.UTC),
             status = TaskStatus.NOT_STARTED,
+            sequenceId = 1L,
         )
 
     fun toResponse(taskByStatus: Map<TaskStatus, List<TaskEntity>>): List<TasksResponse> =

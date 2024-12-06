@@ -10,4 +10,5 @@
     <include file="migrations/2024-11-11-add-row-student-id.sql" relativeToChangelogFile="true"/>
     <include file="migrations/2024-11-23-add-column-width.sql" relativeToChangelogFile="true"/>
     <include file="migrations/2024-11-30-create-table-task.sql" relativeToChangelogFile="true"/>
+    <include file="migrations/2024-12-07-add-task-sequence-id.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>

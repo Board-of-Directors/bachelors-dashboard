@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 import ru.nsu.fit.bachelors.dashboard.converter.TaskConverter
 import ru.nsu.fit.bachelors.dashboard.dto.task.TasksResponse
+import ru.nsu.fit.bachelors.dashboard.dto.task.request.ChangeTaskOrderRequest
 import ru.nsu.fit.bachelors.dashboard.dto.task.request.TaskChangeRequest
 import ru.nsu.fit.bachelors.dashboard.dto.task.request.TaskCreationRequest
 import ru.nsu.fit.bachelors.dashboard.service.TaskService
@@ -32,5 +33,19 @@ class TaskFacadeImpl(
         request.description?.let { task.description = it }
         request.status?.let { task.status = enumValueOrThrow(it) }
         request.deadline?.let { task.deadline = parseDate(it) }
+    }
+
+    @Transactional
+    override fun changeOrder(request: ChangeTaskOrderRequest) {
+        val tasksByIds = taskService
+                .allByIds(request.ids.map { it.id })
+                .associateBy { it.id }
+
+        request.ids.mapIndexed { index, idDto ->
+            tasksByIds[idDto.id]?.let {
+                it.sequenceId = index.toLong()
+                it.status = enumValueOrThrow(request.status)
+            }
+        }
     }
 }

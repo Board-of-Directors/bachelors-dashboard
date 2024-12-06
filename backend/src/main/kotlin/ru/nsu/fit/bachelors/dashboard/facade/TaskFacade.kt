@@ -1,6 +1,7 @@
 package ru.nsu.fit.bachelors.dashboard.facade
 
 import ru.nsu.fit.bachelors.dashboard.dto.task.TasksResponse
+import ru.nsu.fit.bachelors.dashboard.dto.task.request.ChangeTaskOrderRequest
 import ru.nsu.fit.bachelors.dashboard.dto.task.request.TaskChangeRequest
 import ru.nsu.fit.bachelors.dashboard.dto.task.request.TaskCreationRequest
 
@@ -25,4 +26,11 @@ interface TaskFacade {
      * @param request запрос изменения задачи
      */
     fun changeTask(request: TaskChangeRequest)
+
+    /**
+     * Изменить порядок задач в одном из статусов.
+     *
+     * @param request заявка на изменение порядка задач
+     */
+    fun changeOrder(request: ChangeTaskOrderRequest)
 }

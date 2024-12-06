@@ -18,6 +18,8 @@ class TaskServiceImpl(
 
     override fun getAll(): List<TaskEntity> = taskRepository.findAll()
 
+    override fun allByIds(ids: List<Long>): List<TaskEntity> = taskRepository.findAllById(ids)
+
     override fun getById(id: Long): TaskEntity =
         taskRepository
             .findById(id)

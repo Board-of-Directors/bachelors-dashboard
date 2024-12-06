@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import ru.nsu.fit.bachelors.dashboard.dto.task.TasksResponse
+import ru.nsu.fit.bachelors.dashboard.dto.task.request.ChangeTaskOrderRequest
 import ru.nsu.fit.bachelors.dashboard.dto.task.request.TaskChangeRequest
 import ru.nsu.fit.bachelors.dashboard.dto.task.request.TaskCreationRequest
 import ru.nsu.fit.bachelors.dashboard.facade.TaskFacade
@@ -37,5 +38,13 @@ class TaskController(
         @RequestBody request: TaskChangeRequest,
     ) {
         taskFacade.changeTask(request)
+    }
+
+    @Operation(description = "Изменить порядок задач")
+    @PutMapping("order")
+    fun order(
+        @RequestBody request: ChangeTaskOrderRequest,
+    ) {
+        taskFacade.changeOrder(request)
     }
 }

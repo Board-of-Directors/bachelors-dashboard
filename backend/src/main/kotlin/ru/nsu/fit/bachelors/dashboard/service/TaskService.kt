@@ -24,4 +24,12 @@ interface TaskService {
      * @return задача
      */
     fun getById(id: Long): TaskEntity
+
+    /**
+     * Получить все задачи по идентификаторам.
+     *
+     * @param ids список идентификаторов задач
+     * @return список найденных задач
+     */
+    fun allByIds(ids: List<Long>): List<TaskEntity>
 }
