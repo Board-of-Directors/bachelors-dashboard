@@ -1,4 +1,4 @@
-import { ControlledTag, Text, TextButton } from "@/components/common";
+import { Text, TextButton } from "@/components/common";
 import { useDisclosure } from "@nextui-org/react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { TaskSchemaType } from "../../TaskSchema";
@@ -22,9 +22,7 @@ export const TagsBlock = () => {
           <TextButton onClick={onOpen}>Добавить</TextButton>
         </Row>
         <Row justifyContent="start" alignItems={"center"} gap="12px">
-          {fields?.map(({ id }, index) => (
-            <ControlledTag onClose={() => remove(index)} name={`tags.${index}`} key={id} />
-          ))}
+          {fields?.map(({ id }, index) => <></>)}
         </Row>
       </Container>
     </>

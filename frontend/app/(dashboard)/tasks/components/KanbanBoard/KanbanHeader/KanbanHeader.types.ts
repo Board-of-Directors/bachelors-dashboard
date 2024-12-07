@@ -1,5 +1,5 @@
-import { Items } from "../KanbanBoard";
+import { Items } from "../KanbanBoard.types";
 
 export interface KanbanHeaderProps {
-    columns: Items
+  columns: Items;
 }

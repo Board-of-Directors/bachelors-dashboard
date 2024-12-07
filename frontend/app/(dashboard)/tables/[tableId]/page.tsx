@@ -1,5 +1,3 @@
-const TablePage = () => (
-    <>Table Page</>
-)
+const TablePage = () => <>Table Page</>;
 
 export default TablePage;

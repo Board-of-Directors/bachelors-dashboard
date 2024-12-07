@@ -50,7 +50,7 @@ export const KanbanCard = ({ card, ...props }: KanbanCardProps) => {
       {isHover ? (
         <MenuIcon className="absolute right-5 top-5 size-[18px] text-icon-gray" {...listeners} />
       ) : null}
-      {tags.length ? <TagList tags={tags} /> : null}
+      {tags.length ? <TagList tags={tags as any} /> : null}
       {assignees ? <UserItem {...assignees[0]} /> : null}
       <Text className="text-medium text-text-back">{name}</Text>
       <DeadlineRow startDate={startDate} endDate={endDate} />

@@ -22,4 +22,15 @@ interface CreateTaskRequest {
   tags: any;
 }
 
-export type { CreateTaskRequest, TaskListResponse, TaskResponse };
+interface Id {
+  id: number;
+}
+
+type Ids = Id[];
+
+interface OrderTasksRequest {
+  status: string;
+  ids: Ids;
+}
+
+export type { CreateTaskRequest, Id, Ids, OrderTasksRequest, TaskListResponse, TaskResponse };

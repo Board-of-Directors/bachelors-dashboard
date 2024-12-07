@@ -16,9 +16,13 @@ import {
 import { arrayMove } from "@dnd-kit/sortable";
 import { coordinateGetter } from "./KanbanBody.utils";
 
-import { TaskResponse } from "@/api/request/task/types";
+import { orderTasks } from "@/api/request/task";
+import { OrderTasksRequest, TaskResponse } from "@/api/request/task/types";
+import { ORDER_TASKS_KEY } from "@/constants";
 import { Maybe } from "@/types/utils";
+import { useMutation } from "@tanstack/react-query";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { TaskStatusSchema } from "./KanbanBody.constants";
 import { KanbanBodyProps } from "./KanbanBody.types";
 
 export const useKanban = ({ columns: items, onChangeColumns: setItems }: KanbanBodyProps) => {
@@ -26,6 +30,11 @@ export const useKanban = ({ columns: items, onChangeColumns: setItems }: KanbanB
   const lastOverId = useRef<UniqueIdentifier | null>(null);
   const recentlyMovedToNewContainer = useRef(false);
   const containers = Object.keys(items);
+
+  const orderTasksMutation = useMutation({
+    mutationFn: (request: OrderTasksRequest) => orderTasks(request),
+    mutationKey: ORDER_TASKS_KEY,
+  });
 
   const findActiveTask = (activeId: UniqueIdentifier): Maybe<TaskResponse> => {
     let activeTask: Maybe<TaskResponse> = null;
@@ -194,6 +203,7 @@ export const useKanban = ({ columns: items, onChangeColumns: setItems }: KanbanB
 
     if (overId == null) {
       setActiveId(null);
+
       return;
     }
 
@@ -203,12 +213,30 @@ export const useKanban = ({ columns: items, onChangeColumns: setItems }: KanbanB
       const activeIndex = items[activeContainer].map((i) => i.id).indexOf(active.id);
       const overIndex = items[overContainer].map((i) => i.id).indexOf(overId);
 
+      const orderedItems = arrayMove(
+        items[overContainer],
+        activeIndex,
+        overIndex,
+      ) as TaskResponse[];
+
       if (activeIndex !== overIndex) {
         setItems((items) => ({
           ...items,
-          [overContainer]: arrayMove(items[overContainer], activeIndex, overIndex),
+          [overContainer]: orderedItems,
         }));
       }
+
+      const request: OrderTasksRequest = {
+        status: TaskStatusSchema[overContainer as string],
+        ids: orderedItems.map(({ id }) => {
+          const dashIndex = (id as string).lastIndexOf("-");
+          const numberId = (id as string).slice(dashIndex + 1);
+
+          return { id: Number(numberId) };
+        }),
+      };
+
+      orderTasksMutation.mutate(request);
     }
 
     setActiveId(null);

@@ -1,8 +1,7 @@
 const nextConfig = {
-    compiler: {
-      styledComponents: true,
-    },
-  };
-  
-  export default nextConfig;
-  
+  compiler: {
+    styledComponents: true,
+  },
+};
+
+export default nextConfig;
