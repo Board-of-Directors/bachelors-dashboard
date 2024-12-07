@@ -25,7 +25,7 @@ class TaskEntity(
     @Enumerated(EnumType.STRING)
     var status: TaskStatus,
     @Column
-    var sequenceId: Long,
+    var sequenceId: Long?,
     @Column
     var deadline: Instant?,
     @CreationTimestamp
