@@ -1,6 +1,6 @@
-import { FolderProps } from "./Folder/Folder.types";
 
-export const mockFolders: FolderProps[] = [
+
+export const mockFolders: any[] = [
     {
         name: "Бакалавры",
         files: [

@@ -17,3 +17,9 @@ export const CHANGE_COLUMN_PROPERTY_KEY = ["change", "column-property"];
 export const CHANGE_ROW_COLOR_KEY = ["change", "row-color"];
 
 export const CHANGE_COLUMN_ORDER_KEY = ["change", "column-order"];
+
+export const GET_ALL_TASKS_QUERY = ['get', 'all-tasks'];
+
+export const CREATE_TASK_KEY = ['post', 'task'];
+
+export const ORDER_TASKS_KEY = ['order', 'tasks'];

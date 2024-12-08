@@ -14,7 +14,7 @@ export const NewTableGroupModal = (props: ModalProps) => {
           <ControlledInput name={"name"} label="Название" placeholder="Введите название" />
         }
         footer={
-          <Button size="xl" onClick={form.handleSubmit(onSubmit)}>
+          <Button size="lg" onClick={form.handleSubmit(onSubmit)}>
             Добавить
           </Button>
         }

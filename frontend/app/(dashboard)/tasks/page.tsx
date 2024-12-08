@@ -4,6 +4,7 @@ import { Button, Header } from "@/components/common";
 import { useDisclosure } from "@nextui-org/react";
 import { PlusIcon } from "lucide-react";
 import { KanbanBoard } from "./components/KanbanBoard/KanbanBoard";
+import { TaskDrawer } from "./components/TaskDrawer/TaskDrawer";
 
 const TasksPage = () => {
     const {
@@ -14,6 +15,7 @@ const TasksPage = () => {
 
     return (
         <>
+            <TaskDrawer onOpenChange={onAddNewTaskOpenChange} isOpen={isAddNewTaskOpen} />
             <Header
                 className={"px-10 py-7 justify-between"}
                 header={"Доска задач"}

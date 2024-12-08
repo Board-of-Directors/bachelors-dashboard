@@ -1,9 +1,9 @@
 import { Button, Header as HeaderContainer, Text } from "@/components/common";
-import { GetAllGroupsResponse } from "@/components/common/Accordion/Accordion.api";
 import { GET_ALL_GROUPS_KEY } from "@/constants";
 import { useQuery } from "@tanstack/react-query";
 import { GroupIcon, PlusIcon } from "lucide-react";
 import { HeaderProps } from "./Header.types";
+import { GetAllGroupsResponse } from "@/api/request/group/types";
 
 export const Header = ({ onNewFileModalOpen, onAddGroupOpen }: HeaderProps) => {
   const { data } = useQuery<GetAllGroupsResponse, Error>({queryKey : GET_ALL_GROUPS_KEY});

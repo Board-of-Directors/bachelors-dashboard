@@ -1,6 +1,9 @@
-import { Task } from "@/types/task";
+import { TaskResponse } from "@/api/request/task/types";
+import { UniqueIdentifier } from "@dnd-kit/core";
+
+export type Items = Record<UniqueIdentifier, TaskResponse[]>;
 
 export interface KanbanColumn {
-    id: string;
-    tasks: Task[];
+  tasks: TaskResponse[];
+  id: string;
 }
