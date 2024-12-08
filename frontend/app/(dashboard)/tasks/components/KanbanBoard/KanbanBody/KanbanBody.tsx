@@ -6,7 +6,6 @@ import { measuring } from "./KanbanBody.constants";
 import { useKanban } from "./KanbanBody.hooks";
 import { Container } from "./KanbanBody.styles";
 import { KanbanBodyProps } from "./KanbanBody.types";
-import { useEffect } from "react";
 
 export const KanbanBody = (props: KanbanBodyProps) => {
   const {
@@ -18,8 +17,6 @@ export const KanbanBody = (props: KanbanBodyProps) => {
     sensors,
     items,
   } = useKanban(props);
-
-  useEffect(() => console.log('activeTask', findActiveTask(activeId)), [activeId]);
 
   return (
     <Container>

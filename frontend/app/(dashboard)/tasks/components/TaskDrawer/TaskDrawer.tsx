@@ -19,15 +19,16 @@ const DATE_FORMAT = "DD-MM-YYYY";
 
 //   return ({
 //     name : task.name,
+//     description : task.description,
 //     startDate : task?.created ? dayjs(task.created).format(DATE_FORMAT) : undefined,
-//     endDate ?: task?.deadline ? dayjs(task.deadline).format(DATE_FORMAT) : undefined,
-//     tags : 
+//     endDate : task?.deadline ? dayjs(task.deadline).format(DATE_FORMAT) : undefined,
+//     tags : []
 //   })
 // }
 
-export const TaskDrawer = ({task, ...props}: TaskDrawerProps) => {
+export const TaskDrawer = ({ task, ...props }: TaskDrawerProps) => {
   const form = useForm<TaskSchemaType>({
-    resolver: zodResolver(TaskSchema)
+    resolver: zodResolver(TaskSchema),
   });
 
   const onClose = () => props.onOpenChange(false);
@@ -48,7 +49,7 @@ export const TaskDrawer = ({task, ...props}: TaskDrawerProps) => {
           </Button>
         </Block>
         <Grid templateColumns="repeat(8, 1fr)">
-          <DescriptionBlock onClose={onClose}/>
+          <DescriptionBlock onClose={onClose} />
           <RightBlock />
         </Grid>
       </Drawer>
