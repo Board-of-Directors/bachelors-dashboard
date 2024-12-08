@@ -5,9 +5,6 @@ on:
     branches:
       - "main"
       - "frontend-dev"
-  pull_request:
-    branches:
-      - "frontend-dev"
 
 jobs:
   push_to_registry:
