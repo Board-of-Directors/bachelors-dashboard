@@ -1,7 +1,6 @@
 import { SelectItem } from "@/components/common";
-import { TagColors } from "@/components/common/Tag";
 
-export const colors: SelectItem<TagColors>[] = [
+export const colors: SelectItem<any>[] = [
   {
     label: "Срочный",
     value: {
