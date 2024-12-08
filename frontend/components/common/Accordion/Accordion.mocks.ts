@@ -1,4 +1,3 @@
-import { FolderProps } from "./AccordionItem/AccordionItem.types";
 
 
 export const mockFolders: any[] = [
