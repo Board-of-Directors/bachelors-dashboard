@@ -1,7 +1,7 @@
 import { Text } from "@/components/common";
 import { Task } from "@/types/task";
 import { CalendarIcon } from "lucide-react";
-import { Circle, Row } from "../KanbanCard.styles";
+import { Circle, Row } from "./KanbanCard.styles";
 
 export const DeadlineRow = ({ startDate, endDate }: Pick<Task, "startDate" | "endDate">) => (
   <Row>

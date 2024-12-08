@@ -1,7 +1,7 @@
 "use client";
 
-import { useDescriptionBlockContext } from "@/app/(dashboard)/tasks/components/NewTaskDrawer/DescriptionBlock/DecsriptionBlock.context";
-import { TaskSchemaType } from "@/app/(dashboard)/tasks/components/NewTaskDrawer/TaskSchema";
+import { useDescriptionBlockContext } from "@/app/(dashboard)/tasks/components/TaskDrawer/DescriptionBlock/DecsriptionBlock.context";
+import { TaskSchemaType } from "@/app/(dashboard)/tasks/components/TaskDrawer/TaskSchema";
 import { HStack } from "@chakra-ui/react";
 import { useFormContext } from "react-hook-form";
 import { Button } from "../Button/Button";

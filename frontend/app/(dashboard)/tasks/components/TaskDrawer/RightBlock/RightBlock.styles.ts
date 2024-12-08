@@ -1,5 +1,5 @@
 import { Box, chakra } from "@chakra-ui/react";
-import { Block } from "../NewTaskDrawer.styles";
+import { Block } from "../TaskDrawer.styles";
 
 const MainContainer = chakra(Block, {
   baseStyle: {

@@ -5,12 +5,28 @@ import { XIcon } from "lucide-react";
 import { FormProvider, useForm } from "react-hook-form";
 import { DescriptionBlock } from "./DescriptionBlock/DescriptionBlock";
 import { HeaderEditor } from "./HeaderEditor/HeaderEditor";
-import { Block } from "./NewTaskDrawer.styles";
-import { NewTaskDrawerProps } from "./NewTaskDrawer.types";
 import { RightBlock } from "./RightBlock/RightBlock";
+import { Block } from "./TaskDrawer.styles";
+import { TaskDrawerProps } from "./TaskDrawer.types";
 import { TaskSchema, TaskSchemaType } from "./TaskSchema";
 
-export const NewTaskDrawer = (props: NewTaskDrawerProps) => {
+const DATE_FORMAT = "DD-MM-YYYY";
+
+// const createDefaultValues = (task : Maybe<TaskResponse>) : Maybe<TaskSchemaType> => {
+//   if (!task) {
+//     return undefined;
+//   }
+
+//   return ({
+//     name : task.name,
+//     description : task.description,
+//     startDate : task?.created ? dayjs(task.created).format(DATE_FORMAT) : undefined,
+//     endDate : task?.deadline ? dayjs(task.deadline).format(DATE_FORMAT) : undefined,
+//     tags : []
+//   })
+// }
+
+export const TaskDrawer = ({ task, ...props }: TaskDrawerProps) => {
   const form = useForm<TaskSchemaType>({
     resolver: zodResolver(TaskSchema),
   });
@@ -23,17 +39,17 @@ export const NewTaskDrawer = (props: NewTaskDrawerProps) => {
         <Block flexDirection="row" justifyContent="space-between">
           <HeaderEditor />
           <Button
-            isIconOnly
-            color={"secondary"}
             className={"!rounded-full !size-10 shrink-0"}
-            size={"sm"}
+            color={"secondary"}
             onClick={onClose}
+            size={"sm"}
+            isIconOnly
           >
             <XIcon className="size-4 shrink-0" />
           </Button>
         </Block>
         <Grid templateColumns="repeat(8, 1fr)">
-          <DescriptionBlock />
+          <DescriptionBlock onClose={onClose} />
           <RightBlock />
         </Grid>
       </Drawer>

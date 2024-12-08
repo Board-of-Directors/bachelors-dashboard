@@ -2,19 +2,26 @@ import { UniqueIdentifier } from "@dnd-kit/core";
 import { Employee } from "./employee";
 import { Tag } from "./tag";
 
-type TaskStatus = "unchecked" | "waiting" | "in_progress" | "done"
+type TaskStatusType = "unchecked" | "waiting" | "in_progress" | "done";
+
+enum TaskStatus {
+  "Не выполнена" = "NOT_STARTED",
+  "Ожидает выполнения" = "AWAITING",
+  "В процессе" = "IN_PROGRESS",
+  "Готово" = "READY",
+}
 
 interface OptionalTaskData {
-    assignees: Employee[];
-    startDate: string;
-    endDate: string;
-    tags: Tag[];
+  assignees: Employee[];
+  startDate: string;
+  endDate: string;
+  tags: Tag[];
 }
 
 interface Task extends Partial<OptionalTaskData> {
-    status: TaskStatus;
-    header: string;
-    id: UniqueIdentifier;
+  status: TaskStatusType;
+  id: UniqueIdentifier;
+  header: string;
 }
 
 export type { Task, TaskStatus };

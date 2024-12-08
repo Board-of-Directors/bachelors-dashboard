@@ -23,4 +23,6 @@ export type { DrawerProps } from "./Drawer/Drawer.types";
 export type { ModalProps } from "./Modal/Modal.types";
 export type { SelectItem } from "./Select/Select.types";
 
+export { useSnackbar } from "./Snackbar/Snackbar.hooks";
+
 export * from "./Modals";
