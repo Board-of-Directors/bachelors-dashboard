@@ -32,13 +32,13 @@ export const useFileRow = (file: ResponseFile) => {
         transform: CSS.Translate.toString(transform),
     };
 
-    const tableHref = `tables/${(file as XSLXFile)?.tableId}`;
-    const href = (file as DOCXFile)?.href || tableHref;
+    const tableHref = `tables/${(file as any)?.tableId}`;
+    const href = (file as any)?.href || tableHref;
 
     const refs = useMergeRefs(hoverRef, setNodeRef);
 
     const handleOpenEditModal = () => {
-        setTableToEdit(file);
+        setTableToEdit(file as any);
         onEditGroupOpen();
     };
 

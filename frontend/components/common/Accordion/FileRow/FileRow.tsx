@@ -40,7 +40,7 @@ export const FileRow = ({ file }: FileRowProps) => {
         ) : null}
         <FileLink href={href}>
           <Row>
-            {(file as DOCXFile)?.href ? <DOCXFileIcon /> : <XSLXFileIcon />}
+            {(file as any)?.href ? <DOCXFileIcon /> : <XSLXFileIcon />}
             <Text className={"text-md font-semibold text-text-back"}>{file.name}</Text>
           </Row>
           {isHover ? (

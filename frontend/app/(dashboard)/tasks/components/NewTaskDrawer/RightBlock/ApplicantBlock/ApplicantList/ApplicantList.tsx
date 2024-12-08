@@ -8,7 +8,7 @@ import { ApplicantListProps } from "./ApplicantList.types";
 export const ApplicantList = ({ onDeleteApplicant, applicants }: ApplicantListProps) => (
   <Container>
     {applicants.map(({ name, snils }, index) => (
-      <ApplicantRow>
+      <ApplicantRow key={index}>
         <Container gap="8px">
           <Text className="text-text-back">{name}</Text>
           <HStack alignItems="center" gap="6px">
