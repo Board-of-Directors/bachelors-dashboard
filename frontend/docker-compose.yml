@@ -10,8 +10,7 @@ services:
     image: tretiakovv/bachelor_frontend:frontend-dev
     ports:
       - "3001:3000"
-    networks:
-    - app-network
-networks:
-  app-network:
-    external : true
+  unleash_web:
+    image: tretiakovv/unleash-web-1
+  unleash_db:
+    image: tretiakovv/unleash-db-1
