@@ -11,6 +11,6 @@ services:
     ports:
       - "3001:3000"
   unleash_web:
-    image: tretiakovv/unleash-web-1
+    image: unleashorg/unleash-server:latest
   unleash_db:
-    image: tretiakovv/unleash-db-1
+    image: postgres:15
