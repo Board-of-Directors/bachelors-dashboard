@@ -10,7 +10,7 @@ import { PrimeReactProvider } from "primereact/api";
 import { PropsWithChildren } from "react";
 
 const config = {
-  url: "http://localhost:4242/api/frontend",
+  url: "http://89.169.162.192:4242/api/frontend",
   clientKey: "default:development.unleash-insecure-frontend-api-token",
   refreshInterval: 5,
   appName: "fit-bachelor-dashboard",
