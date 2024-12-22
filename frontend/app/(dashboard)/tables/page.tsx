@@ -31,7 +31,7 @@ const TablesPage = () => {
       {headerEnabled ? (
         <Header onAddGroupOpen={onAddGroupOpen} onNewFileModalOpen={onNewFileModalOpen} />
       ) : (
-        <Text>Включите флаг header_enabled</Text>
+        <Text>Включите флаг header_enabled!</Text>
       )}
       {acrrodionEnabled ? <Accordion mx="40px" /> : <Text>Включите флаг accordion_enabled</Text>}
     </>
