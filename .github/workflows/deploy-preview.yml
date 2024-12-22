@@ -17,7 +17,7 @@ jobs:
       - name: Install and Build 🔧
         run: |
           cd frontend
-          echo "PR_NUMBER={{github.event.number}}" >> .env
+          echo "\nPR_NUMBER=${{github.event.number}}" >> .env
           npm install
           npm run build
 
