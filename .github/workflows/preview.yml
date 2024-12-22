@@ -23,6 +23,6 @@ jobs:
           npm run build
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: rossjrw/pr-preview-action@v1
         with:
-          folder: frontend/out
+          source-dir: frontend/out
