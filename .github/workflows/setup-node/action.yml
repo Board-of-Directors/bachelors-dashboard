@@ -18,6 +18,6 @@ runs:
     - name: Install dependencies 🔧
       shell: bash
       if: steps.cache_dependencies.outputs.cache-hit != 'true'
-      with:
-        context: ./frontend/
-      run: npm install
+      run: |
+        cd frontend
+        npm install
