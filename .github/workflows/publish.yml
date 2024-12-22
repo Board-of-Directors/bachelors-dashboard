@@ -1,12 +1,8 @@
 name: publish-to-github-pages
 
 on:
-  pull_request_target:
-    types:
-      - opened
-    branches:
-      - "main"
-      - "frontend-dev"
+  pull_request:
+    branches: [main, frontend-dev]
 
 permissions:
   contents: read
