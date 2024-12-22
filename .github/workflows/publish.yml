@@ -50,5 +50,3 @@ jobs:
     steps:
       - name: Deploy PR Previev
         uses: rossjrw/pr-preview-action@v1.4.8
-        with:
-          source-dir: ./frontend/out
