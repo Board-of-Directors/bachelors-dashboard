@@ -2,13 +2,10 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Tretiakovv.github.io/bachelors-dashboard",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "build:all-errors": "__NEXT_TEST_MODE=true next build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d out",
     "lint": "next lint",
     "test": "jest",
     "build:all-ts-errors": "__NEXT_TEST_MODE=true next build"

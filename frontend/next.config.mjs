@@ -5,9 +5,6 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
-  images: {
-    unoptimized: true,
-  },
   assetPrefix: isProd ? `/${SITE_PREFIX}/` : "",
   basePath: isProd ? `/${SITE_PREFIX}` : "",
   output: "export",
