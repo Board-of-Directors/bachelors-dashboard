@@ -1,5 +1,5 @@
 const isProd = process.env.NODE_ENV === "production";
-const SITE_PREFIX = "bachelors-dashboard";
+const SITE_PREFIX = "..";
 
 const nextConfig = {
   compiler: {
