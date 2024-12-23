@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Tretiakovv.github.io/bachelors-dashboard",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

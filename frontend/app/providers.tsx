@@ -12,8 +12,8 @@ import { PropsWithChildren } from "react";
 const config = {
   url: `${process.env.NEXT_PUBLIC_UNLEASH_HOST}/api/frontend`,
   clientKey: "default:development.unleash-insecure-frontend-api-token",
-  refreshInterval: 5,
   appName: "fit-bachelor-dashboard",
+  refreshInterval: 5,
 };
 
 const queryClient = new QueryClient({

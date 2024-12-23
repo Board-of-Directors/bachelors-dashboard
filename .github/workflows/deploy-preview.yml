@@ -1,0 +1,28 @@
+# .github/workflows/preview.yml
+name: Deploy PR previews
+
+on:
+  pull_request:
+    branches: [main, frontend-dev]
+
+jobs:
+  build-and-deploy:
+    permissions: write-all
+    concurrency: ci-${{ github.ref }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Install and Build 🔧
+        env:
+          NEXT_PUBLIC_PR_NUMBER: ${{github.event.number}}
+        run: |
+          cd frontend
+          npm install
+          npm run build
+
+      - name: Deploy 🚀
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: frontend/out
