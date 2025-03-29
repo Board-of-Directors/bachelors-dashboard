@@ -18,5 +18,5 @@ class EmployeeEntity(
     var email: String,
 
     @Column
-    var passowrd: String,
+    var password: String,
 )
