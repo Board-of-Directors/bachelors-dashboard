@@ -1,6 +1,7 @@
 package ru.nsu.fit.bachelors.dashboard.service
 
 import ru.nsu.fit.bachelors.dashboard.entity.EmployeeEntity
+import ru.nsu.fit.bachelors.dashboard.filter.EmployeeInternalFilter
 
 interface EmployeeService {
     /**
@@ -14,4 +15,12 @@ interface EmployeeService {
      * @param entity сущность работника
      */
     fun save(entity: EmployeeEntity)
+
+    /**
+     * Найти подходящих под фильтр сотрудников.
+     *
+     * @param filter фильтр сотрудников
+     * @return подходящие под фильтр сотрудники
+     */
+    fun findByFilter(filter: EmployeeInternalFilter): List<EmployeeEntity>
 }
