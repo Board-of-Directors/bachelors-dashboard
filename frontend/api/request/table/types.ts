@@ -4,29 +4,29 @@ type TableColumnType = "STRING" | "NUMBER";
 
 type TableRowColor = "RED" | "BLUE" | "WHITE";
 
-interface ResponseTableColumn {
-  id: number;
-  name: string;
-  type: TableColumnType;
-  hidden: boolean;
-}
-
 interface TableRowItem {
-  id: number;
   columnId: number;
   value: string;
+  id: number;
 }
 
 interface ResponseTableRow {
-  id: number;
-  color: TableRowColor;
   items: TableRowItem[];
+  color: TableRowColor;
+  id: number;
+}
+
+interface ResponseTableColumn {
+  type: TableColumnType;
+  hidden: boolean;
+  name: string;
+  id: number;
 }
 
 interface ResponseTableDetail {
-  id: number;
   columns: ResponseTableColumn[];
   rows: ResponseTableRow[];
+  id: number;
 }
 
 interface ChangeRowColorRequest {
@@ -50,5 +50,6 @@ export type {
   Ids,
   ResponseTableDetail,
   ResponseTableRow,
-  TableRowColor,
+  TableRowColor
 };
+

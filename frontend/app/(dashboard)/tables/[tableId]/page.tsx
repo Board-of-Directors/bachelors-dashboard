@@ -4,7 +4,6 @@ import { getTableById } from "@/api/request/table";
 import { ResponseTableDetail } from "@/api/request/table/types";
 import { Header, Table } from "@/components/common";
 import { GET_TABLE_BY_ID } from "@/constants/queryKeys";
-import { ColumnType, ResponseTable, TableSchema, Table as TableType } from "@/types/table";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { HeaderRightContent } from "./components/HeaderRightContent";
@@ -36,3 +35,4 @@ const TablePage = ({ params: { tableId } }: { params: { tableId: number } }) => 
 };
 
 export default TablePage;
+Í
