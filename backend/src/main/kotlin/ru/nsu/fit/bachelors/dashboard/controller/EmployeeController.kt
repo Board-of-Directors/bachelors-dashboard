@@ -22,7 +22,7 @@ class EmployeeController(
     fun getAll() = employeeFacade.getAllEmployees()
 
     @Operation(description = "Получить всех сотрудников по фильтрам")
-    @GetMapping(name = "search")
+    @GetMapping("search")
     fun search(filter: EmployeeSearchFilterRequest) = employeeFacade.findByFilter(filter)
 
     @Operation(description = "Добавить нового сотрудника")
