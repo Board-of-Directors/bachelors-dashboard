@@ -8,6 +8,10 @@ import ru.nsu.fit.bachelors.dashboard.dto.task.TasksResponse
 import ru.nsu.fit.bachelors.dashboard.dto.task.request.ChangeTaskOrderRequest
 import ru.nsu.fit.bachelors.dashboard.dto.task.request.TaskChangeRequest
 import ru.nsu.fit.bachelors.dashboard.dto.task.request.TaskCreationRequest
+import ru.nsu.fit.bachelors.dashboard.entity.EmployeeEntity
+import ru.nsu.fit.bachelors.dashboard.entity.EmployeeTasksEntity
+import ru.nsu.fit.bachelors.dashboard.entity.TaskEntity
+import ru.nsu.fit.bachelors.dashboard.service.EmployeeService
 import ru.nsu.fit.bachelors.dashboard.service.TaskService
 import ru.nsu.fit.bachelors.dashboard.utils.enumValueOrThrow
 import ru.nsu.fit.bachelors.dashboard.utils.parseDate
@@ -17,8 +21,11 @@ import ru.nsu.fit.bachelors.dashboard.utils.parseDate
 class TaskFacadeImpl(
     private val taskConverter: TaskConverter,
     private val taskService: TaskService,
+    private val employeeService: EmployeeService,
 ) : TaskFacade {
     override fun createTask(request: TaskCreationRequest) {
+        val taskEntity = taskConverter.ofRequest(request)
+        taskEntity.addEmployees((employeeService.getAllByIds(request.employees ?: listOf())))
         taskService.save(taskConverter.ofRequest(request))
     }
 
@@ -38,8 +45,8 @@ class TaskFacadeImpl(
     @Transactional
     override fun changeOrder(request: ChangeTaskOrderRequest) {
         val tasksByIds = taskService
-                .allByIds(request.ids.map { it.id })
-                .associateBy { it.id }
+            .allByIds(request.ids.map { it.id })
+            .associateBy { it.id }
 
         request.ids.mapIndexed { index, idDto ->
             tasksByIds[idDto.id]?.let {
@@ -48,4 +55,8 @@ class TaskFacadeImpl(
             }
         }
     }
+}
+
+private fun TaskEntity.addEmployees(employees: List<EmployeeEntity>) {
+    this.employeeTasks.plus(employees.map { EmployeeTasksEntity(employee = it, task = this) })
 }

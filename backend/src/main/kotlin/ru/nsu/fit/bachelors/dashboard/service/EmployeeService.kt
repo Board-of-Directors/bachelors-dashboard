@@ -10,6 +10,11 @@ interface EmployeeService {
     fun getAll(): List<EmployeeEntity>
 
     /**
+     * Получить всех работников по идентификаторам.
+     */
+    fun getAllByIds(ids: List<Long>): List<EmployeeEntity>
+
+    /**
      * Сохранить работника.
      *
      * @param entity сущность работника
