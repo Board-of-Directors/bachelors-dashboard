@@ -14,13 +14,10 @@ class EmployeeTasksEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-
     @ManyToOne
     @JoinColumn(name = "employee_id")
     val employee: EmployeeEntity,
-
     @ManyToOne
     @JoinColumn(name = "task_id")
     val task: TaskEntity,
-
 )

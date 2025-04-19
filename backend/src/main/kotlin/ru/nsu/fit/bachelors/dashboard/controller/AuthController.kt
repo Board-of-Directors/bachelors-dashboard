@@ -17,7 +17,9 @@ class AuthenticationController(
 ) {
     @Operation(description = "Вход в аккаунт.")
     @PostMapping("/login")
-    fun login(@RequestBody request: LoginRequest) {
+    fun login(
+        @RequestBody request: LoginRequest,
+    ) {
         authenticationFacade.login(request)
     }
 }

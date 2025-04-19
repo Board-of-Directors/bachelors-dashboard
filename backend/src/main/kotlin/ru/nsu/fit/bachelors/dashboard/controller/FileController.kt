@@ -50,5 +50,7 @@ class FileController(
 
     @Operation(description = "Загрузить новый файл")
     @PutMapping("/upload")
-    fun upload(@RequestParam file: MultipartFile) = fileFacade.uploadFile(file)
+    fun upload(
+        @RequestParam file: MultipartFile,
+    ) = fileFacade.uploadFile(file)
 }

@@ -29,9 +29,7 @@ class TaskFacadeImpl(
         taskService.save(taskConverter.ofRequest(request))
     }
 
-    override fun all(): List<TasksResponse> {
-        return taskConverter.toResponse(taskService.getAll().groupBy { it.status })
-    }
+    override fun all(): List<TasksResponse> = taskConverter.toResponse(taskService.getAll().groupBy { it.status })
 
     @Transactional
     override fun changeTask(request: TaskChangeRequest) {
@@ -44,9 +42,10 @@ class TaskFacadeImpl(
 
     @Transactional
     override fun changeOrder(request: ChangeTaskOrderRequest) {
-        val tasksByIds = taskService
-            .allByIds(request.ids.map { it.id })
-            .associateBy { it.id }
+        val tasksByIds =
+            taskService
+                .allByIds(request.ids.map { it.id })
+                .associateBy { it.id }
 
         request.ids.mapIndexed { index, idDto ->
             tasksByIds[idDto.id]?.let {

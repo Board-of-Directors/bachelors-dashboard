@@ -15,7 +15,11 @@ class TaskConverter {
         TaskEntity(
             name = request.name,
             description = request.description,
-            deadline = request.deadline?.let { LocalDate.parse(it) }?.atStartOfDay()?.toInstant(ZoneOffset.UTC),
+            deadline =
+                request.deadline
+                    ?.let { LocalDate.parse(it) }
+                    ?.atStartOfDay()
+                    ?.toInstant(ZoneOffset.UTC),
             status = TaskStatus.NOT_STARTED,
             sequenceId = 1L,
         )

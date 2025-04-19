@@ -21,7 +21,8 @@ class ColumnFacadeImpl(
 
     @Transactional
     override fun changeOrder(columnOrderRequest: ColumnOrderRequest) {
-        val filesById = columnService
+        val filesById =
+            columnService
                 .allByIds(columnOrderRequest.ids.map { it.id })
                 .associateBy { it.id }
 

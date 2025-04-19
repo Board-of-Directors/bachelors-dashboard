@@ -13,10 +13,8 @@ class EmployeeEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
-
     @Column
     var email: String,
-
     @Column
     var password: String,
 )

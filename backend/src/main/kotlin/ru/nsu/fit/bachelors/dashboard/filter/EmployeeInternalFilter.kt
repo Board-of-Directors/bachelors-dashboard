@@ -16,5 +16,4 @@ data class EmployeeInternalFilter(
                 ).toTypedArray()
             criteriaBuilder.and(*predicates)
         }
-
 }

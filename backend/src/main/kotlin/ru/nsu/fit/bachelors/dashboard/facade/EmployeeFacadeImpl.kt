@@ -4,7 +4,9 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import ru.nsu.fit.bachelors.dashboard.converter.EmployeeConverter
 import ru.nsu.fit.bachelors.dashboard.dto.employee.request.CreateEmployeeRequest
+import ru.nsu.fit.bachelors.dashboard.dto.employee.request.EmployeeSearchFilterRequest
 import ru.nsu.fit.bachelors.dashboard.dto.employee.response.EmployeeResponseDto
+import ru.nsu.fit.bachelors.dashboard.filter.EmployeeInternalFilter
 import ru.nsu.fit.bachelors.dashboard.service.EmployeeService
 import ru.nsu.fit.bachelors.dashboard.service.NotificationService
 import java.util.UUID
@@ -25,4 +27,9 @@ class EmployeeFacadeImpl(
 
         notificationService.notifyRegistration(employee, rawPassword)
     }
+
+    override fun findByFilter(request: EmployeeSearchFilterRequest): List<EmployeeResponseDto> =
+        employeeService
+            .findByFilter(EmployeeInternalFilter(email = request.email))
+            .map { employeeConverter.toResponse(it) }
 }

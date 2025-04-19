@@ -11,6 +11,7 @@ class EmployeeServiceImpl(
     private val employeeRepository: EmployeeRepository,
 ) : EmployeeService {
     override fun getAll(): List<EmployeeEntity> = employeeRepository.findAll()
+
     override fun getAllByIds(ids: List<Long>): List<EmployeeEntity> = employeeRepository.findAllById(ids)
 
     override fun save(entity: EmployeeEntity) {
