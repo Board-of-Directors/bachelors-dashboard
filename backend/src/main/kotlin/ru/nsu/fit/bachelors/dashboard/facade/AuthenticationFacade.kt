@@ -1,6 +1,7 @@
 package ru.nsu.fit.bachelors.dashboard.facade
 
 import ru.nsu.fit.bachelors.dashboard.dto.auth.request.LoginRequest
+import ru.nsu.fit.bachelors.dashboard.dto.auth.response.CredentialsResponse
 
 interface AuthenticationFacade {
     /**
@@ -8,5 +9,5 @@ interface AuthenticationFacade {
      *
      * @param request запрос входа в аккаунт
      */
-    fun login(request: LoginRequest)
+    fun login(request: LoginRequest): CredentialsResponse
 }

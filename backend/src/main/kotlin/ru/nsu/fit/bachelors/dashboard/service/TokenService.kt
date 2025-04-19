@@ -8,4 +8,9 @@ interface TokenService {
      * Создать токен обновления сессии для работника.
      */
     fun createRefreshToken(employee: EmployeeEntity): TokenEntity
+
+    /**
+     * Создать токен доступа для работника.
+     */
+    fun createAccessToken(entity: EmployeeEntity): TokenEntity
 }

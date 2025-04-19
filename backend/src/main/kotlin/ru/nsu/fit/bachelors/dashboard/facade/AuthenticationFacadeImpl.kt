@@ -8,7 +8,6 @@ import ru.nsu.fit.bachelors.dashboard.entity.EmployeeEntity
 import ru.nsu.fit.bachelors.dashboard.exception.InvalidCredentialsException
 import ru.nsu.fit.bachelors.dashboard.filter.EmployeeInternalFilter
 import ru.nsu.fit.bachelors.dashboard.service.EmployeeService
-import ru.nsu.fit.bachelors.dashboard.service.SessionService
 import ru.nsu.fit.bachelors.dashboard.service.TokenService
 
 @Service
@@ -16,20 +15,21 @@ class AuthenticationFacadeImpl(
     private val employeeService: EmployeeService,
     private val encoder: PasswordEncoder,
     private val tokenService: TokenService,
-    private val sessionService: SessionService,
 ) : AuthenticationFacade {
-    override fun login(request: LoginRequest) {
+    override fun login(request: LoginRequest): CredentialsResponse {
         val employee = employeeService.findByFilter(EmployeeInternalFilter(email = request.email)).singleOrNull()
 
         if (employee == null || !encoder.matches(request.password, employee.password)) {
             throw InvalidCredentialsException()
         }
 
-        toCredentialsResponse(employee)
+        return toCredentialsResponse(employee)
     }
 
     private fun toCredentialsResponse(employee: EmployeeEntity): CredentialsResponse {
         val refreshToken = tokenService.createRefreshToken(employee)
-        val sessionId = sessionService.createSession(employee, refreshToken)
+        val accessToken = tokenService.createAccessToken(employee)
+
+        return CredentialsResponse(accessToken = accessToken.token, refreshToken = refreshToken.token)
     }
 }
