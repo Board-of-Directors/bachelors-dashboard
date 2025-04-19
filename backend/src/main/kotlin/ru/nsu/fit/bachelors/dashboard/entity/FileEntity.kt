@@ -22,6 +22,8 @@ class FileEntity(
     @Column
     var name: String,
     @Column
+    var externalId: String?,
+    @Column
     @Enumerated(value = EnumType.STRING)
     var type: FileType,
     @Column

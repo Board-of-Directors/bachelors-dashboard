@@ -45,4 +45,9 @@ interface FileFacade {
      * @return ответ, содержащий все файлы с заданным типом
      */
     fun getByType(fileType: String): FilesResponse
+
+    /**
+     * Создать документ.
+     */
+    fun createDocument(request: DocumentCreationRequest)
 }

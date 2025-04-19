@@ -19,12 +19,13 @@ class FileConverter {
             files = all.map { toDto(it) },
         )
 
-    private fun toDto(it: FileEntity) = FileDto(id = it.id!!, name = it.name, type = it.type.name)
+    private fun toDto(it: FileEntity) = FileDto(id = it.id!!, externalId = it.externalId, name = it.name, type = it.type.name)
 
     fun toDetail(fileEntity: FileEntity) =
         FileDetailResponse(
             id = fileEntity.id!!,
             name = fileEntity.name,
+            externalId = fileEntity.externalId,
             columns = fileEntity.columns.map { toDto(it) },
             rows = fileEntity.rows.map { toDto(it) },
         )

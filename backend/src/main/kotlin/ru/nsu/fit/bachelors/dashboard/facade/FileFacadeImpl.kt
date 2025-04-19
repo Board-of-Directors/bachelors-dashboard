@@ -7,6 +7,9 @@ import ru.nsu.fit.bachelors.dashboard.converter.FileConverter
 import ru.nsu.fit.bachelors.dashboard.dto.file.request.FileOrderRequest
 import ru.nsu.fit.bachelors.dashboard.dto.file.response.FileDetailResponse
 import ru.nsu.fit.bachelors.dashboard.dto.file.response.FilesResponse
+import ru.nsu.fit.bachelors.dashboard.entity.FileEntity
+import ru.nsu.fit.bachelors.dashboard.entity.FileType
+import ru.nsu.fit.bachelors.dashboard.entity.GroupEntity
 import ru.nsu.fit.bachelors.dashboard.service.FileService
 import ru.nsu.fit.bachelors.dashboard.service.GroupService
 import ru.nsu.fit.bachelors.dashboard.service.UploadService
@@ -36,6 +39,13 @@ class FileFacadeImpl(
     override fun getDetail(fileId: Long): FileDetailResponse = fileConverter.toDetail(fileService.getById(fileId))
 
     @Transactional
+    override fun createDocument(request: DocumentCreationRequest) {
+        val group = groupService.get(request.groupId)
+        val fileEntity = fileConverter.toDocument(request, group)
+        fileService.save(fileEntity)
+    }
+
+    @Transactional
     override fun changeOrder(fileOrderRequest: FileOrderRequest) {
         val group = groupService.get(fileOrderRequest.groupId)
         val filesById =
@@ -51,3 +61,15 @@ class FileFacadeImpl(
         }
     }
 }
+
+private fun FileConverter.toDocument(
+    request: DocumentCreationRequest,
+    group: GroupEntity,
+): FileEntity =
+    FileEntity(
+        name = request.name,
+        externalId = request.externalId,
+        group = group,
+        sequenceId = group.files.maxBy { it.sequenceId }.sequenceId + 1,
+        type = FileType.DOCUMENT,
+    )

@@ -36,4 +36,9 @@ interface FileService {
      * @return список файлов с заданным типом
      */
     fun allByType(fileType: FileType): List<FileEntity>
+
+    /**
+     * Сохранить новый файл.
+     */
+    fun save(fileEntity: FileEntity)
 }

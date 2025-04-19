@@ -33,5 +33,6 @@ class UploadServiceImpl(
 
     companion object {
         const val BUCKET_NAME = "default-file-bucket"
+        const val PREFIX = "https://storage.yandexcloud.net"
     }
 }

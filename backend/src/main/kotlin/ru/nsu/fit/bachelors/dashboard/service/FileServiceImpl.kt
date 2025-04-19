@@ -21,5 +21,10 @@ class FileServiceImpl(
             .orElseThrow { EntityNotFoundException(EntityType.FILE, fileId) }
 
     override fun allByIds(fileIds: List<Long>): List<FileEntity> = fileRepository.findAllById(fileIds)
+
     override fun allByType(fileType: FileType): List<FileEntity> = fileRepository.findAllByType(fileType)
+
+    override fun save(fileEntity: FileEntity) {
+        fileRepository.save(fileEntity)
+    }
 }

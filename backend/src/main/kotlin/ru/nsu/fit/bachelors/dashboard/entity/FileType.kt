@@ -8,4 +8,9 @@ enum class FileType {
      * Таблица.
      */
     TABLE,
+
+    /**
+     * Документ.
+     */
+    DOCUMENT,
 }

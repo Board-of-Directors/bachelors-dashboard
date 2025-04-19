@@ -5,6 +5,7 @@ import jakarta.validation.Valid
 import lombok.RequiredArgsConstructor
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.multipart.MultipartFile
 import ru.nsu.fit.bachelors.dashboard.dto.file.request.FileOrderRequest
 import ru.nsu.fit.bachelors.dashboard.dto.file.response.*
+import ru.nsu.fit.bachelors.dashboard.facade.DocumentCreationRequest
 import ru.nsu.fit.bachelors.dashboard.facade.FileFacade
 
 @RestController
@@ -53,4 +55,10 @@ class FileController(
     fun upload(
         @RequestParam file: MultipartFile,
     ) = fileFacade.uploadFile(file)
+
+    @Operation(description = "Создать документ")
+    @PostMapping("/docs")
+    fun create(
+        @RequestBody request: DocumentCreationRequest,
+    ) = fileFacade.createDocument(request)
 }
