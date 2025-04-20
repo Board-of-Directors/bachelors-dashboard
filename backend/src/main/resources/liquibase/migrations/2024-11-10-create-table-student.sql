@@ -5,8 +5,8 @@ CREATE TABLE student (
 );
 
 
-CREATE EXTENSION pg_trgm;
-CREATE EXTENSION btree_gin;
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+CREATE EXTENSION IF NOT EXISTS btree_gin;
 
 create index student_insurance_idx on student using gin(insurance);
 create index student_full_name_idx on student using gin(full_name);
