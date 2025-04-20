@@ -41,4 +41,9 @@ interface FileService {
      * Сохранить новый файл.
      */
     fun save(fileEntity: FileEntity)
+
+    /**
+     * Найти файл по имени.
+     */
+    fun findByName(name: String): FileEntity?
 }

@@ -13,6 +13,7 @@ import ru.nsu.fit.bachelors.dashboard.entity.GroupEntity
 import ru.nsu.fit.bachelors.dashboard.service.FileService
 import ru.nsu.fit.bachelors.dashboard.service.GroupService
 import ru.nsu.fit.bachelors.dashboard.service.UploadService
+import ru.nsu.fit.bachelors.dashboard.utils.ExcelParser
 import ru.nsu.fit.bachelors.dashboard.utils.enumValueOrThrow
 import java.util.UUID
 
@@ -22,6 +23,7 @@ class FileFacadeImpl(
     private val fileConverter: FileConverter,
     private val groupService: GroupService,
     private val uploadService: UploadService,
+    private val excelParser: ExcelParser,
 ) : FileFacade {
     override fun getByGroup(groupId: Long): FilesResponse =
         fileConverter.toResponse(
@@ -34,6 +36,11 @@ class FileFacadeImpl(
         )
 
     override fun uploadFile(file: MultipartFile): UUID = uploadService.upload(file)
+
+    override fun uploadTable(file: MultipartFile) {
+        val existingFile = fileService.findByName(file.name)
+        excelParser.parse(file)
+    }
 
     @Transactional
     override fun getDetail(fileId: Long): FileDetailResponse = fileConverter.toDetail(fileService.getById(fileId))

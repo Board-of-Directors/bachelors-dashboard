@@ -26,10 +26,10 @@ class TableRowEntity(
     var sequenceId: Long,
     @ManyToOne
     @JoinColumn(name = "table_id")
-    val table: FileEntity,
+    val table: FileEntity?,
     @ManyToOne
     @JoinColumn(name = "student_id")
-    val student: StudentEntity,
+    val student: StudentEntity?,
     @OneToMany(mappedBy = "row", cascade = [CascadeType.ALL])
     val items: List<TableItemEntity> = listOf(),
 )

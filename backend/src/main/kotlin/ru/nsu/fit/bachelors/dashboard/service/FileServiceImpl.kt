@@ -27,4 +27,6 @@ class FileServiceImpl(
     override fun save(fileEntity: FileEntity) {
         fileRepository.save(fileEntity)
     }
+
+    override fun findByName(name: String): FileEntity? = fileRepository.findByName(name)
 }

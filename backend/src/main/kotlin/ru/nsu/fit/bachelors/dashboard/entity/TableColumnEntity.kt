@@ -30,5 +30,5 @@ class TableColumnEntity(
     var type: ColumnDataType,
     @ManyToOne
     @JoinColumn(name = "table_id")
-    val table: FileEntity,
+    val table: FileEntity?,
 )

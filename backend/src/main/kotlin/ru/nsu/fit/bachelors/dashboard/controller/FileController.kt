@@ -61,4 +61,10 @@ class FileController(
     fun create(
         @RequestBody request: DocumentCreationRequest,
     ) = fileFacade.createDocument(request)
+
+    @Operation(description = "Загрузить таблицу")
+    @PostMapping("/table")
+    fun uploadTable(
+        @RequestParam file: MultipartFile,
+    ) = fileFacade.uploadTable(file)
 }

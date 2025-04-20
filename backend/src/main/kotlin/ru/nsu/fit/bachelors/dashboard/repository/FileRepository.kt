@@ -7,6 +7,12 @@ import ru.nsu.fit.bachelors.dashboard.entity.FileType
 import ru.nsu.fit.bachelors.dashboard.entity.GroupEntity
 
 interface FileRepository : JpaRepository<FileEntity, Long> {
-    fun findAllByGroup(group: GroupEntity, sort: Sort): List<FileEntity>
+    fun findAllByGroup(
+        group: GroupEntity,
+        sort: Sort,
+    ): List<FileEntity>
+
     fun findAllByType(fileType: FileType): List<FileEntity>
+
+    fun findByName(name: String): FileEntity?
 }

@@ -50,4 +50,9 @@ interface FileFacade {
      * Создать документ.
      */
     fun createDocument(request: DocumentCreationRequest)
+
+    /**
+     * Загрузить таблицу.
+     */
+    fun uploadTable(file: MultipartFile)
 }
