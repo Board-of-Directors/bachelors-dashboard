@@ -16,10 +16,6 @@ class TableHistoryServiceImpl(
     private val diffComputer: JsonDiffComputer,
     private val tableHistoryRepository: TableHistoryRepository,
 ) : TableHistoryService {
-    /**
-     * Посчитать разницу между старой и новой версией таблицы.
-     * Опубликовать изменения.
-     */
     override fun computeAndPublish(
         oldTable: FileEntity,
         newTable: FileEntity,
