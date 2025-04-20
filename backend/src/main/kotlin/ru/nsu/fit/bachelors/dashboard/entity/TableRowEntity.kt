@@ -26,10 +26,16 @@ class TableRowEntity(
     var sequenceId: Long,
     @ManyToOne
     @JoinColumn(name = "table_id")
-    val table: FileEntity?,
+    var table: FileEntity? = null,
     @ManyToOne
     @JoinColumn(name = "student_id")
-    val student: StudentEntity?,
+    val student: StudentEntity? = null,
     @OneToMany(mappedBy = "row", cascade = [CascadeType.ALL])
-    val items: List<TableItemEntity> = listOf(),
-)
+    val items: MutableList<TableItemEntity> = mutableListOf(),
+) {
+    fun addItems(items: List<TableItemEntity>): TableRowEntity {
+        this.items.addAll(items)
+        items.forEach { it.row = this }
+        return this
+    }
+}

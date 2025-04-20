@@ -7,34 +7,39 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.springframework.stereotype.Component
 import org.springframework.web.multipart.MultipartFile
 import ru.nsu.fit.bachelors.dashboard.entity.ColumnDataType
+import ru.nsu.fit.bachelors.dashboard.entity.FileEntity
+import ru.nsu.fit.bachelors.dashboard.entity.FileType
 import ru.nsu.fit.bachelors.dashboard.entity.TableColumnEntity
 import ru.nsu.fit.bachelors.dashboard.entity.TableItemEntity
 import ru.nsu.fit.bachelors.dashboard.entity.TableRowEntity
 
 @Component
 class ExcelParser {
-    fun parse(file: MultipartFile): RowsAndColumns {
+    fun parse(file: MultipartFile): FileEntity {
         val workbook = XSSFWorkbook(file.inputStream)
         val firstSheet = workbook.getSheetAt(0)
         val columns = firstSheet.first().mapIndexed { index, cell -> toColumns(index, cell) }
-        val rows = firstSheet.drop(1).mapIndexed { index, row -> toRows(index, row) }
+        val rows = firstSheet.drop(1).mapIndexed { index, row -> toRows(index, row, columns) }
 
-        return RowsAndColumns(rows = rows, columns = columns)
+        return FileEntity(type = FileType.TABLE, sequenceId = 1, group = null, name = file.name)
+            .addRows(rows)
+            .addColumns(columns)
     }
 }
 
-private fun toRows(index: Int, row: Row) : TableRowEntity {
-    return TableRowEntity(
-        table = null,
-        student = null,
-        sequenceId = index.toLong(),
-        items = row.toItems(),
-
-    )
+private fun toRows(index: Int, tableRow: Row, columns: List<TableColumnEntity>): TableRowEntity {
+    val row = TableRowEntity(sequenceId = index.toLong())
+    return row.addItems(tableRow.toItems(columns))
 }
 
-private fun Row.toItems() : List<TableItemEntity> {
-    TODO("Not yet implemented")
+private fun Row.toItems(columns: List<TableColumnEntity>): List<TableItemEntity> {
+    val columnsByIndex = columns.associateBy { it.sequenceId }
+    return this.mapIndexed { index, cell ->
+        TableItemEntity(
+            column = columnsByIndex[index.toLong()],
+            value = cell.stringCellValue
+        )
+    }
 }
 
 private fun ExcelParser.toColumns(
@@ -46,11 +51,10 @@ private fun ExcelParser.toColumns(
         sequenceId = index.toLong(),
         width = 100L,
         type = cell.cellType.toInternal(),
-        table = null,
     )
 
-private fun CellType.toInternal() : ColumnDataType{
-    return when(this) {
+private fun CellType.toInternal(): ColumnDataType {
+    return when (this) {
         CellType.NUMERIC -> ColumnDataType.NUMBER
         CellType.STRING -> ColumnDataType.STRING
         CellType._NONE -> TODO()

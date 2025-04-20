@@ -42,5 +42,5 @@ class FileConverter {
 
     fun toDto(row: TableRowEntity) = RowDto(id = row.id!!, color = row.color.name, items = row.items.map { toDto(it) })
 
-    fun toDto(item: TableItemEntity) = ItemDto(id = item.id!!, value = item.value, columnId = item.column.id!!)
+    fun toDto(item: TableItemEntity) = ItemDto(id = item.id!!, value = item.value, columnId = item.column?.id!!)
 }

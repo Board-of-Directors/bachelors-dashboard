@@ -22,7 +22,7 @@ class FileEntity(
     @Column
     var name: String,
     @Column
-    var externalId: String?,
+    var externalId: String? = null,
     @Column
     @Enumerated(value = EnumType.STRING)
     var type: FileType,
@@ -30,9 +30,31 @@ class FileEntity(
     var sequenceId: Int,
     @ManyToOne
     @JoinColumn(name = "group_id")
-    var group: GroupEntity,
+    var group: GroupEntity? = null,
     @OneToMany(mappedBy = "table", cascade = [CascadeType.ALL])
-    val rows: List<TableRowEntity> = listOf(),
+    val rows: MutableList<TableRowEntity> = mutableListOf(),
     @OneToMany(mappedBy = "table", cascade = [CascadeType.ALL])
-    val columns: List<TableColumnEntity> = listOf(),
-)
+    val columns: MutableList<TableColumnEntity> = mutableListOf(),
+) {
+    fun addRows(rows: List<TableRowEntity>): FileEntity {
+        this.rows.addAll(rows)
+        rows.map { it.table = this }
+        return this
+    }
+
+    fun addColumns(columns: List<TableColumnEntity>): FileEntity {
+        this.columns.addAll(columns)
+        columns.map { it.table = this }
+        return this
+    }
+
+    fun setRows(rows: List<TableRowEntity>) {
+        this.rows.clear()
+        this.rows.addAll(rows)
+    }
+
+    fun setColumns(columns: List<TableColumnEntity>) {
+        this.columns.clear()
+        this.columns.addAll(columns)
+    }
+}

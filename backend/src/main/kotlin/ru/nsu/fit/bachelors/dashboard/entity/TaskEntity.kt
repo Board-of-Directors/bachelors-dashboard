@@ -33,5 +33,5 @@ class TaskEntity(
     @CreationTimestamp
     val created: Instant? = null,
     @OneToMany(mappedBy = "task", cascade = [CascadeType.ALL], orphanRemoval = true)
-    val employeeTasks: List<EmployeeTasksEntity> = mutableListOf(),
+    val employeeTasks: MutableList<EmployeeTasksEntity> = mutableListOf(),
 )

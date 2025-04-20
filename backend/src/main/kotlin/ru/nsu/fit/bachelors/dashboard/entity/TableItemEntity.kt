@@ -17,10 +17,10 @@ class TableItemEntity(
     var id: Long? = null,
     @ManyToOne
     @JoinColumn(name = "row_id")
-    val row: TableRowEntity,
+    var row: TableRowEntity? = null,
     @ManyToOne
     @JoinColumn(name = "column_id")
-    val column: TableColumnEntity,
+    val column: TableColumnEntity?,
     @Column
     val value: String,
 )

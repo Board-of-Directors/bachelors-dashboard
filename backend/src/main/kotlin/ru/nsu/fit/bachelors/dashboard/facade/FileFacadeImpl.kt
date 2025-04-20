@@ -38,8 +38,16 @@ class FileFacadeImpl(
     override fun uploadFile(file: MultipartFile): UUID = uploadService.upload(file)
 
     override fun uploadTable(file: MultipartFile) {
-        val existingFile = fileService.findByName(file.name)
-        excelParser.parse(file)
+        val newTable = excelParser.parse(file)
+        val existingTable = fileService.findByName(newTable.name)
+        if (existingTable == null) {
+            fileService.save(newTable)
+            return
+        }
+        newTable.group = existingTable.group
+        newTable.sequenceId = existingTable.sequenceId
+        newTable.id = existingTable.id
+        fileService.save(newTable)
     }
 
     @Transactional

@@ -57,5 +57,5 @@ class TaskFacadeImpl(
 }
 
 private fun TaskEntity.addEmployees(employees: List<EmployeeEntity>) {
-    this.employeeTasks.plus(employees.map { EmployeeTasksEntity(employee = it, task = this) })
+    this.employeeTasks.addAll(employees.map { EmployeeTasksEntity(employee = it, task = this) })
 }
