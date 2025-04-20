@@ -47,14 +47,4 @@ class FileEntity(
         columns.map { it.table = this }
         return this
     }
-
-    fun setRows(rows: List<TableRowEntity>) {
-        this.rows.clear()
-        this.rows.addAll(rows)
-    }
-
-    fun setColumns(columns: List<TableColumnEntity>) {
-        this.columns.clear()
-        this.columns.addAll(columns)
-    }
 }

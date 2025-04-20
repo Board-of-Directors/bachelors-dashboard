@@ -43,6 +43,7 @@ dependencies {
     implementation("javax.xml.bind:jaxb-api:2.3.1")
     implementation("org.apache.poi:poi:5.4.0")
     implementation("org.apache.poi:poi-ooxml:5.4.0")
+    implementation("com.flipkart.zjsonpatch:zjsonpatch:0.4.16")
     implementation(platform("com.amazonaws:aws-java-sdk-bom:1.12.529"))
     implementation("com.amazonaws:aws-java-sdk-s3")
     compileOnly("org.projectlombok:lombok")

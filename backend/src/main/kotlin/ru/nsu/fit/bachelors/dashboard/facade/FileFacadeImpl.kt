@@ -12,6 +12,7 @@ import ru.nsu.fit.bachelors.dashboard.entity.FileType
 import ru.nsu.fit.bachelors.dashboard.entity.GroupEntity
 import ru.nsu.fit.bachelors.dashboard.service.FileService
 import ru.nsu.fit.bachelors.dashboard.service.GroupService
+import ru.nsu.fit.bachelors.dashboard.service.TableHistoryService
 import ru.nsu.fit.bachelors.dashboard.service.UploadService
 import ru.nsu.fit.bachelors.dashboard.utils.ExcelParser
 import ru.nsu.fit.bachelors.dashboard.utils.enumValueOrThrow
@@ -24,6 +25,7 @@ class FileFacadeImpl(
     private val groupService: GroupService,
     private val uploadService: UploadService,
     private val excelParser: ExcelParser,
+    private val tableHistoryService: TableHistoryService,
 ) : FileFacade {
     override fun getByGroup(groupId: Long): FilesResponse =
         fileConverter.toResponse(
