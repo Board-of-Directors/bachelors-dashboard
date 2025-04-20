@@ -24,16 +24,17 @@ class TableHistoryServiceImpl(
         oldTable: FileEntity,
         newTable: FileEntity,
     ) {
-        val changes = diffComputer.computeDiff(oldTable, newTable).map { it.toInternal() }
+        val changes = diffComputer.computeDiff(oldTable, newTable).map { it.toInternal(newTable) }
         tableHistoryRepository.saveAll(changes)
     }
 }
 
-private fun TableChangeDto.toInternal(): TableHistoryEntity =
+private fun TableChangeDto.toInternal(table: FileEntity): TableHistoryEntity =
     TableHistoryEntity(
         operation = enumValueOrThrow(this.op),
         path = this.path,
         value = this.value,
         fromValue = this.fromValue,
         timestamp = Instant.now(),
+        table = table,
     )
