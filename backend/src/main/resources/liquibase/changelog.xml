@@ -15,4 +15,5 @@
     <include file="migrations/2025-04-19-create-employee-tasks.sql" relativeToChangelogFile="true"/>
     <include file="migrations/2025-04-20-create-external-file-ids.sql" relativeToChangelogFile="true"/>
     <include file="migrations/2025-04-21-create-table-history.sql" relativeToChangelogFile="true"/>
+    <include file="migrations/2025-04-21-drop-file-group-not-null.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>

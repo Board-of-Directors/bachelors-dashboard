@@ -37,7 +37,7 @@ private fun Row.toItems(columns: List<TableColumnEntity>): List<TableItemEntity>
     return this.mapIndexed { index, cell ->
         TableItemEntity(
             column = columnsByIndex[index.toLong()],
-            value = cell.stringCellValue
+            value = cell.extractValue()
         )
     }
 }
@@ -47,19 +47,30 @@ private fun ExcelParser.toColumns(
     cell: Cell,
 ): TableColumnEntity =
     TableColumnEntity(
-        name = cell.stringCellValue,
+        name = cell.extractValue(),
         sequenceId = index.toLong(),
         width = 100L,
         type = cell.cellType.toInternal(),
     )
 
+private fun Cell.extractValue(): String {
+    return when (this.cellType) {
+        CellType._NONE -> TODO()
+        CellType.NUMERIC -> this.numericCellValue.toString()
+        CellType.STRING -> this.stringCellValue
+        CellType.FORMULA -> TODO()
+        CellType.BLANK -> this.stringCellValue
+        CellType.BOOLEAN -> TODO()
+        CellType.ERROR -> TODO()
+    }
+}
+
 private fun CellType.toInternal(): ColumnDataType {
     return when (this) {
         CellType.NUMERIC -> ColumnDataType.NUMBER
-        CellType.STRING -> ColumnDataType.STRING
+        CellType.STRING, CellType.BLANK -> ColumnDataType.STRING
         CellType._NONE -> TODO()
         CellType.FORMULA -> TODO()
-        CellType.BLANK -> TODO()
         CellType.BOOLEAN -> TODO()
         CellType.ERROR -> TODO()
     }

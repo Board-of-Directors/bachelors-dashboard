@@ -3,6 +3,7 @@ package ru.nsu.fit.bachelors.dashboard.service
 import lombok.RequiredArgsConstructor
 import org.springframework.stereotype.Service
 import ru.nsu.fit.bachelors.dashboard.entity.FileEntity
+import ru.nsu.fit.bachelors.dashboard.entity.HistoryTable
 import ru.nsu.fit.bachelors.dashboard.entity.TableHistoryEntity
 import ru.nsu.fit.bachelors.dashboard.repository.TableHistoryRepository
 import ru.nsu.fit.bachelors.dashboard.utils.JsonDiffComputer
@@ -20,9 +21,13 @@ class TableHistoryServiceImpl(
         oldTable: FileEntity,
         newTable: FileEntity,
     ) {
-        val changes = diffComputer.computeDiff(oldTable, newTable).map { it.toInternal(newTable) }
+        val changes = diffComputer.computeDiff(oldTable.toHistory(), newTable.toHistory()).map { it.toInternal(newTable) }
         tableHistoryRepository.saveAll(changes)
     }
+}
+
+private fun FileEntity.toHistory(): HistoryTable {
+    TODO("Not yet implemented")
 }
 
 private fun TableChangeDto.toInternal(table: FileEntity): TableHistoryEntity =
