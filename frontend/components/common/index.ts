@@ -9,6 +9,7 @@ export { Drawer } from "./Drawer/Drawer";
 export { ControlledFileInput } from "./FileInput/ControlledFileInput";
 export { Header } from "./Header/Header";
 export { ControlledInput } from "./Input/ControlledInput";
+export { Input } from "./Input/Input";
 export { Modal } from "./Modal/Modal";
 export { Navbar } from "./Navbar/Navbar";
 export { ControlledSelect } from "./Select/ControlledSelect";

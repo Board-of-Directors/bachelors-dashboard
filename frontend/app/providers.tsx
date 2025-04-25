@@ -5,7 +5,6 @@ import { theme } from "@/theme";
 import { ChakraProvider } from "@chakra-ui/react";
 import { NextUIProvider } from "@nextui-org/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import FlagProvider from "@unleash/proxy-client-react";
 import { PrimeReactProvider } from "primereact/api";
 import { PropsWithChildren } from "react";
 
@@ -25,8 +24,7 @@ const queryClient = new QueryClient({
 });
 
 export const Providers = ({ children }: PropsWithChildren) => (
-  <FlagProvider config={config}>
-    <QueryClientProvider client={queryClient}>
+  <QueryClientProvider client={queryClient}>
       <StyledComponentsRegistry>
         <ChakraProvider theme={theme}>
           <PrimeReactProvider>
@@ -35,5 +33,4 @@ export const Providers = ({ children }: PropsWithChildren) => (
         </ChakraProvider>
       </StyledComponentsRegistry>
     </QueryClientProvider>
-  </FlagProvider>
 );
