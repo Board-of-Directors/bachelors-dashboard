@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor
 import org.springframework.stereotype.Component
 import org.springframework.transaction.annotation.Transactional
 import ru.nsu.fit.bachelors.dashboard.converter.TaskConverter
+import ru.nsu.fit.bachelors.dashboard.dto.task.TaskDetailResponse
 import ru.nsu.fit.bachelors.dashboard.dto.task.TasksResponse
 import ru.nsu.fit.bachelors.dashboard.dto.task.request.ChangeTaskOrderRequest
 import ru.nsu.fit.bachelors.dashboard.dto.task.request.TaskChangeRequest
@@ -54,7 +55,20 @@ class TaskFacadeImpl(
             }
         }
     }
+
+    override fun getDetail(id: Long): TaskDetailResponse = taskService.getById(id).toDetail()
 }
+
+private fun TaskEntity.toDetail(): TaskDetailResponse =
+    TaskDetailResponse(
+        id = this.id!!,
+        name = this.name,
+        description = this.description,
+        sequenceId = this.sequenceId,
+        created = this.created.toString(),
+        deadline = this.deadline.toString(),
+        status = this.status.toString(),
+    )
 
 private fun TaskEntity.addEmployees(employees: List<EmployeeEntity>) {
     this.employeeTasks.addAll(employees.map { EmployeeTasksEntity(employee = it, task = this) })

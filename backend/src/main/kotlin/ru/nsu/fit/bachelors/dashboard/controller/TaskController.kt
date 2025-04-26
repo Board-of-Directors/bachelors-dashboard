@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import ru.nsu.fit.bachelors.dashboard.dto.task.TasksResponse
 import ru.nsu.fit.bachelors.dashboard.dto.task.request.ChangeTaskOrderRequest
@@ -23,6 +24,12 @@ class TaskController(
     @Operation(description = "Получить все задачи с разбивкой по статусу")
     @GetMapping("all")
     fun allTasks(): List<TasksResponse> = taskFacade.all()
+
+    @Operation(description = "Получить детальную информацию по задаче")
+    @GetMapping("detail")
+    fun detailTask(
+        @RequestParam id: Long,
+    ) = taskFacade.getDetail(id)
 
     @Operation(description = "Создать новую задачу")
     @PostMapping
