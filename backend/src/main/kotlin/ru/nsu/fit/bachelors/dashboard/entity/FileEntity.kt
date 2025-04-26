@@ -48,3 +48,8 @@ class FileEntity(
         return this
     }
 }
+
+fun MutableList<TableColumnEntity>.toHistory(): List<HistoryRow> =
+    listOf(HistoryRow(values = this.map { columnEntity -> columnEntity.name }))
+
+fun TableRowEntity.toHistory(): HistoryRow = HistoryRow(this.items.map { it.value })
