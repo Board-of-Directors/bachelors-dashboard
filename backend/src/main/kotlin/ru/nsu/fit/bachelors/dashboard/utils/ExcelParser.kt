@@ -51,7 +51,12 @@ private fun ExcelParser.toColumns(
         sequenceId = index.toLong(),
         width = 100L,
         type = cell.cellType.toInternal(),
+        isInsurance = cell.isInsuranceColumn(),
     )
+
+private fun Cell.isInsuranceColumn(): Boolean {
+    return this.extractValue().contentEquals("СНИЛС", true)
+}
 
 private fun Cell.extractValue(): String {
     return when (this.cellType) {

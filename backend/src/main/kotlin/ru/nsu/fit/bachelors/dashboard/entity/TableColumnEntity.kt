@@ -26,6 +26,8 @@ class TableColumnEntity(
     @Column
     var sequenceId: Long,
     @Column
+    var isInsurance: Boolean,
+    @Column
     @Enumerated(value = EnumType.STRING)
     var type: ColumnDataType,
     @ManyToOne
