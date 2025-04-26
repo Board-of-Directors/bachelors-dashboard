@@ -4,8 +4,10 @@ import io.swagger.v3.oas.annotations.Operation
 import lombok.RequiredArgsConstructor
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import ru.nsu.fit.bachelors.dashboard.dto.student.request.StudentFilter
+import ru.nsu.fit.bachelors.dashboard.dto.student.response.StudentWithProperties
 import ru.nsu.fit.bachelors.dashboard.facade.StudentFacade
 
 @RestController
@@ -17,4 +19,9 @@ class StudentController(
     @Operation(description = "Получить студентов по фильтру")
     @GetMapping
     fun getByFilter(filter: StudentFilter) = studentFacade.getByFilter(filter)
+
+    @Operation(description = "Получить информацию о студенте по СНИЛС")
+    fun getByInsurance(
+        @RequestParam insurance: String,
+    ): StudentWithProperties? = studentFacade.getByInsurance(insurance)
 }

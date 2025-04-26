@@ -10,5 +10,10 @@ interface StudentService {
      * @param filter фильтр для поиска студентов
      * @return список студентов
      */
-    fun findByFilter(filter: InternalStudentFilter) : List<StudentEntity>
+    fun findByFilter(filter: InternalStudentFilter): List<StudentEntity>
+
+    /**
+     * Найти студента по СНИЛС.
+     */
+    fun findByInsurance(insurance: String): StudentEntity?
 }

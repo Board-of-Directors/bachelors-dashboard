@@ -4,8 +4,8 @@ import org.springframework.data.jpa.domain.Specification
 import ru.nsu.fit.bachelors.dashboard.entity.StudentEntity
 
 data class InternalStudentFilter(
-    val insurance: String?,
-    val fullName: String?,
+    val insurance: String? = null,
+    val fullName: String? = null,
 ) : InternalFilter<StudentEntity> {
     override fun toSpecification(): Specification<StudentEntity> =
         Specification { root, _, criteriaBuilder ->

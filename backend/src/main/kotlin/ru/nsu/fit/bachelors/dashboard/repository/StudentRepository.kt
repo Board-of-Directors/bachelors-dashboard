@@ -6,4 +6,6 @@ import ru.nsu.fit.bachelors.dashboard.entity.StudentEntity
 
 interface StudentRepository :
     JpaRepository<StudentEntity, Long>,
-    JpaSpecificationExecutor<StudentEntity>
+    JpaSpecificationExecutor<StudentEntity> {
+    fun findByInsurance(insurance: String): StudentEntity?
+}
