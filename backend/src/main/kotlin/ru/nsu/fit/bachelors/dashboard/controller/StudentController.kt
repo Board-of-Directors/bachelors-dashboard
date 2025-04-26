@@ -21,6 +21,7 @@ class StudentController(
     fun getByFilter(filter: StudentFilter) = studentFacade.getByFilter(filter)
 
     @Operation(description = "Получить информацию о студенте по СНИЛС")
+    @GetMapping("by-insurance")
     fun getByInsurance(
         @RequestParam insurance: String,
     ): StudentWithProperties? = studentFacade.getByInsurance(insurance)
