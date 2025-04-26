@@ -31,9 +31,9 @@ class FileEntity(
     @ManyToOne
     @JoinColumn(name = "group_id")
     var group: GroupEntity? = null,
-    @OneToMany(mappedBy = "table", cascade = [CascadeType.ALL])
+    @OneToMany(mappedBy = "table", cascade = [CascadeType.ALL], orphanRemoval = true)
     val rows: MutableList<TableRowEntity> = mutableListOf(),
-    @OneToMany(mappedBy = "table", cascade = [CascadeType.ALL])
+    @OneToMany(mappedBy = "table", cascade = [CascadeType.ALL], orphanRemoval = true)
     val columns: MutableList<TableColumnEntity> = mutableListOf(),
 ) {
     fun addRows(rows: List<TableRowEntity>): FileEntity {
