@@ -80,8 +80,3 @@ private fun CellType.toInternal(): ColumnDataType {
         CellType.ERROR -> TODO()
     }
 }
-
-data class RowsAndColumns(
-    val rows: List<TableRowEntity>,
-    val columns: List<TableColumnEntity>,
-)
