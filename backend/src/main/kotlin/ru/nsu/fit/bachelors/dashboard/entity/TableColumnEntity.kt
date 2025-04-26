@@ -36,5 +36,5 @@ class TableColumnEntity(
     @JoinColumn(name = "table_id")
     var table: FileEntity? = null,
     @OneToMany(mappedBy = "column", cascade = [CascadeType.ALL], orphanRemoval = true)
-    var items: List<TableItemEntity> = listOf(),
+    var items: MutableList<TableItemEntity> = mutableListOf(),
 )

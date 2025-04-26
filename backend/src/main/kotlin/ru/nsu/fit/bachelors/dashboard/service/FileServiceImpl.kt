@@ -24,9 +24,7 @@ class FileServiceImpl(
 
     override fun allByType(fileType: FileType): List<FileEntity> = fileRepository.findAllByType(fileType)
 
-    override fun save(fileEntity: FileEntity) {
-        fileRepository.save(fileEntity)
-    }
+    override fun save(fileEntity: FileEntity): FileEntity = fileRepository.saveAndFlush(fileEntity)
 
     override fun findByName(name: String): FileEntity? = fileRepository.findByName(name)
 

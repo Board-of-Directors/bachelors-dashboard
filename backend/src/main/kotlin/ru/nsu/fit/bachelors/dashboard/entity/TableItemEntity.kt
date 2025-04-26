@@ -20,7 +20,13 @@ class TableItemEntity(
     var row: TableRowEntity? = null,
     @ManyToOne
     @JoinColumn(name = "column_id")
-    val column: TableColumnEntity?,
+    var column: TableColumnEntity? = null,
     @Column
     val value: String,
-)
+) {
+    fun setColumn(column: TableColumnEntity?): TableItemEntity {
+        // column?.items?.add(this)
+        this.column = column
+        return this
+    }
+}

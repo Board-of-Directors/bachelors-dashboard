@@ -11,6 +11,7 @@ import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.OneToMany
+import jakarta.persistence.OrderBy
 import jakarta.persistence.Table
 
 @Entity
@@ -32,8 +33,10 @@ class FileEntity(
     @JoinColumn(name = "group_id")
     var group: GroupEntity? = null,
     @OneToMany(mappedBy = "table", cascade = [CascadeType.ALL], orphanRemoval = true)
+    @OrderBy("sequenceId")
     val rows: MutableList<TableRowEntity> = mutableListOf(),
     @OneToMany(mappedBy = "table", cascade = [CascadeType.ALL], orphanRemoval = true)
+    @OrderBy("sequenceId")
     val columns: MutableList<TableColumnEntity> = mutableListOf(),
     @OneToMany(mappedBy = "table", cascade = [CascadeType.ALL], orphanRemoval = true)
     val changes: MutableList<TableHistoryEntity> = mutableListOf(),

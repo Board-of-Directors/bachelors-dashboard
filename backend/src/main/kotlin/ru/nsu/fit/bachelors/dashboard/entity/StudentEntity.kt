@@ -1,5 +1,6 @@
 package ru.nsu.fit.bachelors.dashboard.entity
 
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
@@ -15,6 +16,11 @@ class StudentEntity(
     var id: Long? = null,
     val insurance: String,
     val fullName: String,
-    @OneToMany(mappedBy = "student")
-    val mentions: List<TableRowEntity>,
-)
+    @OneToMany(mappedBy = "student", cascade = [CascadeType.ALL])
+    val mentions: MutableList<TableRowEntity> = mutableListOf(),
+) {
+    fun addMention(mention: TableRowEntity) {
+        mentions.add(mention)
+        mention.student = this
+    }
+}

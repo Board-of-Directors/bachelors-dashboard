@@ -40,7 +40,7 @@ interface FileService {
     /**
      * Сохранить новый файл.
      */
-    fun save(fileEntity: FileEntity)
+    fun save(fileEntity: FileEntity): FileEntity
 
     /**
      * Найти файл по имени.

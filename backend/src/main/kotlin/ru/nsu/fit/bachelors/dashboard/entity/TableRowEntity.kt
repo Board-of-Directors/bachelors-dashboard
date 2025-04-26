@@ -29,7 +29,7 @@ class TableRowEntity(
     var table: FileEntity? = null,
     @ManyToOne
     @JoinColumn(name = "student_id")
-    val student: StudentEntity? = null,
+    var student: StudentEntity? = null,
     @OneToMany(mappedBy = "row", cascade = [CascadeType.ALL], orphanRemoval = true)
     val items: MutableList<TableItemEntity> = mutableListOf(),
 ) {

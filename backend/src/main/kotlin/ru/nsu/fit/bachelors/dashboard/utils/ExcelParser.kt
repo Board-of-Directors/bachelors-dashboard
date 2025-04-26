@@ -21,7 +21,7 @@ class ExcelParser {
         val columns = firstSheet.first().mapIndexed { index, cell -> toColumns(index, cell) }
         val rows = firstSheet.drop(1).mapIndexed { index, row -> toRows(index, row, columns) }
 
-        return FileEntity(type = FileType.TABLE, sequenceId = 1, group = null, name = file.name)
+        return FileEntity(type = FileType.TABLE, sequenceId = 1, group = null, name = file.originalFilename!!)
             .addRows(rows)
             .addColumns(columns)
     }
@@ -35,10 +35,7 @@ private fun toRows(index: Int, tableRow: Row, columns: List<TableColumnEntity>):
 private fun Row.toItems(columns: List<TableColumnEntity>): List<TableItemEntity> {
     val columnsByIndex = columns.associateBy { it.sequenceId }
     return this.mapIndexed { index, cell ->
-        TableItemEntity(
-            column = columnsByIndex[index.toLong()],
-            value = cell.extractValue()
-        )
+        TableItemEntity(value = cell.extractValue()).setColumn(columnsByIndex[index.toLong()])
     }
 }
 
