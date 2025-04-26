@@ -20,7 +20,7 @@ class TableHistoryEntity(
     val id: Long? = null,
     @ManyToOne
     @JoinColumn(name = "table_id")
-    val table: FileEntity,
+    var table: FileEntity? = null,
     @Column
     @Enumerated(EnumType.STRING)
     val operation: OperationType,

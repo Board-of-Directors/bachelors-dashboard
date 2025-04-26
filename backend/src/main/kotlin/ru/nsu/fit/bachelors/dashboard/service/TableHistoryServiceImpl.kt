@@ -22,20 +22,19 @@ class TableHistoryServiceImpl(
         oldTable: FileEntity,
         newTable: FileEntity,
     ) {
-        val changes =
-            diffComputer.computeDiff(oldTable.toHistory(), newTable.toHistory()).map { it.toInternal(newTable) }
-        tableHistoryRepository.saveAll(changes)
+        newTable.addChanges(
+            diffComputer.computeDiff(oldTable.toHistory(), newTable.toHistory()).map { it.toInternal() },
+        )
     }
 }
 
 private fun FileEntity.toHistory(): HistoryTable = HistoryTable(table = this.columns.toHistory() + this.rows.map { it.toHistory() })
 
-private fun TableChangeDto.toInternal(table: FileEntity): TableHistoryEntity =
+private fun TableChangeDto.toInternal(): TableHistoryEntity =
     TableHistoryEntity(
-        operation = enumValueOrThrow(this.op),
+        operation = enumValueOrThrow(this.op.uppercase()),
         path = this.path,
         value = this.value,
         fromValue = this.fromValue,
         timestamp = Instant.now(),
-        table = table,
     )

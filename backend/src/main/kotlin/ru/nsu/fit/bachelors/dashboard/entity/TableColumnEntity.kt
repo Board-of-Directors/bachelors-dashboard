@@ -1,5 +1,6 @@
 package ru.nsu.fit.bachelors.dashboard.entity
 
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
@@ -9,6 +10,7 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
+import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 
 @Entity
@@ -33,4 +35,6 @@ class TableColumnEntity(
     @ManyToOne
     @JoinColumn(name = "table_id")
     var table: FileEntity? = null,
+    @OneToMany(mappedBy = "column", cascade = [CascadeType.ALL], orphanRemoval = true)
+    var items: List<TableItemEntity> = listOf(),
 )

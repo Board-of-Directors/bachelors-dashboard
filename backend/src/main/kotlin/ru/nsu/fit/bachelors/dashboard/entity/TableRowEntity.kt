@@ -30,7 +30,7 @@ class TableRowEntity(
     @ManyToOne
     @JoinColumn(name = "student_id")
     val student: StudentEntity? = null,
-    @OneToMany(mappedBy = "row", cascade = [CascadeType.ALL])
+    @OneToMany(mappedBy = "row", cascade = [CascadeType.ALL], orphanRemoval = true)
     val items: MutableList<TableItemEntity> = mutableListOf(),
 ) {
     fun addItems(items: List<TableItemEntity>): TableRowEntity {

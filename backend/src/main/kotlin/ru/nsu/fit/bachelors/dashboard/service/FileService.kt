@@ -46,4 +46,9 @@ interface FileService {
      * Найти файл по имени.
      */
     fun findByName(name: String): FileEntity?
+
+    /**
+     * Удалить файл.
+     */
+    fun delete(entity: FileEntity)
 }

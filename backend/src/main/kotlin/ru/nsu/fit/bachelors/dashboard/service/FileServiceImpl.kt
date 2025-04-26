@@ -29,4 +29,9 @@ class FileServiceImpl(
     }
 
     override fun findByName(name: String): FileEntity? = fileRepository.findByName(name)
+
+    override fun delete(entity: FileEntity) {
+        fileRepository.delete(entity)
+        fileRepository.flush()
+    }
 }

@@ -50,9 +50,8 @@ class FileFacadeImpl(
         newTable.group = existingTable.group
         newTable.sequenceId = existingTable.sequenceId
         newTable.id = existingTable.id
-        fileService.save(newTable)
-
         tableHistoryService.computeAndPublish(existingTable, newTable)
+        fileService.save(newTable)
     }
 
     @Transactional

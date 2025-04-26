@@ -35,6 +35,8 @@ class FileEntity(
     val rows: MutableList<TableRowEntity> = mutableListOf(),
     @OneToMany(mappedBy = "table", cascade = [CascadeType.ALL], orphanRemoval = true)
     val columns: MutableList<TableColumnEntity> = mutableListOf(),
+    @OneToMany(mappedBy = "table", cascade = [CascadeType.ALL], orphanRemoval = true)
+    val changes: MutableList<TableHistoryEntity> = mutableListOf(),
 ) {
     fun addRows(rows: List<TableRowEntity>): FileEntity {
         this.rows.addAll(rows)
@@ -45,6 +47,12 @@ class FileEntity(
     fun addColumns(columns: List<TableColumnEntity>): FileEntity {
         this.columns.addAll(columns)
         columns.map { it.table = this }
+        return this
+    }
+
+    fun addChanges(changes: List<TableHistoryEntity>): FileEntity {
+        this.changes.addAll(changes)
+        changes.map { it.table = this }
         return this
     }
 }
