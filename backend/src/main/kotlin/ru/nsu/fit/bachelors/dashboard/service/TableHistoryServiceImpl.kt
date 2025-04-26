@@ -21,14 +21,13 @@ class TableHistoryServiceImpl(
         oldTable: FileEntity,
         newTable: FileEntity,
     ) {
-        val changes = diffComputer.computeDiff(oldTable.toHistory(), newTable.toHistory()).map { it.toInternal(newTable) }
+        val changes =
+            diffComputer.computeDiff(oldTable.toHistory(), newTable.toHistory()).map { it.toInternal(newTable) }
         tableHistoryRepository.saveAll(changes)
     }
 }
 
-private fun FileEntity.toHistory(): HistoryTable {
-    TODO("Not yet implemented")
-}
+private fun FileEntity.toHistory(): HistoryTable = HistoryTable(id = this.id!!)
 
 private fun TableChangeDto.toInternal(table: FileEntity): TableHistoryEntity =
     TableHistoryEntity(

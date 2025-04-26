@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.flipkart.zjsonpatch.JsonDiff
 import lombok.RequiredArgsConstructor
 import org.springframework.stereotype.Component
-import ru.nsu.fit.bachelors.dashboard.entity.FileEntity
+import ru.nsu.fit.bachelors.dashboard.entity.HistoryTable
 
 @Component
 @RequiredArgsConstructor
@@ -13,8 +13,8 @@ class JsonDiffComputer(
     private val objectMapper: ObjectMapper,
 ) {
     fun computeDiff(
-        oldTable: FileEntity,
-        newTable: FileEntity,
+        oldTable: HistoryTable,
+        newTable: HistoryTable,
     ): List<TableChangeDto> {
         val diff =
             JsonDiff.asJson(
