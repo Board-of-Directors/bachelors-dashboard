@@ -7,4 +7,5 @@ data class ColumnDto(
     val type: String,
     val width: Long?,
     val sequenceId: Long,
+    val isInsurance: Boolean,
 )

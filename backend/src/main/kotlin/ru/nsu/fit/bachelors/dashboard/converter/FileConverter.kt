@@ -38,6 +38,7 @@ class FileConverter {
             type = column.type.name,
             width = column.width,
             sequenceId = column.sequenceId,
+            isInsurance = column.isInsurance,
         )
 
     fun toDto(row: TableRowEntity) = RowDto(id = row.id!!, color = row.color.name, items = row.items.map { toDto(it) })
