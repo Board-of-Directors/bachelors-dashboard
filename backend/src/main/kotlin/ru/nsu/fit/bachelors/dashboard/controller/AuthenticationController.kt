@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import ru.nsu.fit.bachelors.dashboard.dto.auth.request.LoginRequest
 import ru.nsu.fit.bachelors.dashboard.facade.AuthenticationFacade
+import ru.nsu.fit.bachelors.dashboard.facade.JwtTokenFacade
 
 @RequestMapping("api/v1/auth")
 @RequiredArgsConstructor
 @RestController
 class AuthenticationController(
     private val authenticationFacade: AuthenticationFacade,
+    private val jwtTokenFacade: JwtTokenFacade,
 ) {
     @Operation(description = "Вход в аккаунт.")
     @PostMapping("/login")
@@ -21,5 +23,11 @@ class AuthenticationController(
         @RequestBody request: LoginRequest,
     ) {
         authenticationFacade.login(request)
+    }
+
+    @Operation(description = "Выход из аккаунта.")
+    @PostMapping("/logout")
+    fun logout() {
+        jwtTokenFacade.clean()
     }
 }
