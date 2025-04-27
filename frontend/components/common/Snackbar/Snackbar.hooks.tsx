@@ -1,3 +1,5 @@
+"use client"
+
 import { ToastId, useToast } from "@chakra-ui/react";
 import { useRef } from "react";
 import { Alert } from "../Alert/Alert";

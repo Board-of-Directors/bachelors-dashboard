@@ -3,10 +3,10 @@
 import { Text } from "@/components/common/Text/Text";
 import { DOCXFileIcon } from "@/components/icons/DOCXFileIcon";
 import { XSLXFileIcon } from "@/components/icons/XSLXFileIcon";
-import { EditTableModal } from "../../Modals";
+import { EditTableModal } from "@/components/modals";
 import { SettingsTooltip } from "../SettingTooltip/SettingsTooltip";
 import { FileRow as Container, FileLink, Row } from "./FileRow.styles";
-import { DOCXFile, FileRowProps } from "./FileRow.types";
+import { FileRowProps } from "./FileRow.types";
 
 import { MenuIcon } from "lucide-react";
 import { useFileRow } from "./FileRow.hooks";

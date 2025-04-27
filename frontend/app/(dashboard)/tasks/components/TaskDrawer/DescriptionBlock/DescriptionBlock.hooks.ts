@@ -1,3 +1,5 @@
+"use client"
+
 import { createTask } from "@/api/request/task";
 import { CreateTaskRequest } from "@/api/request/task/types";
 import { useSnackbar } from "@/components/common";

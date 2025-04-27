@@ -8,7 +8,7 @@ const nextConfig = {
   },
   assetPrefix: !isProductionFlag ? (isProd ? `/${SITE_PREFIX}/` : "") : "",
   basePath: !isProductionFlag ? (isProd ? `/${SITE_PREFIX}` : "") : "",
-  output: !isProductionFlag ? "export" : undefined,
+  output: undefined,
 };
 
 export default nextConfig;
