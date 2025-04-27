@@ -22,6 +22,16 @@ class JwtTokenService : TokenService {
         )
     }
 
+    override fun parseToken(refreshToken: String): String {
+        val parsedToken =
+            Jwts
+                .parser()
+                .setSigningKey(secret)
+                .parseClaimsJws(refreshToken)
+
+        return parsedToken.body.subject
+    }
+
     private fun refreshClaims(
         employee: EmployeeEntity,
         tokenUuid: UUID,
@@ -53,8 +63,6 @@ class JwtTokenService : TokenService {
         expireAt: Instant,
     ): String {
         val now = Date()
-        val secret =
-            Base64.getEncoder().encodeToString("DASKFKAf c xzfasfnaknFKNskandaskkdmASLDlasmd194138r".toByteArray())
 
         return Jwts
             .builder()
@@ -68,5 +76,6 @@ class JwtTokenService : TokenService {
     companion object {
         val DEFAULT_REFRESH_TOKEN_DURATION = java.time.Duration.ofDays(30)
         val DEFAULT_ACCESS_TOKEN_DURATION = java.time.Duration.ofHours(10)
+        val secret = Base64.getEncoder().encodeToString("SECRET123".toByteArray())
     }
 }

@@ -9,6 +9,7 @@ import ru.nsu.fit.bachelors.dashboard.exception.InvalidCredentialsException
 import ru.nsu.fit.bachelors.dashboard.filter.EmployeeInternalFilter
 import ru.nsu.fit.bachelors.dashboard.service.EmployeeService
 import ru.nsu.fit.bachelors.dashboard.service.TokenService
+import java.util.*
 
 @Service
 class AuthenticationFacadeImpl(
@@ -23,6 +24,12 @@ class AuthenticationFacadeImpl(
             throw InvalidCredentialsException()
         }
 
+        return toCredentialsResponse(employee)
+    }
+
+    override fun refresh(refreshToken: String): CredentialsResponse {
+        val employeeEmail = tokenService.parseToken(refreshToken)
+        val employee = employeeService.findByFilter(EmployeeInternalFilter(email = employeeEmail)).single()
         return toCredentialsResponse(employee)
     }
 

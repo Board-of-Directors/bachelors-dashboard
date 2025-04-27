@@ -10,4 +10,9 @@ interface AuthenticationFacade {
      * @param request запрос входа в аккаунт
      */
     fun login(request: LoginRequest): CredentialsResponse
+
+    /**
+     * Обновить данные входа в аккаунт.
+     */
+    fun refresh(refreshToken: String): CredentialsResponse
 }

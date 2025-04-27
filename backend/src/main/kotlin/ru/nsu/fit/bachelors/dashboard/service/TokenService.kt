@@ -13,4 +13,9 @@ interface TokenService {
      * Создать токен доступа для работника.
      */
     fun createAccessToken(entity: EmployeeEntity): TokenEntity
+
+    /**
+     * Распарсить существующий токен.
+     */
+    fun parseToken(refreshToken: String): String
 }
