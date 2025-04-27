@@ -23,4 +23,9 @@ interface EmployeeFacade {
      * Получить всех работников по фильтру.
      */
     fun findByFilter(request: EmployeeSearchFilterRequest): List<EmployeeResponseDto>
+
+    /**
+     * Удалить работника.
+     */
+    fun deleteEmployee(id: Long)
 }

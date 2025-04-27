@@ -28,4 +28,9 @@ interface EmployeeService {
      * @return подходящие под фильтр сотрудники
      */
     fun findByFilter(filter: EmployeeInternalFilter): List<EmployeeEntity>
+
+    /**
+     * Удалить работника.
+     */
+    fun deleteEmployee(id: Long)
 }

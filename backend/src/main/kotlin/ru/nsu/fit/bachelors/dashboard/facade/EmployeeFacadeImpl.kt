@@ -32,4 +32,8 @@ class EmployeeFacadeImpl(
         employeeService
             .findByFilter(EmployeeInternalFilter(email = request.email))
             .map { employeeConverter.toResponse(it) }
+
+    override fun deleteEmployee(id: Long) {
+        employeeService.deleteEmployee(id)
+    }
 }

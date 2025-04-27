@@ -20,4 +20,8 @@ class EmployeeServiceImpl(
 
     override fun findByFilter(filter: EmployeeInternalFilter): List<EmployeeEntity> =
         employeeRepository.findAll(filter.toSpecification(), Pageable.unpaged()).toList()
+
+    override fun deleteEmployee(id: Long) {
+        employeeRepository.deleteById(id)
+    }
 }
