@@ -6,6 +6,7 @@ export { Calendar } from "./Calendar/Calendar";
 export { ControlledCalendar } from "./Calendar/ControlledCalendar";
 export { ControlledDatePicker } from "./ControlledDatePicker/ControlledDatePicker";
 export { Drawer } from "./Drawer/Drawer";
+export { EmployeeCard } from "./EmployeeCard/EmployeeCard";
 export { ControlledFileInput } from "./FileInput/ControlledFileInput";
 export { Header } from "./Header/Header";
 export { ControlledInput } from "./Input/ControlledInput";

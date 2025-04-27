@@ -1,6 +1,5 @@
 "use client";
 
-import { Text } from "@/components/common";
 import { Accordion } from "@/components/common/Accordion/Accordion";
 import { useDisclosure } from "@nextui-org/react";
 import { Header } from "./components/Header/Header";
@@ -22,7 +21,6 @@ const TablesPage = () => {
 
   return (
     <>
-      <Text>TEST PAGE</Text>
       <NewTableGroupModal onOpenChange={onAddGroupOpenChange} isOpen={isAddGroupOpen} />
       <NewFileModal onOpenChange={onNewFileModalOpenChange} isOpen={isNewFileModalOpen} />
       <Header onAddGroupOpen={onAddGroupOpen} onNewFileModalOpen={onNewFileModalOpen} />
