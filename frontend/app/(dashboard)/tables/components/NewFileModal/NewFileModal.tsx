@@ -1,3 +1,4 @@
+import { uploadFile } from "@/api/request/file";
 import {
   Button,
   ControlledFileInput,
@@ -6,6 +7,7 @@ import {
   ModalProps,
   Text,
 } from "@/components/common";
+import { Spinner } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import { FileModalSchema, FileModalType } from "./FileModalSchema";
@@ -15,8 +17,12 @@ export const NewFileModal = (props: ModalProps) => {
     resolver: zodResolver(FileModalSchema),
   });
 
-  const handleSubmit = (fieldValues: FieldValues) => {
-    alert(fieldValues);
+  const {
+    formState: { isSubmitting },
+  } = form;
+
+  const onSubmit = ({ file }: FieldValues) => {
+    uploadFile(file);
   };
 
   return (
@@ -31,7 +37,8 @@ export const NewFileModal = (props: ModalProps) => {
           </>
         }
         footer={
-          <Button size="lg" onClick={handleSubmit}>
+          <Button disabled={isSubmitting} size="xl" onClick={form.handleSubmit(onSubmit, console.log)}>
+            {isSubmitting ? <Spinner size="sm" background="white" /> : null}
             Добавить
           </Button>
         }

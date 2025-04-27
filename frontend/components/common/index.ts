@@ -15,6 +15,7 @@ export { ControlledInput } from "./Input/ControlledInput";
 export { Navbar } from "./Navbar/Navbar";
 export { ControlledSelect } from "./Select/ControlledSelect";
 export { Skeleton } from "./Skeleton/Skeleton";
+export { Table } from "./Table/Table";
 export { ControlledTag } from "./Tag/ControlledTag";
 export { Tag } from "./Tag/Tag";
 export { Text } from "./Text/Text";

@@ -1,9 +1,9 @@
 import { PlusIcon } from "lucide-react";
-import { forwardRef } from "react";
 import { Button } from "../Button/Button";
-import { Comment } from "./Comment/Comment";
 import { Container } from "./CommentList.styles";
 import { CommnetListProps } from "./CommentList.types";
+import { Comment } from "./Comment/Comment";
+import { forwardRef } from "react";
 
 export const CommentList = forwardRef<HTMLDivElement, CommnetListProps>(
   ({ comments, onAddComment, isExpanded, ...props }: CommnetListProps, ref) => (
