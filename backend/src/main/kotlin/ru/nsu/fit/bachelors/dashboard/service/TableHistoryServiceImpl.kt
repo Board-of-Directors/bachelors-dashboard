@@ -26,6 +26,8 @@ class TableHistoryServiceImpl(
             diffComputer.computeDiff(oldTable.toHistory(), newTable.toHistory()).map { it.toInternal() },
         )
     }
+
+    override fun getAll(): List<TableHistoryEntity> = tableHistoryRepository.findAll()
 }
 
 private fun FileEntity.toHistory(): HistoryTable = HistoryTable(table = this.columns.toHistory() + this.rows.map { it.toHistory() })

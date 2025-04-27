@@ -1,6 +1,7 @@
 package ru.nsu.fit.bachelors.dashboard.service
 
 import ru.nsu.fit.bachelors.dashboard.entity.FileEntity
+import ru.nsu.fit.bachelors.dashboard.entity.TableHistoryEntity
 
 interface TableHistoryService {
     /**
@@ -11,4 +12,9 @@ interface TableHistoryService {
         oldTable: FileEntity,
         newTable: FileEntity,
     )
+
+    /**
+     * Получить все изменения.
+     */
+    fun getAll(): List<TableHistoryEntity>
 }
