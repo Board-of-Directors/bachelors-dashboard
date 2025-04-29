@@ -16,8 +16,10 @@ class StudentEntity(
     var id: Long? = null,
     val insurance: String,
     val fullName: String,
-    @OneToMany(mappedBy = "student", cascade = [CascadeType.ALL])
+    @OneToMany(mappedBy = "student", cascade = [CascadeType.ALL], orphanRemoval = true)
     val mentions: MutableList<TableRowEntity> = mutableListOf(),
+    @OneToMany(mappedBy = "student", cascade = [CascadeType.ALL], orphanRemoval = true)
+    val comments: List<CommentEntity> = listOf(),
 ) {
     fun addMention(mention: TableRowEntity) {
         mentions.add(mention)

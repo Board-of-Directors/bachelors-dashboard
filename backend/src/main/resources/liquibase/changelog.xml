@@ -17,4 +17,5 @@
     <include file="migrations/2025-04-21-create-table-history.sql" relativeToChangelogFile="true"/>
     <include file="migrations/2025-04-21-drop-file-group-not-null.sql" relativeToChangelogFile="true"/>
     <include file="migrations/2025-04-26-add-insurance-column.sql" relativeToChangelogFile="true"/>
+    <include file="migrations/2025-04-29-create-comment-table.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>

@@ -21,4 +21,6 @@ class EmployeeEntity(
     var password: String,
     @OneToMany(mappedBy = "employee", cascade = [CascadeType.ALL], orphanRemoval = true)
     val employeeTasks: List<EmployeeTasksEntity> = listOf(),
+    @OneToMany(mappedBy = "employee", cascade = [CascadeType.ALL], orphanRemoval = true)
+    val employeeComments: List<CommentEntity> = listOf(),
 )
