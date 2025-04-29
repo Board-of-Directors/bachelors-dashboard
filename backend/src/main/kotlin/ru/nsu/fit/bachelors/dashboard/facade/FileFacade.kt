@@ -13,7 +13,7 @@ interface FileFacade {
      * @param groupId идентификатор родительской группы
      * @return ответ, содержащий все файлы внутри группы
      */
-    fun getByGroup(groupId: Long): FilesResponse
+    fun getByGroup(groupId: Long?): FilesResponse
 
     /**
      * Получить детальную информацию о файле.

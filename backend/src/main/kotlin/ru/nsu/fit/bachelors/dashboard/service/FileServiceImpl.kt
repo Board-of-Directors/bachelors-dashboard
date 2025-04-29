@@ -32,4 +32,6 @@ class FileServiceImpl(
         fileRepository.delete(entity)
         fileRepository.flush()
     }
+
+    override fun findAllWithoutGroup(): List<FileEntity> = fileRepository.findAllByGroupIdIsNull()
 }

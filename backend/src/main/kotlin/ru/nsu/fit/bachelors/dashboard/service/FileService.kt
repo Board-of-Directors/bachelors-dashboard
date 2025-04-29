@@ -51,4 +51,9 @@ interface FileService {
      * Удалить файл.
      */
     fun delete(entity: FileEntity)
+
+    /**
+     * Получить все файлы без группы.
+     */
+    fun findAllWithoutGroup(): List<FileEntity>
 }

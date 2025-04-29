@@ -26,7 +26,7 @@ class FileController(
     @Operation(description = "Получить файлы по идентификатору группы")
     @GetMapping
     fun byGroup(
-        @RequestParam groupId: Long,
+        @RequestParam(required = false) groupId: Long?,
     ): ResponseEntity<FilesResponse> = ResponseEntity.ok(fileFacade.getByGroup(groupId))
 
     @Operation(description = "Получить файлы по типу")

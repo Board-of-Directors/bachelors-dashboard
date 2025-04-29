@@ -29,10 +29,16 @@ class FileFacadeImpl(
     private val tableHistoryService: TableHistoryService,
     private val studentService: StudentService,
 ) : FileFacade {
-    override fun getByGroup(groupId: Long): FilesResponse =
-        fileConverter.toResponse(
-            fileService.allByGroup(groupService.get(groupId)),
-        )
+    override fun getByGroup(groupId: Long?): FilesResponse {
+        val files =
+            if (groupId == null) {
+                fileService.findAllWithoutGroup()
+            } else {
+                fileService.allByGroup(groupService.get(groupId))
+            }
+
+        return fileConverter.toResponse(all = files)
+    }
 
     override fun getByType(fileType: String): FilesResponse =
         fileConverter.toResponse(

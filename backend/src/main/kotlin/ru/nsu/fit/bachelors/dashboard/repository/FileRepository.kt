@@ -15,4 +15,6 @@ interface FileRepository : JpaRepository<FileEntity, Long> {
     fun findAllByType(fileType: FileType): List<FileEntity>
 
     fun findByName(name: String): FileEntity?
+
+    fun findAllByGroupIdIsNull(): List<FileEntity>
 }
