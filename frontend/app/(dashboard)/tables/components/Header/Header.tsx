@@ -1,12 +1,16 @@
+import { GetAllGroupsResponse } from "@/api/request/group/types";
 import { Button, Header as HeaderContainer, Text } from "@/components/common";
 import { GET_ALL_GROUPS_KEY } from "@/constants";
 import { useQuery } from "@tanstack/react-query";
-import { GroupIcon, PlusIcon } from "lucide-react";
+import { GroupIcon, PlusIcon, TableIcon } from "lucide-react";
 import { HeaderProps } from "./Header.types";
-import { GetAllGroupsResponse } from "@/api/request/group/types";
 
-export const Header = ({ onNewFileModalOpen, onAddGroupOpen }: HeaderProps) => {
-  const { data } = useQuery<GetAllGroupsResponse, Error>({queryKey : GET_ALL_GROUPS_KEY});
+export const Header = ({
+  onNewTableModalOpen,
+  onNewFileModalOpen,
+  onAddGroupOpen,
+}: HeaderProps) => {
+  const { data } = useQuery<GetAllGroupsResponse, Error>({ queryKey: GET_ALL_GROUPS_KEY });
 
   return (
     <HeaderContainer
@@ -20,6 +24,10 @@ export const Header = ({ onNewFileModalOpen, onAddGroupOpen }: HeaderProps) => {
           <Button size={"md"} onClick={onNewFileModalOpen}>
             <Text className={"text-base"}>Новый документ</Text>
             <PlusIcon width={"18px"} />
+          </Button>
+          <Button color="secondary" size={"md"} onClick={onNewTableModalOpen}>
+            <Text className={"text-base"}>Новая таблица</Text>
+            <TableIcon width={"18px"} />
           </Button>
           <Button color="secondary" onClick={onAddGroupOpen}>
             <Text className={"text-base"}>Новая группа таблиц</Text>

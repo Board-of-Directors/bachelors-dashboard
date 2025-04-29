@@ -1,39 +1,42 @@
 "use client";
 
-import { Text } from "@/components/common";
 import { Accordion } from "@/components/common/Accordion/Accordion";
 import { useDisclosure } from "@nextui-org/react";
-import { useFlag } from "@unleash/proxy-client-react";
 import { Header } from "./components/Header/Header";
 import { NewFileModal } from "./components/NewFileModal/NewFileModal";
 import { NewTableGroupModal } from "./components/NewTableGroupModal/NewTableGroupModal";
+import { NewTableModal } from "./components/NewTableModal/NewTableModal";
 
 const TablesPage = () => {
   const {
+    onOpenChange: onAddGroupOpenChange,
     onOpen: onAddGroupOpen,
     isOpen: isAddGroupOpen,
-    onOpenChange: onAddGroupOpenChange,
   } = useDisclosure();
 
-  const acrrodionEnabled = useFlag("accordion_enabled");
-  const headerEnabled = useFlag("header_enabled");
-
   const {
+    onOpenChange: onNewFileModalOpenChange,
     onOpen: onNewFileModalOpen,
     isOpen: isNewFileModalOpen,
-    onOpenChange: onNewFileModalOpenChange,
+  } = useDisclosure();
+
+  const {
+    onOpenChange: onNewTableModalOpenChange,
+    onOpen: onNewTableModalOpen,
+    isOpen: isNewTableModalOpen,
   } = useDisclosure();
 
   return (
     <>
       <NewTableGroupModal onOpenChange={onAddGroupOpenChange} isOpen={isAddGroupOpen} />
+      <NewTableModal onOpenChange={onNewTableModalOpenChange} isOpen={isNewTableModalOpen} />
       <NewFileModal onOpenChange={onNewFileModalOpenChange} isOpen={isNewFileModalOpen} />
-      {headerEnabled ? (
-        <Header onAddGroupOpen={onAddGroupOpen} onNewFileModalOpen={onNewFileModalOpen} />
-      ) : (
-        <Text>Включите флаг header_enabled_TEST</Text>
-      )}
-      {acrrodionEnabled ? <Accordion mx="40px" /> : <Text>Включите флаг accordion_enabled</Text>}
+      <Header
+        onNewTableModalOpen={onNewTableModalOpen}
+        onNewFileModalOpen={onNewFileModalOpen}
+        onAddGroupOpen={onAddGroupOpen}
+      />
+      <Accordion mx="40px" />
     </>
   );
 };
