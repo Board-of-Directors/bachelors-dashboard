@@ -1,5 +1,6 @@
 "use client";
 
+import { FileList } from "@/components/blocks";
 import { Accordion } from "@/components/common/Accordion/Accordion";
 import { useDisclosure } from "@nextui-org/react";
 import { Header } from "./components/Header/Header";
@@ -37,6 +38,7 @@ const TablesPage = () => {
         onAddGroupOpen={onAddGroupOpen}
       />
       <Accordion mx="40px" />
+      <FileList />
     </>
   );
 };
