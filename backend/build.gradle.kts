@@ -49,8 +49,15 @@ dependencies {
     compileOnly("org.projectlombok:lombok")
     runtimeOnly("org.postgresql:postgresql")
     annotationProcessor("org.projectlombok:lombok")
+
+    // test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+
+    testImplementation("io.zonky.test:embedded-database-spring-test:2.5.0")
+    testImplementation("org.dbunit:dbunit:2.7.0")
+    testImplementation("com.github.springtestdbunit:spring-test-dbunit:1.2.0")
+
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 

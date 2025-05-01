@@ -1,0 +1,10 @@
+<dataset>
+    <file_group
+            id="100"
+            name="some group"
+    />
+    <file_group
+            id="200"
+            name="some group 2"
+    />
+</dataset>
