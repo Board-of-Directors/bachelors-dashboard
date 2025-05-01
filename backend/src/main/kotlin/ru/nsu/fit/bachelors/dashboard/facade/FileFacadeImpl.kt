@@ -69,7 +69,7 @@ class FileFacadeImpl(
 
     @Transactional
     override fun createDocument(request: DocumentCreationRequest) {
-        val group = groupService.get(request.groupId)
+        val group = request.groupId?.let { groupService.get(it) }
         val fileEntity = fileConverter.toDocument(request, group)
         fileService.save(fileEntity)
     }
@@ -93,12 +93,17 @@ class FileFacadeImpl(
 
 private fun FileConverter.toDocument(
     request: DocumentCreationRequest,
-    group: GroupEntity,
+    group: GroupEntity?,
 ): FileEntity =
     FileEntity(
         name = request.name,
         externalId = request.externalId,
         group = group,
-        sequenceId = group.files.maxBy { it.sequenceId }.sequenceId + 1,
+        sequenceId =
+            group
+                ?.files
+                ?.maxBy { it.sequenceId }
+                ?.sequenceId
+                ?.let { it + 1 } ?: 1,
         type = FileType.DOCUMENT,
     )
