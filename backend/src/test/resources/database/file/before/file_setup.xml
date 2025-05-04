@@ -1,0 +1,32 @@
+<dataset>
+    <file_group
+            id="100"
+            name="first_group"
+    />
+
+    <file
+            id="1000"
+            name="file_1"
+            external_id="file_ext_1"
+            type="DOCUMENT"
+            sequence_id="1"
+    />
+
+    <file
+            id="2000"
+            group_id="100"
+            name="file_2"
+            external_id="file_ext_2"
+            type="DOCUMENT"
+            sequence_id="2"
+    />
+
+    <file
+            id="3000"
+            group_id="100"
+            name="file_3"
+            external_id="file_ext_3"
+            type="TABLE"
+            sequence_id="1"
+    />
+</dataset>
