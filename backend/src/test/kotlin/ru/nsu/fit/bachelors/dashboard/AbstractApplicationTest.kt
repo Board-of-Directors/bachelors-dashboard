@@ -37,14 +37,32 @@ abstract class AbstractApplicationTest {
 
     var objectMapper: ObjectMapper = ObjectMapper()
 
-    protected fun <T> okGet(
+    protected fun <Res> okGet(
         path: String,
-        response: T,
+        response: Res,
     ): ResultActions =
         mockMvc
             .perform(getRequest(path))
             .andExpect(MockMvcResultMatchers.status().isOk)
             .andExpect(MockMvcResultMatchers.content().json(objectMapper.writeValueAsString(response)))
+
+    protected fun <Req> okPut(
+        path: String,
+        request: Req,
+    ): ResultActions =
+        mockMvc
+            .perform(putRequest(path, request))
+            .andExpect(MockMvcResultMatchers.status().isOk)
+
+    protected fun <T> putRequest(
+        path: String,
+        content: T,
+    ): MockHttpServletRequestBuilder =
+        MockMvcRequestBuilders
+            .put(path)
+            .accept(MediaType.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(objectMapper.writeValueAsString(content))
 
     protected fun <T> postRequest(
         path: String,

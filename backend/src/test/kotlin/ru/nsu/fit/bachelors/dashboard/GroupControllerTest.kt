@@ -7,6 +7,8 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import ru.nsu.fit.bachelors.dashboard.dto.group.request.GroupCreationRequest
+import ru.nsu.fit.bachelors.dashboard.dto.group.request.GroupEditingRequest
+import ru.nsu.fit.bachelors.dashboard.dto.group.response.GroupDto
 import ru.nsu.fit.bachelors.dashboard.dto.group.response.GroupsResponse
 
 @DisplayName("Взаимодействие с группами файлов")
@@ -26,6 +28,38 @@ class GroupControllerTest : AbstractApplicationTest() {
     @Test
     @DatabaseSetup("/database/group/before/group_setup.xml")
     fun `Успешное получение групп`() {
-        okGet("/api/v1/group/all", GroupsResponse(count = 2, groups = listOf()))
+        okGet(
+            "/api/v1/group/all",
+            GroupsResponse(
+                count = 2,
+                groups =
+                    listOf(
+                        GroupDto(
+                            id = 100,
+                            name = "some group",
+                            favourite = false,
+                        ),
+                        GroupDto(
+                            id = 200,
+                            name = "some group 2",
+                            favourite = false,
+                        ),
+                    ),
+            ),
+        )
+    }
+
+    @Test
+    @DatabaseSetup("/database/group/before/group_setup.xml")
+    @ExpectedDatabase(value = "/database/group/after/changed_setup.xml", assertionMode = NON_STRICT)
+    fun `Успешное изменение группы`() {
+        okPut(
+            "/api/v1/group",
+            GroupEditingRequest(
+                id = 100,
+                name = "some group changed",
+                favourite = true,
+            ),
+        )
     }
 }
