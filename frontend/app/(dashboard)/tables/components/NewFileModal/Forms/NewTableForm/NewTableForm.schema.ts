@@ -1,7 +1,8 @@
-import { FileFieldSchema } from "@/utils/schemas";
+import { FileFieldSchema, OptionalFieldSchema } from "@/utils/schemas";
 import { z } from "zod";
 
 const NewTableSchema = z.object({
+  groupId: OptionalFieldSchema,
   table: FileFieldSchema,
 });
 

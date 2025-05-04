@@ -1,5 +1,4 @@
 export interface HeaderProps {
-    onNewFileModalOpen: () => void;
-    onNewTableModalOpen: () => void;
-    onAddGroupOpen: () => void;
+  onNewFileModalOpen: () => void;
+  onAddGroupOpen: () => void;
 }

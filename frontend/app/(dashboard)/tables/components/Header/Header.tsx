@@ -6,7 +6,6 @@ import { GroupIcon, PlusIcon, TableIcon } from "lucide-react";
 import { HeaderProps } from "./Header.types";
 
 export const Header = ({
-  onNewTableModalOpen,
   onNewFileModalOpen,
   onAddGroupOpen,
 }: HeaderProps) => {
@@ -24,10 +23,6 @@ export const Header = ({
           <Button size={"md"} onClick={onNewFileModalOpen}>
             <Text className={"text-base"}>Новый документ</Text>
             <PlusIcon width={"18px"} />
-          </Button>
-          <Button color="secondary" size={"md"} onClick={onNewTableModalOpen}>
-            <Text className={"text-base"}>Новая таблица</Text>
-            <TableIcon width={"18px"} />
           </Button>
           <Button color="secondary" onClick={onAddGroupOpen}>
             <Text className={"text-base"}>Новая группа таблиц</Text>

@@ -4,7 +4,7 @@ import { IconButton } from "../../IconButton/IconButton";
 import { SettingsTooltipProps } from "./SettingsTooltip.types";
 
 export const SettingsTooltip = ({ onDelete, onEdit, onManageAccess }: SettingsTooltipProps) => (
-  <HStack gap="1rem">
+  <HStack gap="1rem" onClick={(e) => e.stopPropagation()}>
     <IconButton onClick={onEdit}>
       <Edit3Icon size={"20px"} className={"text-icon-gray"} />
     </IconButton>

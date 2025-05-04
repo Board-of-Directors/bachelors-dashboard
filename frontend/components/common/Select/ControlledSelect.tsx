@@ -6,7 +6,7 @@ import { SelectProps } from "./Select.types";
 export const ControlledSelect = ({
   name,
   ...props
-}: ControlledWrapper<Omit<SelectProps, "selectedItems" | "onChange">>) => {
+}: ControlledWrapper<Omit<SelectProps, "selectedItems" | "onChange" >>) => {
   const { control } = useFormContext();
 
   return (

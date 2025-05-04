@@ -1,1 +1,1 @@
-export { FileList } from "./FileList/FileList";
+export { FileManager } from "./FileManager/FileManager";
