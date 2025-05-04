@@ -1,0 +1,9 @@
+<dataset>
+    <task
+            id="100"
+            name="task_name"
+            description="task_description"
+            status="NOT_STARTED"
+            created="2018-01-01 12:00:00 +0000"
+    />
+</dataset>

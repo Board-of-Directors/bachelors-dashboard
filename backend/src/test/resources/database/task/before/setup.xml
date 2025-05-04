@@ -1,0 +1,13 @@
+<dataset>
+    <employee
+            id="100"
+            email="o.veber@g.nsu.ru"
+            password="asdmsak s24 234 134 134"
+    />
+
+    <employee
+            id="200"
+            email="a.tretiakov@g.nsu.ru"
+            password="asdmsak s24 234 134 134"
+    />
+</dataset>

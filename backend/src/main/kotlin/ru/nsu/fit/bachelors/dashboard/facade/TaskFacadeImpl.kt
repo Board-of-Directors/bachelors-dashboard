@@ -27,7 +27,7 @@ class TaskFacadeImpl(
     override fun createTask(request: TaskCreationRequest) {
         val taskEntity = taskConverter.ofRequest(request)
         taskEntity.addEmployees((employeeService.getAllByIds(request.employees ?: listOf())))
-        taskService.save(taskConverter.ofRequest(request))
+        taskService.save(taskEntity)
     }
 
     override fun all(): List<TasksResponse> = taskConverter.toResponse(taskService.getAll().groupBy { it.status })

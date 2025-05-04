@@ -1,0 +1,33 @@
+<dataset>
+    <employee
+            id="100"
+            email="o.veber@g.nsu.ru"
+            password="asdmsak s24 234 134 134"
+    />
+
+    <employee
+            id="200"
+            email="a.tretiakov@g.nsu.ru"
+            password="asdmsak s24 234 134 134"
+    />
+
+    <task
+            id="1"
+            name="task_name"
+            description="task_description"
+            status="NOT_STARTED"
+    />
+
+    <employee_tasks
+            id="1"
+            employee_id="100"
+            task_id="1"
+    />
+
+    <employee_tasks
+            id="2"
+            employee_id="200"
+            task_id="1"
+    />
+
+</dataset>
