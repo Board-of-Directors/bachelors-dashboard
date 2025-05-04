@@ -5,23 +5,23 @@ import org.apache.poi.ss.usermodel.CellType
 import org.apache.poi.ss.usermodel.Row
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
 import org.springframework.stereotype.Component
-import org.springframework.web.multipart.MultipartFile
 import ru.nsu.fit.bachelors.dashboard.entity.ColumnDataType
 import ru.nsu.fit.bachelors.dashboard.entity.FileEntity
 import ru.nsu.fit.bachelors.dashboard.entity.FileType
 import ru.nsu.fit.bachelors.dashboard.entity.TableColumnEntity
 import ru.nsu.fit.bachelors.dashboard.entity.TableItemEntity
 import ru.nsu.fit.bachelors.dashboard.entity.TableRowEntity
+import java.io.InputStream
 
 @Component
 class ExcelParser {
-    fun parse(file: MultipartFile): FileEntity {
-        val workbook = XSSFWorkbook(file.inputStream)
+    fun parse(content: InputStream, name: String): FileEntity {
+        val workbook = XSSFWorkbook(content)
         val firstSheet = workbook.getSheetAt(0)
         val columns = firstSheet.first().mapIndexed { index, cell -> toColumns(index, cell) }
         val rows = firstSheet.drop(1).mapIndexed { index, row -> toRows(index, row, columns) }
 
-        return FileEntity(type = FileType.TABLE, sequenceId = 1, group = null, name = file.originalFilename!!)
+        return FileEntity(type = FileType.TABLE, sequenceId = 1, group = null, name = name)
             .addRows(rows)
             .addColumns(columns)
     }

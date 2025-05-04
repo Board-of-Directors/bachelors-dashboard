@@ -1,11 +1,13 @@
 package ru.nsu.fit.bachelors.dashboard.service
 
 import com.amazonaws.services.s3.AmazonS3
+import com.amazonaws.services.s3.model.GetObjectRequest
 import com.amazonaws.services.s3.model.ObjectMetadata
 import lombok.extern.slf4j.Slf4j
 import org.springframework.stereotype.Component
 import org.springframework.web.multipart.MultipartFile
 import java.io.IOException
+import java.io.InputStream
 import java.util.*
 
 @Slf4j
@@ -29,6 +31,12 @@ class UploadServiceImpl(
         } catch (exception: IOException) {
             throw RuntimeException("Cannot upload file", exception)
         }
+    }
+
+    override fun get(id: String): InputStream {
+        val request = GetObjectRequest(BUCKET_NAME, id)
+        val response = uploadClient.getObject(request)
+        return response.objectContent
     }
 
     companion object {

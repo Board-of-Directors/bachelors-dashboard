@@ -2,6 +2,7 @@ package ru.nsu.fit.bachelors.dashboard.facade
 
 import org.springframework.web.multipart.MultipartFile
 import ru.nsu.fit.bachelors.dashboard.dto.file.request.FileOrderRequest
+import ru.nsu.fit.bachelors.dashboard.dto.file.request.TableCreationRequest
 import ru.nsu.fit.bachelors.dashboard.dto.file.response.FileDetailResponse
 import ru.nsu.fit.bachelors.dashboard.dto.file.response.FilesResponse
 import java.util.UUID
@@ -55,4 +56,9 @@ interface FileFacade {
      * Загрузить таблицу.
      */
     fun uploadTable(file: MultipartFile)
+
+    /**
+     * Создать таблицу.
+     */
+    fun createTable(request: TableCreationRequest)
 }

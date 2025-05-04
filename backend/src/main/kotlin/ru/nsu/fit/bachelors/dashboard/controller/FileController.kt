@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.multipart.MultipartFile
 import ru.nsu.fit.bachelors.dashboard.dto.file.request.FileOrderRequest
+import ru.nsu.fit.bachelors.dashboard.dto.file.request.TableCreationRequest
 import ru.nsu.fit.bachelors.dashboard.dto.file.response.*
 import ru.nsu.fit.bachelors.dashboard.facade.DocumentCreationRequest
 import ru.nsu.fit.bachelors.dashboard.facade.FileFacade
@@ -67,4 +68,10 @@ class FileController(
     fun uploadTable(
         @RequestParam file: MultipartFile,
     ) = fileFacade.uploadTable(file)
+
+    @Operation(description = "Создать таблицу")
+    @PostMapping("/table/v2")
+    fun createTable(
+        @RequestBody request: TableCreationRequest,
+    ) = fileFacade.createTable(request)
 }

@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.multipart.MultipartFile
 import ru.nsu.fit.bachelors.dashboard.converter.FileConverter
 import ru.nsu.fit.bachelors.dashboard.dto.file.request.FileOrderRequest
+import ru.nsu.fit.bachelors.dashboard.dto.file.request.TableCreationRequest
 import ru.nsu.fit.bachelors.dashboard.dto.file.response.FileDetailResponse
 import ru.nsu.fit.bachelors.dashboard.dto.file.response.FilesResponse
 import ru.nsu.fit.bachelors.dashboard.entity.FileEntity
@@ -49,7 +50,7 @@ class FileFacadeImpl(
 
     @Transactional
     override fun uploadTable(file: MultipartFile) {
-        val newTable = excelParser.parse(file)
+        val newTable = excelParser.parse(file.inputStream, file.originalFilename!!)
         val existingTable = fileService.findByName(newTable.name)
         if (existingTable == null) {
             fileService.save(newTable)
@@ -75,12 +76,36 @@ class FileFacadeImpl(
     }
 
     @Transactional
+    override fun createTable(request: TableCreationRequest) {
+        val group = request.groupId?.let { groupService.get(it) }
+        val content = uploadService.get(request.externalId)
+
+        val newTable = excelParser.parse(content, request.name)
+        val existingTable = fileService.findByName(newTable.name)
+        if (existingTable == null) {
+            newTable.group = group
+            fileService.save(newTable)
+            return
+        }
+        newTable.group = existingTable.group
+        newTable.sequenceId = existingTable.sequenceId
+        newTable.id = existingTable.id
+        newTable.changes.addAll(existingTable.changes)
+        val savedTable = fileService.save(newTable)
+        tableHistoryService.computeAndPublish(existingTable, savedTable)
+        studentService.saveFromTable(savedTable)
+    }
+
+    @Transactional
     override fun changeOrder(fileOrderRequest: FileOrderRequest) {
-        val group = groupService.get(fileOrderRequest.groupId)
-        val filesById =
-            fileService
-                .allByIds(fileOrderRequest.ids.map { it.id })
-                .associateBy { it.id }
+        val group = fileOrderRequest.groupId?.let { groupService.get(it) }
+        val files =
+            if (group == null) {
+                fileService.findAllWithoutGroup()
+            } else {
+                fileService.allByGroup(group)
+            }
+        val filesById = files.associateBy { it.id }
 
         fileOrderRequest.ids.mapIndexed { index, idDto ->
             filesById[idDto.id]?.let {
