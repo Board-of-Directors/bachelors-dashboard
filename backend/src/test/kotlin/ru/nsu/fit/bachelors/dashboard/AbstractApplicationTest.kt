@@ -54,6 +54,17 @@ abstract class AbstractApplicationTest {
             .perform(putRequest(path, request))
             .andExpect(MockMvcResultMatchers.status().isOk)
 
+    protected fun okDelete(path: String): ResultActions =
+        mockMvc
+            .perform(deleteRequest(path))
+            .andExpect(MockMvcResultMatchers.status().isOk)
+
+    protected fun deleteRequest(path: String): MockHttpServletRequestBuilder =
+        MockMvcRequestBuilders
+            .delete(path)
+            .accept(MediaType.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
+
     protected fun <T> putRequest(
         path: String,
         content: T,

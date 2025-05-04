@@ -62,4 +62,12 @@ class GroupControllerTest : AbstractApplicationTest() {
             ),
         )
     }
+
+    @Test
+    @DatabaseSetup("/database/group/before/group_setup.xml")
+    @ExpectedDatabase(value = "/database/common/empty.xml", assertionMode = NON_STRICT)
+    fun `Успеншое удаление группы`() {
+        okDelete("/api/v1/group?id=100")
+        okDelete("/api/v1/group?id=200")
+    }
 }
