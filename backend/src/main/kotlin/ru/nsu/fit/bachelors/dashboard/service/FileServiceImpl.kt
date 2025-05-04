@@ -34,4 +34,6 @@ class FileServiceImpl(
     }
 
     override fun findAllWithoutGroup(): List<FileEntity> = fileRepository.findAllByGroupIdIsNull()
+
+    override fun findAllByIds(ids: List<Long>): List<FileEntity> = fileRepository.findAllById(ids)
 }

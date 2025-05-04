@@ -56,4 +56,9 @@ interface FileService {
      * Получить все файлы без группы.
      */
     fun findAllWithoutGroup(): List<FileEntity>
+
+    /**
+     * Получить все файлы по идентификаторам.
+     */
+    fun findAllByIds(ids: List<Long>): List<FileEntity>
 }
