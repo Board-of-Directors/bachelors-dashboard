@@ -5,6 +5,8 @@ import com.github.springtestdbunit.annotation.ExpectedDatabase
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode.NON_STRICT
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import ru.nsu.fit.bachelors.dashboard.dto.common.IdDto
+import ru.nsu.fit.bachelors.dashboard.dto.task.request.ChangeTaskOrderRequest
 import ru.nsu.fit.bachelors.dashboard.dto.task.request.TaskChangeRequest
 import ru.nsu.fit.bachelors.dashboard.dto.task.request.TaskCreationRequest
 
@@ -43,6 +45,15 @@ class TaskControllerTest : AbstractApplicationTest() {
     }
 
     @Test
-    fun `Успешное изменение порядка задач`() {
+    @DatabaseSetup("/database/task/before/change_setup.xml")
+    @ExpectedDatabase("/database/task/after/change_order.xml", assertionMode = NON_STRICT)
+    fun `Успешное изменение статуса и порядка задач`() {
+        okPut(
+            "/api/v1/task/order",
+            ChangeTaskOrderRequest(
+                status = "IN_PROGRESS",
+                ids = listOf(IdDto(100)),
+            ),
+        )
     }
 }
