@@ -9,6 +9,7 @@ import jakarta.annotation.Nonnull
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener
 import org.springframework.http.MediaType
 import org.springframework.test.context.TestExecutionListeners
@@ -20,6 +21,8 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 import ru.nsu.fit.bachelors.dashboard.config.ClearDatabaseTestExecutionListener
+import ru.nsu.fit.bachelors.dashboard.configuration.UniqueIdentifierGenerator
+import ru.nsu.fit.bachelors.dashboard.service.EmailService
 import java.io.IOException
 
 @SpringBootTest
@@ -28,6 +31,10 @@ import java.io.IOException
     DependencyInjectionTestExecutionListener::class,
     DbUnitTestExecutionListener::class,
     ResetMocksTestExecutionListener::class,
+)
+@MockBean(
+    UniqueIdentifierGenerator::class,
+    EmailService::class,
 )
 @AutoConfigureEmbeddedDatabase
 @AutoConfigureMockMvc

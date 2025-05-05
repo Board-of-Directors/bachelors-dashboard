@@ -1,0 +1,18 @@
+<dataset>
+    <employee
+            id="1"
+            email="n.konstantinov@g.nsu.ru"
+            password="4f0275f7-d716-4d09-8f28-bc34fa7f0b66"
+    />
+    <employee
+            id="100"
+            email="o.veber@g.nsu.ru"
+            password="11122223333"
+    />
+
+    <employee
+            id="200"
+            email="a.tretiakov@g.nsu.ru"
+            password="11122223333"
+    />
+</dataset>
