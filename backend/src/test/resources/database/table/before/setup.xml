@@ -1,0 +1,44 @@
+<dataset>
+    <file
+            id="100"
+            name="Таблица платников"
+            type="TABLE"
+            sequence_id="0"
+    />
+
+    <table_row
+            id="100"
+            table_id="100"
+            color="WHITE"
+            sequence_id="0"
+    />
+
+    <table_row
+            id="200"
+            table_id="100"
+            color="WHITE"
+            sequence_id="1"
+    />
+
+    <table_column
+            id="100"
+            table_id="100"
+            name="ФИО"
+            sequence_id="0"
+            type="STRING"
+            is_insurance="false"
+            hidden="false"
+            width="100"
+    />
+
+    <table_column
+            id="200"
+            table_id="100"
+            name="Возраст"
+            sequence_id="1"
+            type="STRING"
+            is_insurance="false"
+            hidden="false"
+            width="100"
+    />
+</dataset>
