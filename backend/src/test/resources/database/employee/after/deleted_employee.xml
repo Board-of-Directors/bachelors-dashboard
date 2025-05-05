@@ -1,0 +1,7 @@
+<dataset>
+    <employee
+            id="200"
+            email="a.tretiakov@g.nsu.ru"
+            password="11122223333"
+    />
+</dataset>
