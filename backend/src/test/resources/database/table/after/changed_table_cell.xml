@@ -1,6 +1,6 @@
 <dataset>
     <file
-            id="1"
+            id="100"
             name="Таблица платников.xlsx"
             sequence_id="1"
             type="TABLE"
@@ -8,19 +8,15 @@
 
     <table_column
             id="1"
-            table_id="1"
             name="Фамилия"
             type="STRING"
-            hidden="false"
             is_insurance="false"
             sequence_id="0"
     />
 
     <table_column
             id="2"
-            table_id="1"
             name="СНИЛС"
-            hidden="false"
             type="STRING"
             is_insurance="true"
             sequence_id="1"
@@ -28,9 +24,7 @@
 
     <table_column
             id="3"
-            table_id="1"
             name="Средний балл"
-            hidden="false"
             type="STRING"
             is_insurance="false"
             sequence_id="2"
@@ -38,15 +32,11 @@
 
     <table_row
             id="1"
-            table_id="1"
-            color="WHITE"
             sequence_id="0"
     />
 
     <table_row
             id="2"
-            table_id="1"
-            color="WHITE"
             sequence_id="1"
     />
 
@@ -82,7 +72,7 @@
             id="5"
             row_id="2"
             column_id="2"
-            value="222"
+            value="333"
     />
 
     <table_item
@@ -90,5 +80,13 @@
             row_id="2"
             column_id="3"
             value="5"
+    />
+
+    <table_history
+            id="1"
+            operation="REPLACE"
+            path="/table/2/values/1"
+            value="333"
+            from_value="222"
     />
 </dataset>

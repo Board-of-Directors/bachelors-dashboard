@@ -1,14 +1,14 @@
 <dataset>
     <file
-            id="1"
+            id="100"
             name="Таблица платников.xlsx"
             sequence_id="1"
             type="TABLE"
     />
 
     <table_column
-            id="1"
-            table_id="1"
+            id="100"
+            table_id="100"
             name="Фамилия"
             type="STRING"
             hidden="false"
@@ -17,8 +17,8 @@
     />
 
     <table_column
-            id="2"
-            table_id="1"
+            id="200"
+            table_id="100"
             name="СНИЛС"
             hidden="false"
             type="STRING"
@@ -27,8 +27,8 @@
     />
 
     <table_column
-            id="3"
-            table_id="1"
+            id="300"
+            table_id="100"
             name="Средний балл"
             hidden="false"
             type="STRING"
@@ -37,58 +37,58 @@
     />
 
     <table_row
-            id="1"
-            table_id="1"
+            id="100"
+            table_id="100"
             color="WHITE"
             sequence_id="0"
     />
 
     <table_row
-            id="2"
-            table_id="1"
+            id="200"
+            table_id="100"
             color="WHITE"
             sequence_id="1"
     />
 
     <table_item
-            id="1"
-            row_id="1"
-            column_id="1"
+            id="100"
+            row_id="100"
+            column_id="100"
             value="Вебер"
     />
 
     <table_item
-            id="2"
-            row_id="1"
-            column_id="2"
+            id="200"
+            row_id="100"
+            column_id="200"
             value="111"
     />
 
     <table_item
-            id="3"
-            row_id="1"
-            column_id="3"
+            id="300"
+            row_id="100"
+            column_id="300"
             value="4.5"
     />
 
     <table_item
-            id="4"
-            row_id="2"
-            column_id="1"
+            id="400"
+            row_id="200"
+            column_id="100"
             value="Третьяков"
     />
 
     <table_item
-            id="5"
-            row_id="2"
-            column_id="2"
+            id="500"
+            row_id="200"
+            column_id="200"
             value="222"
     />
 
     <table_item
-            id="6"
-            row_id="2"
-            column_id="3"
+            id="600"
+            row_id="200"
+            column_id="300"
             value="5"
     />
 </dataset>

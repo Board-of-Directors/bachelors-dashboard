@@ -7,6 +7,6 @@ import org.springframework.test.context.support.AbstractTestExecutionListener
 class ClearDatabaseTestExecutionListener : AbstractTestExecutionListener() {
     override fun beforeTestMethod(testContext: TestContext) {
         val jdbcTemplate = testContext.applicationContext.getBean(JdbcTemplate::class.java)
-        jdbcTemplate.execute("TRUNCATE TABLE file_group, employee_tasks CASCADE")
+        jdbcTemplate.execute("TRUNCATE TABLE file_group, file, employee_tasks, table_column, table_row, table_item CASCADE")
     }
 }

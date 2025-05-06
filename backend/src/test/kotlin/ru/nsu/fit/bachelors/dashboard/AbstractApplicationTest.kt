@@ -68,9 +68,10 @@ abstract class AbstractApplicationTest {
     protected fun okPostFile(
         path: String,
         filePath: String,
+        fileName: String,
     ): ResultActions {
         val input = Thread.currentThread().getContextClassLoader().getResourceAsStream(filePath)!!
-        val file = MockMultipartFile("file", filePath, MediaType.MULTIPART_FORM_DATA_VALUE, input)
+        val file = MockMultipartFile("file", fileName, MediaType.MULTIPART_FORM_DATA_VALUE, input)
         return mockMvc
             .perform(
                 MockMvcRequestBuilders.multipart(path).file(file),

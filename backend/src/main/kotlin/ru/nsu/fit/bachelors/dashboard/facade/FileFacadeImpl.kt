@@ -60,8 +60,8 @@ class FileFacadeImpl(
         newTable.sequenceId = existingTable.sequenceId
         newTable.id = existingTable.id
         newTable.changes.addAll(existingTable.changes)
+        tableHistoryService.computeAndPublish(existingTable, newTable)
         val savedTable = fileService.save(newTable)
-        tableHistoryService.computeAndPublish(existingTable, savedTable)
         studentService.saveFromTable(savedTable)
     }
 

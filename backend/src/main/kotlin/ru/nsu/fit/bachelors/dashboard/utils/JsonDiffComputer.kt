@@ -42,6 +42,6 @@ class JsonDiffComputer(
 data class TableChangeDto(
     val op: String,
     val path: String,
-    val value: String,
+    val value: String?,
     val fromValue: String?,
 )
