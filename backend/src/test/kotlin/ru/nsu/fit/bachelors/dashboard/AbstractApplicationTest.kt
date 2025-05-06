@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener
 import org.springframework.http.MediaType
+import org.springframework.mock.web.MockMultipartFile
 import org.springframework.test.context.TestExecutionListeners
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener
 import org.springframework.test.web.servlet.MockMvc
@@ -63,6 +64,18 @@ abstract class AbstractApplicationTest {
         mockMvc
             .perform(postRequest(path, request))
             .andExpect(MockMvcResultMatchers.status().isOk)
+
+    protected fun okPostFile(
+        path: String,
+        filePath: String,
+    ): ResultActions {
+        val input = Thread.currentThread().getContextClassLoader().getResourceAsStream(filePath)!!
+        val file = MockMultipartFile("file", filePath, MediaType.MULTIPART_FORM_DATA_VALUE, input)
+        return mockMvc
+            .perform(
+                MockMvcRequestBuilders.multipart(path).file(file),
+            ).andExpect { MockMvcResultMatchers.status().isOk }
+    }
 
     protected fun okDelete(path: String): ResultActions =
         mockMvc

@@ -1,0 +1,84 @@
+<dataset>
+    <file
+            id="1"
+            name="http/request/Таблица платников.xlsx"
+            sequence_id="1"
+            type="TABLE"
+    />
+
+    <table_column
+            id="1"
+            name="Фамилия"
+            type="STRING"
+            is_insurance="false"
+            sequence_id="0"
+    />
+
+    <table_column
+            id="2"
+            name="СНИЛС"
+            type="STRING"
+            is_insurance="true"
+            sequence_id="1"
+    />
+
+    <table_column
+            id="3"
+            name="Средний балл"
+            type="STRING"
+            is_insurance="false"
+            sequence_id="2"
+    />
+
+    <table_row
+            id="1"
+            sequence_id="0"
+    />
+
+    <table_row
+            id="2"
+            sequence_id="1"
+    />
+
+    <table_item
+            id="1"
+            row_id="1"
+            column_id="1"
+            value="Вебер"
+    />
+
+    <table_item
+            id="2"
+            row_id="1"
+            column_id="2"
+            value="111"
+    />
+
+    <table_item
+            id="3"
+            row_id="1"
+            column_id="3"
+            value="4.5"
+    />
+
+    <table_item
+            id="4"
+            row_id="2"
+            column_id="1"
+            value="Третьяков"
+    />
+
+    <table_item
+            id="5"
+            row_id="2"
+            column_id="2"
+            value="222"
+    />
+
+    <table_item
+            id="6"
+            row_id="2"
+            column_id="3"
+            value="5"
+    />
+</dataset>

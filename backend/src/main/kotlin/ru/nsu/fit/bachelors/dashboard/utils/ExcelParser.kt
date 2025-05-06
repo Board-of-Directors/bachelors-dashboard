@@ -12,6 +12,8 @@ import ru.nsu.fit.bachelors.dashboard.entity.TableColumnEntity
 import ru.nsu.fit.bachelors.dashboard.entity.TableItemEntity
 import ru.nsu.fit.bachelors.dashboard.entity.TableRowEntity
 import java.io.InputStream
+import kotlin.math.abs
+import kotlin.math.floor
 
 @Component
 class ExcelParser {
@@ -58,13 +60,23 @@ private fun Cell.isInsuranceColumn(): Boolean {
 private fun Cell.extractValue(): String {
     return when (this.cellType) {
         CellType._NONE -> TODO()
-        CellType.NUMERIC -> this.numericCellValue.toString()
+        CellType.NUMERIC -> numericString(this.numericCellValue)
         CellType.STRING -> this.stringCellValue
         CellType.FORMULA -> TODO()
         CellType.BLANK -> this.stringCellValue
         CellType.BOOLEAN -> TODO()
         CellType.ERROR -> TODO()
     }
+}
+
+private fun numericString(d: Double): String {
+    val rest = abs(d) - floor(abs(d))
+
+    if (rest == 0.0) {
+        return d.toLong().toString()
+    }
+
+    return d.toString()
 }
 
 private fun CellType.toInternal(): ColumnDataType {
