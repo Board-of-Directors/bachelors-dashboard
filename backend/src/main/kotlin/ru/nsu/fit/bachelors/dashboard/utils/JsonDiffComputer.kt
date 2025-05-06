@@ -2,6 +2,7 @@ package ru.nsu.fit.bachelors.dashboard.utils
 
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.node.ArrayNode
 import com.flipkart.zjsonpatch.DiffFlags
 import com.flipkart.zjsonpatch.JsonDiff
 import lombok.RequiredArgsConstructor
@@ -24,8 +25,21 @@ class JsonDiffComputer(
                 objectMapper.valueToTree(newTable),
                 JSON_DIFF_FLAGS,
             )
-        val typeRef: TypeReference<List<TableChangeDto>> = object : TypeReference<List<TableChangeDto>>() {}
+
         if (diff.isEmpty) {
+            return listOf()
+        }
+        val arrayNode =
+            if (diff.isArray) {
+                objectMapper
+                    .createArrayNode()
+                    .addAll(diff as ArrayNode?)
+            } else {
+                objectMapper.createArrayNode()
+            }
+        val replaceDiffs = arrayNode.filter { node -> node.get("op").asText() == "replace" }
+        val typeRef: TypeReference<List<TableChangeDto>> = object : TypeReference<List<TableChangeDto>>() {}
+        if (replaceDiffs.isEmpty()) {
             return listOf()
         }
         return objectMapper.treeToValue(diff, typeRef)

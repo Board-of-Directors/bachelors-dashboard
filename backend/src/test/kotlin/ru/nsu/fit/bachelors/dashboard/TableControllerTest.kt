@@ -28,4 +28,11 @@ class TableControllerTest : AbstractApplicationTest() {
     fun `Успешное добавление таблицы, с измененние порядка рядов`() {
         okPostFile("/api/v1/file/table", "http/request/Таблица платников3.xlsx", "Таблица платников.xlsx")
     }
+
+    @Test
+    @DatabaseSetup("/database/table/before/existing_table.xml")
+    @ExpectedDatabase("/database/table/after/changed_table_rows.xml", assertionMode = NON_STRICT)
+    fun `Успешное добавление таблицы, с добавлением нового ряда`() {
+        okPostFile("/api/v1/file/table", "http/request/Таблица платников4.xlsx", "Таблица платников.xlsx")
+    }
 }
