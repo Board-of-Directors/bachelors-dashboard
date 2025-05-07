@@ -7,10 +7,6 @@ import { DOCXFile, FileItem, XSLXFile } from "./FileRow.types";
 
 import { useMergeRefs } from "@chakra-ui/react";
 import { CSS } from "@dnd-kit/utilities";
-import { DragEndEvent } from "@dnd-kit/core";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { orderFiles } from "@/api/request/file";
-import { ORDER_FILES_KEY } from "@/constants";
 
 export const useFileRow = (file: ResponseFile) => {
     const { attributes, listeners, setNodeRef, transition, transform } = useSortable({

@@ -1,11 +1,10 @@
-import { Ids } from "@/api/request/task/types";
+import { Ids, ResponseTableDetail } from "@/api/request/table/types";
 import {
   ColumnType,
   ResponseTable,
   TableRow,
   TableSchema,
   Table as TableType,
-  // @ts-expect-error
 } from "@/types/table";
 import { DragEndEvent } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
@@ -140,7 +139,7 @@ const toColumns = ({ schema }: ResponseTable): ColumnDef<TableRow, any>[] => {
  *
  * @returns array of columns' indexes
  */
-const createIdsFromColumns = (columns: string[]): { ids: Ids } => {
+const createIdsFromColumns = (columns: string[]): Ids => {
   const ids = columns.map((column) => {
     const underscroreIndex = column.indexOf("_");
     const columnIndex = column.slice(underscroreIndex + 1);
@@ -182,7 +181,7 @@ const createColumnSizing = (table: Table<any>) => {
   return colSizes;
 };
 
-const transformTable = (responseTable: any): ResponseTable => {
+const transformTable = (responseTable: ResponseTableDetail): ResponseTable => {
   const schema: TableSchema = responseTable.columns.map(({ id, name, type }) => ({
     columnType: type.toLowerCase() as ColumnType,
     accessorKey: `column_${id}`,

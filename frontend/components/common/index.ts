@@ -13,6 +13,7 @@ export { Modal } from "./Modal/Modal";
 export { Navbar } from "./Navbar/Navbar";
 export { ControlledSelect } from "./Select/ControlledSelect";
 export { Skeleton } from "./Skeleton/Skeleton";
+export { Table } from "./Table/Table";
 export { Text } from "./Text/Text";
 export { TextButton } from "./TextButton/TextButton";
 export { UserList } from "./UserList/UserList";
