@@ -7,6 +7,12 @@ services:
     command: --interval 30
   app:
     container_name: bachelors-frontend
-    image: tretiakovv/bachelor_frontend:pr-12
+    image: tretiakovv/bachelor_frontend:frontend-dev
+    platform: linux/x86_64
     ports:
       - "3001:3000"
+    networks:
+      - default
+networks:
+  default:
+    driver: bridge

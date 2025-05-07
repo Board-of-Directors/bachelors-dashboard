@@ -28,7 +28,7 @@ export const useFileRow = (file: ResponseFile) => {
         transform: CSS.Translate.toString(transform),
     };
 
-    const tableHref = `tables/${(file as any)?.tableId}`;
+    const tableHref = `tables/${(file as any)?.id}`;
     const href = (file as any)?.href || tableHref;
 
     const refs = useMergeRefs(hoverRef, setNodeRef);

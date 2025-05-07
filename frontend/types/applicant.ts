@@ -1,6 +1,8 @@
+
+
 interface ApplicantDeaults {
   id: string;
-  position : number;
+  position: number;
   name: string;
   snils: string;
   totalExamScore: number;
@@ -11,4 +13,15 @@ interface ApplicantDeaults {
 
 type Applicant<T> = ApplicantDeaults & { [K in keyof T]: T[K] };
 
-export type { ApplicantDeaults, Applicant };
+interface HeaderDescription {
+  header: string;
+  description: number;
+}
+
+interface ApplicantDetails extends ApplicantDeaults {
+  scores: HeaderDescription[];
+  comments: Comment[];
+}
+
+export type { Applicant, ApplicantDeaults, ApplicantDetails, HeaderDescription };
+

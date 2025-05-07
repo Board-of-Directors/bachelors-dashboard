@@ -17,7 +17,7 @@ const FileRow = chakra(Box, {
     }
 })
 
-const FileLink = chakra(Link, {
+const FileContainer = chakra(Box, {
     baseStyle: {
         width: '100%',
         display: "inline-flex",
@@ -34,5 +34,5 @@ const Row = chakra(Box, {
     }
 })
 
-export { FileLink, FileRow, Row };
+export { FileContainer, FileRow, Row };
 
