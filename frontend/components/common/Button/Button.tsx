@@ -24,7 +24,7 @@ const StyledButton = extendVariants(NextButton, {
       ]),
       sm: "px-3 py-2 !rounded-[10px]",
       md: "px-6 py-4",
-      xl: "px-6 py-4 w-full",
+      xl: "!px-6 !py-4 !w-full",
     },
   },
   defaultVariants: {
