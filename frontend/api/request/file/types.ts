@@ -5,8 +5,8 @@ export interface OrderFilesRequest {
 
 export interface UploadDocumentRequest {
   externalId: string;
+  groupId: number;
   name: string;
-  groupId: 0;
 }
 
 export interface ResponseFile {

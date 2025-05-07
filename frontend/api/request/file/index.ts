@@ -13,8 +13,8 @@ export const uploadDocument = async (request: UploadDocumentRequest): Promise<vo
   return api.post("/file/docs", request);
 };
 
-export const uploadTable = async (file: File): Promise<void> => {
-  return api.postForm("/file/table", { file: file });
+export const uploadTable = async (request: UploadDocumentRequest): Promise<void> => {
+  return api.post("/file/table/v2", request);
 };
 
 export const getGroupFiles = async (groupId?: number): Promise<ResponseFile[]> => {

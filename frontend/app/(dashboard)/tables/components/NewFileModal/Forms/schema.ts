@@ -1,8 +1,8 @@
-import { FileFieldSchema, OptionalFieldSchema, RequiredFieldSchema } from "@/utils/schemas";
+import { FileFieldSchema, RequiredFieldSchema, SelectSchema } from "@/utils/schemas";
 import { z } from "zod";
 
 export const NewFileSchema = z.object({
-  groupId: OptionalFieldSchema,
+  groupId: z.array(SelectSchema).optional(),
   name: RequiredFieldSchema,
   file: FileFieldSchema,
 });

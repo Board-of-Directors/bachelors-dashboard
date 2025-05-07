@@ -1,11 +1,17 @@
-import { uploadTable } from "@/api/request/file";
-import { Button, ControlledFileInput, ControlledSelect, useSnackbar } from "@/components/common";
+import { uploadFile, uploadTable } from "@/api/request/file";
+import {
+  Button,
+  ControlledFileInput,
+  ControlledInput,
+  ControlledSelect,
+  useSnackbar,
+} from "@/components/common";
 import { GET_ALL_GROUPS_KEY } from "@/constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FormProvider, useForm } from "react-hook-form";
+import { NewFileSchema, NewFileType } from "../schema";
 import { FormProps } from "../types";
-import { NewTableSchema, NewTableType } from "./NewTableForm.schema";
 
 /**
  * NewTableForm component to handle the creation of a new table.
@@ -14,12 +20,12 @@ import { NewTableSchema, NewTableType } from "./NewTableForm.schema";
  */
 export const NewTableForm = ({ selectItems, onSuccess }: FormProps) => {
   const queryClient = useQueryClient();
-  const form = useForm<NewTableType>({
-    resolver: zodResolver(NewTableSchema),
+  const form = useForm<NewFileType>({
+    resolver: zodResolver(NewFileSchema),
   });
 
   const { mutate } = useMutation({
-    mutationFn: (file: File) => uploadTable(file),
+    mutationFn: (request: NewFileType) => processUploadFile(request),
     mutationKey: ["post", "table"],
     onSuccess: () => handleSuccess(),
   });
@@ -42,11 +48,21 @@ export const NewTableForm = ({ selectItems, onSuccess }: FormProps) => {
     onSuccess();
   };
 
-  const onSubmit = ({ table }: NewTableType) => mutate(table);
+  const onSubmit = (request: NewFileType) => mutate(request);
+
+  const processUploadFile = ({ file, name, groupId }: NewFileType) =>
+    uploadFile(file).then((token) =>
+      uploadTable({
+        groupId: groupId?.length ? Number(groupId[0].value) : undefined,
+        externalId: token,
+        name,
+      }),
+    );
 
   return (
     <FormProvider {...form}>
-      <ControlledFileInput name={"table"} label="Документ" placeholder="Выберите документ" />
+      <ControlledInput name={"name"} label="Название" placeholder="Введите название" />
+      <ControlledFileInput name={"file"} label="Документ" placeholder="Выберите документ" />
       <ControlledSelect
         placeholder="Выберите группу"
         items={selectItems}

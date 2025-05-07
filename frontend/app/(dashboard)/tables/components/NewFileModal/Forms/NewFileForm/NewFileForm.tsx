@@ -10,8 +10,8 @@ import { GET_GROUP_FILES_KEY } from "@/constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FormProvider, useForm } from "react-hook-form";
+import { NewFileSchema, NewFileType } from "../schema";
 import { FormProps } from "../types";
-import { NewFileSchema, NewFileType } from "./NewFileForm.schema";
 
 export const NewFileForm = ({ selectItems, onSuccess }: FormProps) => {
   const queryClient = useQueryClient();
@@ -42,9 +42,13 @@ export const NewFileForm = ({ selectItems, onSuccess }: FormProps) => {
     onSuccess();
   };
 
-  const processUploadFile = ({ file, name }: NewFileType) =>
+  const processUploadFile = ({ file, name, groupId }: NewFileType) =>
     uploadFile(file).then((token) =>
-      uploadDocument({ externalId: token, name: name, groupId: undefined }),
+      uploadDocument({
+        groupId: groupId?.length ? Number(groupId[0].value) : undefined,
+        externalId: token,
+        name: name,
+      }),
     );
 
   const onSubmit = (requestData: NewFileType) => mutate(requestData);
