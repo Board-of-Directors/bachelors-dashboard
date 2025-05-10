@@ -1,12 +1,16 @@
-interface OrderFilesRequest {
-    groupId: number;
-    ids: {id : number}[]
+export interface OrderFilesRequest {
+  groupId: number;
+  ids: { id: number }[];
 }
 
-interface ResponseFile {
-    id: number;
-    name: string;
-    type: string;
+export interface UploadDocumentRequest {
+  externalId: string;
+  groupId: number;
+  name: string;
 }
 
-export type { ResponseFile, OrderFilesRequest };
+export interface ResponseFile {
+  id: number;
+  name: string;
+  type: string;
+}

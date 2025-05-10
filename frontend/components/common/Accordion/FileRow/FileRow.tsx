@@ -5,13 +5,14 @@ import { DOCXFileIcon } from "@/components/icons/DOCXFileIcon";
 import { XSLXFileIcon } from "@/components/icons/XSLXFileIcon";
 import { EditTableModal } from "@/components/modals";
 import { SettingsTooltip } from "../SettingTooltip/SettingsTooltip";
-import { FileRow as Container, FileLink, Row } from "./FileRow.styles";
+import { FileRow as Container, FileContainer, Row } from "./FileRow.styles";
 import { FileRowProps } from "./FileRow.types";
 
 import { MenuIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useFileRow } from "./FileRow.hooks";
 
-export const FileRow = ({ file }: FileRowProps) => {
+export const FileRow = ({ file, borderTopWidth }: FileRowProps) => {
   const {
     disclosure: { isEditGroupOpen, onEditGroupOpenChange },
     draggable: { attributes, listeners, style },
@@ -22,6 +23,9 @@ export const FileRow = ({ file }: FileRowProps) => {
     href,
   } = useFileRow(file);
 
+  const router = useRouter();
+  const handleClick = () => router.push(href);
+
   return (
     <>
       {tableToEdit ? (
@@ -31,14 +35,14 @@ export const FileRow = ({ file }: FileRowProps) => {
           name={tableToEdit.name}
         />
       ) : null}
-      <Container ref={refs} style={style} {...attributes}>
+      <Container ref={refs} style={style} borderTopWidth={borderTopWidth} {...attributes}>
         {isHover ? (
           <MenuIcon
             className="absolute left-7 top-[32px] size-[18px] text-text-gray cursor-grabbing"
             {...listeners}
           />
         ) : null}
-        <FileLink href={href}>
+        <FileContainer onClick={handleClick}>
           <Row>
             {(file as any)?.href ? <DOCXFileIcon /> : <XSLXFileIcon />}
             <Text className={"text-md font-semibold text-text-back"}>{file.name}</Text>
@@ -50,7 +54,7 @@ export const FileRow = ({ file }: FileRowProps) => {
               onDelete={() => {}}
             />
           ) : null}
-        </FileLink>
+        </FileContainer>
       </Container>
     </>
   );
