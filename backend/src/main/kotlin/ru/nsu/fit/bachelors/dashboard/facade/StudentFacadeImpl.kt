@@ -1,5 +1,6 @@
 package ru.nsu.fit.bachelors.dashboard.facade
 
+import jakarta.transaction.Transactional
 import org.springframework.stereotype.Component
 import ru.nsu.fit.bachelors.dashboard.converter.StudentConverter
 import ru.nsu.fit.bachelors.dashboard.dto.student.request.StudentFilter
@@ -9,6 +10,7 @@ import ru.nsu.fit.bachelors.dashboard.entity.StudentEntity
 import ru.nsu.fit.bachelors.dashboard.service.StudentService
 
 @Component
+@Transactional
 class StudentFacadeImpl(
     val studentConverter: StudentConverter,
     val studentService: StudentService,
