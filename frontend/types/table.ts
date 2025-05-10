@@ -11,6 +11,7 @@ interface TableColumn {
 interface TableRow {
   applicant: Applicant<any>;
   comments?: Comment[];
+  insurance?: string;
 }
 
 interface Table {
@@ -27,4 +28,4 @@ interface ResponseTable {
   table: Table;
 }
 
-export type { ResponseTable, Table, TableColumn, TableRow, TableSchema, ColumnType };
+export type { ColumnType, ResponseTable, Table, TableColumn, TableRow, TableSchema };

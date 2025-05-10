@@ -1,4 +1,5 @@
 import { horizontalListSortingStrategy, SortableContext } from "@dnd-kit/sortable";
+import { useRouter } from "next/navigation";
 import { CommentList } from "../../CommentList/CommentList";
 import { DragAlongCell } from "../DragAlongCell/DragAlongCell";
 import { useTableContext } from "../Table.context";
@@ -10,11 +11,19 @@ import { TableRowProvider } from "./TableRowProvider";
 export const TableRow = ({ row, columnOrder }: TableRowProps) => {
   const { firstCellRef } = useTableContext();
   const { states, handleAddComments } = useTableRow(row);
+  const router = useRouter();
+
   const { context, commentsRowHeight, comments, commentsRowRef, isExpanded, activeColor } = states;
+
+  const handleClick = () => {
+    if (row.original.insurance) {
+      router.push(`/applicant/${row.original.insurance}`);
+    }
+  };
 
   return (
     <TableRowProvider {...context}>
-      <ApplicantRow background={activeColor.value}>
+      <ApplicantRow onClick={handleClick} background={activeColor.value}>
         {row.getVisibleCells().map((cell) => (
           <SortableContext
             strategy={horizontalListSortingStrategy}

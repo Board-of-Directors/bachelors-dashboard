@@ -18,6 +18,7 @@ interface ResponseTableRow {
 
 interface ResponseTableColumn {
   type: TableColumnType;
+  isInsurance: string;
   hidden: boolean;
   name: string;
   id: number;
@@ -50,6 +51,5 @@ export type {
   Ids,
   ResponseTableDetail,
   ResponseTableRow,
-  TableRowColor
+  TableRowColor,
 };
-

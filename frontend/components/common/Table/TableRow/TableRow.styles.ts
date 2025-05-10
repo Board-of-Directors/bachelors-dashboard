@@ -1,4 +1,4 @@
-import { Box, chakra, Tr } from "@chakra-ui/react";
+import { Box, chakra } from "@chakra-ui/react";
 
 const InteractiveCell = chakra(Box, {
   baseStyle: {
@@ -19,6 +19,7 @@ const ApplicantRow = chakra(Box, {
     width: "100%",
     borderBottomWidth: "1px",
     borderBottomColor: "#F3F3F3",
+    cursor: "pointer",
 
     "& > *:first-child": {
       paddingLeft: "40px",
@@ -26,4 +27,4 @@ const ApplicantRow = chakra(Box, {
   },
 });
 
-export { InteractiveCell, CommentsRow, ApplicantRow };
+export { ApplicantRow, CommentsRow, InteractiveCell };

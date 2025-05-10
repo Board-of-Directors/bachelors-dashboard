@@ -1,4 +1,4 @@
-import { Ids, ResponseTableDetail } from "@/api/request/table/types";
+import { Ids, ResponseTableDetail, ResponseTableRow } from "@/api/request/table/types";
 import {
   ColumnType,
   ResponseTable,
@@ -181,6 +181,21 @@ const createColumnSizing = (table: Table<any>) => {
   return colSizes;
 };
 
+/**
+ * Function **getInsurance** returns value of the insurance of the current row if exists.
+ *
+ * @param row – current row.
+ * @param table – current table.
+ * @returns value of the row's insurance
+ */
+const getInsurance = (row: ResponseTableRow, table: ResponseTableDetail): string | undefined => {
+  const insuranceColumn = table.columns.find((col) => col.isInsurance);
+
+  if (insuranceColumn) {
+    return row.items.find((cell) => cell.columnId === insuranceColumn.id)!.value;
+  }
+};
+
 const transformTable = (responseTable: ResponseTableDetail): ResponseTable => {
   const schema: TableSchema = responseTable.columns.map(({ id, name, type }) => ({
     columnType: type.toLowerCase() as ColumnType,
@@ -200,6 +215,7 @@ const transformTable = (responseTable: ResponseTableDetail): ResponseTable => {
   const table: TableType = {
     name: "Test Table",
     rows: responseTable.rows.map((row) => ({
+      insurance: getInsurance(row, responseTable),
       applicant: {
         id: String(row.id),
         color: row.color,
