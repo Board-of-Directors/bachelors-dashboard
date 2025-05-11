@@ -1,10 +1,10 @@
 import { EmployeeList, Header } from "./сomponents";
 
-const SettingsPage = () => (
+const EmployeesPage = () => (
   <>
     <Header />
     <EmployeeList />
   </>
 );
 
-export default SettingsPage;
+export default EmployeesPage;
