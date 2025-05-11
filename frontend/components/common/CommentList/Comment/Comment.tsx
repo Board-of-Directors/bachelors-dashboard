@@ -15,9 +15,9 @@ export const Comment = ({ id, authorEmail, content }: CommnetProps) => (
     </DefaultAvatar>
     <Column>
       <InfoRow>
-        <Text className="text-sm text-text-gray">{dayjs().format("DD.MM.YYY")}</Text>
-        <Circle />
         <Text className="text-sm text-text-gray">{authorEmail}</Text>
+        <Circle />
+        <Text className="text-sm text-text-gray">{dayjs().format("DD.MM.YYYY")}</Text>
       </InfoRow>
       <Text className="font-medium">{content}</Text>
     </Column>

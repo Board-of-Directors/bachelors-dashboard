@@ -24,7 +24,7 @@ export const NewCommentBlock = () => {
     onError: () => errorSnackbar(),
     mutationFn: () =>
       createComment({
-        email: "a.tretyakov1@g.nsu.ru",
+        email: "a.tretyakov@gmail.com",
         studentInsurance: insurance,
         content: comment,
       }),
