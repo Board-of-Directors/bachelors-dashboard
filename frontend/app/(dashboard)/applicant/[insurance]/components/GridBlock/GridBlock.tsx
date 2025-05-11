@@ -5,7 +5,7 @@ import { InformationBlockProps } from "../InformationBlock/InformationBlock.type
 import { Row } from "./GridBlock.styles";
 import { createGridRows } from "./GridBlock.utils";
 
-export const GridBlock = ({ applicant }: InformationBlockProps) => {
+export const GridBlock = <T,>({ applicant }: InformationBlockProps<T>) => {
   const rows = useMemo<HeaderDescription[][]>(() => createGridRows(applicant), [applicant]);
 
   return rows.map((row, rowIndex) => (

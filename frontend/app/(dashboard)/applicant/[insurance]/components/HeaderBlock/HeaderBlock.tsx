@@ -4,10 +4,12 @@ import { HeaderBlockProps } from "./HeaderBlock.types";
 
 export const HeaderBlock = ({ header, rightContent, children }: HeaderBlockProps) => (
   <Container>
-    <Header>
-      <Text className="text-[20px] font-semibold">{header}</Text>
-      {rightContent}
-    </Header>
+    {header ? (
+      <Header>
+        <Text className="text-[20px] font-semibold">{header}</Text>
+        {rightContent}
+      </Header>
+    ) : null}
     {children}
   </Container>
 );

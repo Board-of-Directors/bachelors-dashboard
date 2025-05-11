@@ -1,6 +1,7 @@
+import { Comment as ResponseComment } from "@/api/request/comment/types";
 import { Comment } from "./comment";
 
-interface ApplicantDeaults {
+export interface ApplicantDeaults {
   id: string;
   position: number;
   name: string;
@@ -11,17 +12,19 @@ interface ApplicantDeaults {
   hasDocuments: boolean;
 }
 
-type Applicant<T> = ApplicantDeaults & { [K in keyof T]: T[K] };
+export type Applicant<T> = ApplicantDeaults & { [K in keyof T]: T[K] };
 
-interface HeaderDescription {
+export interface HeaderDescription {
   header: string;
   description: number;
 }
 
-interface ApplicantDetails extends ApplicantDeaults {
+export interface ApplicantDetails extends ApplicantDeaults {
   scores: HeaderDescription[];
   comments: Comment[];
 }
 
-export type { Applicant, ApplicantDeaults, ApplicantDetails, HeaderDescription };
-
+export type ApplicantEntity<T = unknown> = T & {
+  comments: ResponseComment[];
+  header: string;
+};
