@@ -13,5 +13,5 @@ class RowServiceImpl(
     private val rowRepository: RowRepository,
 ) : RowService {
     override fun getById(rowId: Long): TableRowEntity =
-        rowRepository.findById(rowId).orElseThrow { EntityNotFoundException(EntityType.ROW, rowId) }
+        rowRepository.findById(rowId).orElseThrow { EntityNotFoundException(EntityType.ROW, rowId.toString()) }
 }

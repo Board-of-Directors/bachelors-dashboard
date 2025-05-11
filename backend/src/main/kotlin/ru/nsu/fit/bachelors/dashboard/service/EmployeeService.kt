@@ -33,4 +33,9 @@ interface EmployeeService {
      * Удалить работника.
      */
     fun deleteEmployee(id: Long)
+
+    /**
+     * Получить сотрудника по электронной почте.
+     */
+    fun getByEmail(string: String): EmployeeEntity
 }

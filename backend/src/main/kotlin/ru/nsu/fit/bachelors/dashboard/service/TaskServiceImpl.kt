@@ -23,5 +23,5 @@ class TaskServiceImpl(
     override fun getById(id: Long): TaskEntity =
         taskRepository
             .findById(id)
-            .orElseThrow { EntityNotFoundException(EntityType.TASK, id) }
+            .orElseThrow { EntityNotFoundException(EntityType.TASK, id.toString()) }
 }

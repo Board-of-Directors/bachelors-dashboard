@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component
 import ru.nsu.fit.bachelors.dashboard.entity.FileEntity
 import ru.nsu.fit.bachelors.dashboard.entity.StudentEntity
 import ru.nsu.fit.bachelors.dashboard.entity.TableItemEntity
+import ru.nsu.fit.bachelors.dashboard.exception.EntityNotFoundException
+import ru.nsu.fit.bachelors.dashboard.exception.EntityType
 import ru.nsu.fit.bachelors.dashboard.filter.InternalStudentFilter
 import ru.nsu.fit.bachelors.dashboard.repository.StudentRepository
 
@@ -15,7 +17,12 @@ class StudentServiceImpl(
     override fun findByFilter(filter: InternalStudentFilter): List<StudentEntity> =
         studentRepository.findAll(filter.toSpecification(), Pageable.unpaged()).toList()
 
-    override fun findByInsurance(insurance: String): StudentEntity? = studentRepository.findByInsurance(insurance)
+    override fun getByInsurance(insurance: String): StudentEntity =
+        studentRepository
+            .findByInsurance(insurance)
+            .orElseThrow { EntityNotFoundException(EntityType.STUDENT, insurance) }
+
+    override fun findByInsurance(insurance: String): StudentEntity? = studentRepository.findByInsurance(insurance).orElse(null)
 
     override fun saveFromTable(table: FileEntity) {
         val students =

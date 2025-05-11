@@ -6,6 +6,10 @@ import org.springframework.stereotype.Component
 import ru.nsu.fit.bachelors.dashboard.dto.comment.request.CommentCreationRequest
 import ru.nsu.fit.bachelors.dashboard.dto.comment.response.CommentResponseDto
 import ru.nsu.fit.bachelors.dashboard.entity.CommentEntity
+import ru.nsu.fit.bachelors.dashboard.entity.EmployeeEntity
+import ru.nsu.fit.bachelors.dashboard.entity.StudentEntity
+import ru.nsu.fit.bachelors.dashboard.service.CommentService
+import ru.nsu.fit.bachelors.dashboard.service.EmployeeService
 import ru.nsu.fit.bachelors.dashboard.service.StudentService
 
 @Component
@@ -13,6 +17,8 @@ import ru.nsu.fit.bachelors.dashboard.service.StudentService
 @RequiredArgsConstructor
 class CommentFacadeImpl(
     private val studentService: StudentService,
+    private val commentService: CommentService,
+    private val employeeService: EmployeeService,
 ) : CommentFacade {
     /**
      * Получить все комментарии, привязанные к студенту.
@@ -23,9 +29,24 @@ class CommentFacadeImpl(
     }
 
     override fun createComment(request: CommentCreationRequest) {
-        TODO("Not yet implemented")
+        commentService.save(
+            request.toEntity(
+                studentService.getByInsurance(request.studentInsurance),
+                employeeService.getByEmail(request.email),
+            ),
+        )
     }
 }
+
+private fun CommentCreationRequest.toEntity(
+    student: StudentEntity,
+    employee: EmployeeEntity,
+): CommentEntity =
+    CommentEntity(
+        content = this.content,
+        student = student,
+        employee = employee,
+    )
 
 private fun CommentEntity.toResponse(): CommentResponseDto =
     CommentResponseDto(

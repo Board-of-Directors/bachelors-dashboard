@@ -19,6 +19,11 @@ interface StudentService {
     fun findByInsurance(insurance: String): StudentEntity?
 
     /**
+     * Получить студента по СНИЛС.
+     */
+    fun getByInsurance(insurance: String): StudentEntity
+
+    /**
      * Найти студентов в таблице и сохранить.
      */
     fun saveFromTable(entity: FileEntity)

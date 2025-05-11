@@ -15,7 +15,7 @@ class ColumnServiceImpl(
     override fun getById(columnId: Long): TableColumnEntity =
         columnRepository
             .findById(columnId)
-            .orElseThrow { EntityNotFoundException(EntityType.COLUMN, columnId) }
+            .orElseThrow { EntityNotFoundException(EntityType.COLUMN, columnId.toString()) }
 
     override fun allByIds(ids: List<Long>): List<TableColumnEntity> = columnRepository.findAllById(ids)
 }

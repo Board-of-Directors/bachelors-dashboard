@@ -23,7 +23,7 @@ class GroupServiceImpl(
     override fun get(id: Long): GroupEntity =
         groupRepository
             .findById(id)
-            .orElseThrow { EntityNotFoundException(EntityType.GROUP, id) }
+            .orElseThrow { EntityNotFoundException(EntityType.GROUP, id.toString()) }
 
     override fun getAll(): List<GroupEntity> = groupRepository.findAll()
 }

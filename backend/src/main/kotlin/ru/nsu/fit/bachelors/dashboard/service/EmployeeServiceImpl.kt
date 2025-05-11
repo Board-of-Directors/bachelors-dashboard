@@ -3,6 +3,8 @@ package ru.nsu.fit.bachelors.dashboard.service
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import ru.nsu.fit.bachelors.dashboard.entity.EmployeeEntity
+import ru.nsu.fit.bachelors.dashboard.exception.EntityNotFoundException
+import ru.nsu.fit.bachelors.dashboard.exception.EntityType
 import ru.nsu.fit.bachelors.dashboard.filter.EmployeeInternalFilter
 import ru.nsu.fit.bachelors.dashboard.repository.EmployeeRepository
 
@@ -24,4 +26,9 @@ class EmployeeServiceImpl(
     override fun deleteEmployee(id: Long) {
         employeeRepository.deleteById(id)
     }
+
+    override fun getByEmail(email: String): EmployeeEntity =
+        employeeRepository.findByEmail(email).orElseThrow {
+            EntityNotFoundException(EntityType.EMPLOYEE, email)
+        }
 }
