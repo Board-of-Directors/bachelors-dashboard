@@ -20,15 +20,19 @@ class TableHistoryFacadeImpl(
     override fun getAllByTable(): List<TableHistoryResponse> =
         tableHistoryService
             .getAll()
-            .groupBy { tableHistory -> tableHistory.table?.name!! }
-            .map { toDto(it.key, it.value) }
+            .map { tableHistory -> TableKey(tableHistory.table?.id!!, tableHistory.table?.name!!, tableHistory) }
+            .groupBy { tableHistory -> tableHistory.name }
+            .map { toDto(it.value) }
 
     override fun getByTable(id: Long): List<ChangeHistoryResponse> = fileService.getById(id).changes.map { it.toChangeHistoryResponse() }
 
-    fun toDto(
-        name: String,
-        histories: List<TableHistoryEntity>,
-    ): TableHistoryResponse = TableHistoryResponse(name = name, count = histories.size, lastDate = histories.maxOf { it.timestamp })
+    fun toDto(histories: List<TableKey>): TableHistoryResponse =
+        TableHistoryResponse(
+            id = histories.first().id,
+            name = histories.first().name,
+            count = histories.size,
+            lastDate = histories.map { it.historyEntity }.maxOf { it.timestamp },
+        )
 }
 
 private fun TableHistoryEntity.toChangeHistoryResponse(): ChangeHistoryResponse =
@@ -38,3 +42,9 @@ private fun TableHistoryEntity.toChangeHistoryResponse(): ChangeHistoryResponse 
         operation = this.operation.name,
         timestamp = this.timestamp.toString(),
     )
+
+data class TableKey(
+    val id: Long,
+    val name: String,
+    val historyEntity: TableHistoryEntity,
+)
