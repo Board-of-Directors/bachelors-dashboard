@@ -1,4 +1,4 @@
-import { ListTodo, Table, Users } from "lucide-react";
+import { History, ListTodo, Table, Users } from "lucide-react";
 import { NavbarItemProps } from "./NavbarItem/NavbarItem.types";
 
 export const NAVBAR_ITEMS: NavbarItemProps[] = [
@@ -6,6 +6,11 @@ export const NAVBAR_ITEMS: NavbarItemProps[] = [
     name: "Таблицы",
     href: "/tables",
     icon: <Table width={"20px"} />,
+  },
+  {
+    name: "История изменений",
+    href: "/history",
+    icon: <History width={"20px"} />,
   },
   {
     name: "Доска задач",
