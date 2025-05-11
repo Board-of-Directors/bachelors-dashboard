@@ -3,7 +3,7 @@
 import { Text } from "@/components/common/Text/Text";
 import { DOCXFileIcon } from "@/components/icons/DOCXFileIcon";
 import { XSLXFileIcon } from "@/components/icons/XSLXFileIcon";
-import { EditTableModal } from "../../Modals";
+import { EditTableModal } from "@/components/modals";
 import { SettingsTooltip } from "../SettingTooltip/SettingsTooltip";
 import { FileRow as Container, FileContainer, Row } from "./FileRow.styles";
 import { FileRowProps } from "./FileRow.types";

@@ -14,7 +14,7 @@ import { useAccordionButton } from "./AccordionButton.hooks";
 import { AccordionButtonProps } from "./AccordionButton.types";
 
 import { Text } from "@/components/common";
-import { EditGroupNameModal, ManageAccessModal } from "@/components/common/Modals";
+import { EditGroupNameModal, ManageAccessModal } from "@/components/modals";
 
 export const AccordionButton = ({ folder }: AccordionButtonProps) => {
   const { actions, editGroupModalProps, manageAccessModalProps } = useAccordionButton(folder.id);
