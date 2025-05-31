@@ -1,4 +1,2 @@
-export {
-  TableGroupModalSchema,
-  type TabelGroupModalType,
-} from "./TableGroupSchema/TableGroupModal.schema";
+export * from "./AuthFormSchema";
+export * from "./TableGroupModalSchema";
