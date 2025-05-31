@@ -1,16 +1,21 @@
+import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
+import { Montserrat } from "next/font/google";
 import { PropsWithChildren } from "react";
-import { fonts } from "./fonts";
 import "./global.css";
 import { Providers } from "./providers";
-import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
   title: "Приёмная комиссия ФИТ НГУ",
 };
 
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["cyrillic"],
+});
+
 const RootLayout = ({ children }: PropsWithChildren) => (
-  <html lang="en" className={fonts.montserrat.variable}>
+  <html lang="en" className={montserrat.variable}>
     <body>
       <Providers>{children}</Providers>
       <Toaster />

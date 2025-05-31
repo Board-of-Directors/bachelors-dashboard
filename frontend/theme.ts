@@ -36,6 +36,6 @@ export const theme = extendTheme({
   },
   colors,
   components: {
-    Accordion: accordionTheme
+    Accordion: accordionTheme,
   },
 });
