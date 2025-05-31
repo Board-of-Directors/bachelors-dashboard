@@ -23,3 +23,5 @@ export const GET_ALL_TASKS_QUERY = ['get', 'all-tasks'];
 export const CREATE_TASK_KEY = ['post', 'task'];
 
 export const ORDER_TASKS_KEY = ['order', 'tasks'];
+
+export const GET_EMPLOYEES_KEY = ['get', 'employees'];

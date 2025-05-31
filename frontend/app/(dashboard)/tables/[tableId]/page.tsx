@@ -35,4 +35,3 @@ const TablePage = ({ params: { tableId } }: { params: { tableId: number } }) => 
 };
 
 export default TablePage;
-Í

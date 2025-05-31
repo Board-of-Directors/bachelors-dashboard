@@ -1,6 +1,5 @@
-
 import { Applicant } from "@/types/applicant";
-import { ResponseTable, Table, TableSchema } from "@/types/table";
+import { ResponseTable, TableSchema } from "@/types/table";
 
 const defaultApplicant: Applicant<any> = {
   id: "0",
@@ -24,7 +23,7 @@ const secondApplicant: Applicant<any> = {
   hasDocuments: true,
 };
 
-const table: Table = {
+const table = {
   name: "Таблица платников",
   rows: Array.from({ length: 5 }, (_, id) => [
     {
@@ -54,41 +53,41 @@ const schema: TableSchema = [
   {
     header: "ID",
     accessorKey: "id",
-    columnType : "string",
+    columnType: "string",
   },
   {
     header: "ФИО",
     accessorKey: "name",
-    columnType : "string",
+    columnType: "string",
   },
   {
     header: "Номер в списке",
     accessorKey: "position",
-    columnType : "number"
+    columnType: "number",
   },
   {
     header: "СНИЛС",
     accessorKey: "snils",
-    columnType : "string"
+    columnType: "string",
   },
   {
     header: "Баллы за ЕГЭ",
     accessorKey: "totalExamScore",
-    columnType : "number"
+    columnType: "number",
   },
   {
     header: "Баллы за ИД",
     accessorKey: "totalAchievments",
-    columnType : "number"
+    columnType: "number",
   },
   {
     header: "",
     accessorKey: "hiddenColumns",
-    columnType : "string"
+    columnType: "string",
   },
 ];
 
-const responseTable: ResponseTable = {
+const responseTable = {
   schema: schema,
   table: table,
 };

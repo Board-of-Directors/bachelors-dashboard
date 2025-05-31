@@ -7,6 +7,8 @@ const MAX_FILE_SIZE_ERROR = "Максимальный размер файла - 
 
 export const RequiredFieldSchema = z.string().min(1, REQUIRED_FIELD_ERROR);
 
+export const EmailFieldSchema = RequiredFieldSchema.email();
+
 export const OptionalFieldSchema = z.string().optional();
 
 export const FileFieldSchema = z

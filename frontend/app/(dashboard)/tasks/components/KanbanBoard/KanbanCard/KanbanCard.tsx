@@ -63,7 +63,7 @@ export const KanbanCard = ({ card, ...props }: KanbanCardProps) => {
         ) : null}
         {tags.length ? <TagList tags={tags as any} /> : null}
         {assignees ? <UserItem {...assignees[0]} /> : null}
-        <Text className="text-medium text-text-back">{name}</Text>
+        <Text dangerouslySetInnerHTML={{__html : name}} className="text-medium text-text-back" />
         <DeadlineRow startDate={startDate} endDate={endDate} />
       </Container>
     </>
