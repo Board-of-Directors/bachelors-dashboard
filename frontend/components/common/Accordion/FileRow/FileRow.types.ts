@@ -13,5 +13,6 @@ export interface DOCXFile {
 export type FileItem = XSLXFile | DOCXFile;
 
 export interface FileRowProps {
+    borderTopWidth?: string;
     file: ResponseFile;
 }

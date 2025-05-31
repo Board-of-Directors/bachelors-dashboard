@@ -1,17 +1,22 @@
 import { api } from "@/api";
-import { OrderFilesRequest, ResponseFile } from "./types";
+import { OrderFilesRequest, ResponseFile, UploadDocumentRequest } from "./types";
 
-const orderFiles = async (request: OrderFilesRequest): Promise<void> => {
-    return api.put('/file', request)
-}
+export const orderFiles = async (request: OrderFilesRequest): Promise<void> => {
+  return api.put("/file", request);
+};
 
-const uploadFile = async (file: File): Promise<string> => {
-    return api.putForm('/upload', { file: new Blob([file]) })
-}
+export const uploadFile = async (file: File): Promise<string> => {
+  return api.putForm("/file/upload", { file: new Blob([file]) });
+};
 
-const getGroupFiles = async (groupId: number): Promise<ResponseFile[]> => {
-    return api.get('/file', { params: { groupId } }).then((response: any) => response.files);
-}
+export const uploadDocument = async (request: UploadDocumentRequest): Promise<void> => {
+  return api.post("/file/docs", request);
+};
 
-export { getGroupFiles, orderFiles, uploadFile };
+export const uploadTable = async (request: UploadDocumentRequest): Promise<void> => {
+  return api.post("/file/table/v2", request);
+};
 
+export const getGroupFiles = async (groupId?: number): Promise<ResponseFile[]> => {
+  return api.get("/file", { params: { groupId } }).then((response: any) => response.files);
+};

@@ -1,15 +1,15 @@
+import { Button } from "@/components/common";
 import {
-  Modal as NextModal,
   ModalBody,
   ModalContent,
   ModalFooter,
   ModalHeader,
+  Modal as NextModal,
 } from "@nextui-org/modal";
-import { ModalBuilderProps } from "./Modal.types";
 import { XIcon } from "lucide-react";
-import { Button } from "@/components/common";
+import { ModalBuilderProps } from "./Modal.types";
 
-export const Modal = ({ header, body, footer, ...props }: ModalBuilderProps) => (
+export const Modal = ({ header, body, footer, classNames, ...props }: ModalBuilderProps) => (
   <NextModal
     {...props}
     hideCloseButton
@@ -19,9 +19,10 @@ export const Modal = ({ header, body, footer, ...props }: ModalBuilderProps) => 
       header:
         "w-full flex flex-row justify-between items-center p-6 border-b-2 border-button-secondary",
       footer: "w-full flex flex-row gap-4 pt-0 pb-6",
+      ...classNames,
     }}
   >
-    <ModalContent>
+    <ModalContent className={classNames?.content}>
       {(onClose) => (
         <>
           <ModalHeader>

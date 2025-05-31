@@ -13,8 +13,11 @@ export const OptionalFieldSchema = z.string().optional();
 
 export const FileFieldSchema = z
   .any()
-  .refine((files) => files?.length == 1, REQUIRED_FIELD_ERROR)
-  .refine((files) => files?.[0]?.size <= MAX_FILE_SIZE, MAX_FILE_SIZE_ERROR);
+  .refine((files) => files || files?.length == 1, REQUIRED_FIELD_ERROR)
+  .refine(
+    (files) => files.size <= MAX_FILE_SIZE || files?.[0]?.size <= MAX_FILE_SIZE,
+    MAX_FILE_SIZE_ERROR,
+  );
 
 export const SelectSchema = z.object({
   label: RequiredFieldSchema,
